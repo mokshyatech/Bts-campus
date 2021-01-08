@@ -3,6 +3,7 @@ include "include/connection.php";
 session_start();
 $contactus='set';
 
+
 $nameErr = $emailErr= $phoneErr= $MessageErr= "";  
 $phone = $email = $name = $Message= "";  
   
@@ -67,21 +68,23 @@ function input_data($data) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ContactUs</title>
+  <title>BTS</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php include('include/style.php'); ?>
-  <link rel="stylesheet" type="text/css" href="frontpage/asset/contact.css">
-  
+    <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="frontpage/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="frontpage/css/style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="contactus/contact.css">
+
 </head>
 <body>
 
   <!-- top banner -->
-     <?php include('include/banner.php'); ?>
+    <?php include "include/banner.php";?>
 
     <!-- navbar -->
-   <?php include('include/navbar.php'); ?>
-
+    <?php include('include/navbar.php'); ?>
 
   <div class="container " style="margin-top: 20px; ">
     <div class="row">
@@ -146,7 +149,19 @@ function input_data($data) {
           Budhanilkantha-3, Kathmandu, Nepal
         </P>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14120.288038342855!2d85.3624916!3d27.7767553!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x75353d0ced2c3ea5!2sBudhanilkantha%20Technical%20School!5e0!3m2!1sen!2snp!4v1602489148755!5m2!1sen!2snp" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+       
+         <div class="container" style="position: relative;
+  overflow: hidden;
+  width: 100%;
+  ">
+  <iframe  class="responsive-iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14120.288038342855!2d85.3624916!3d27.7767553!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x75353d0ced2c3ea5!2sBudhanilkantha%20Technical%20School!5e0!3m2!1sen!2snp!4v1602489148755!5m2!1sen!2snp" width="450" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" style="position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;"></iframe>
+</div> 
         
       </div>
     </div>
@@ -157,7 +172,7 @@ function input_data($data) {
 
 <!-- footer -->
 <?php include('include/footer.php'); ?>
-
+  
 <?php  
     if(isset($_POST['submit'])) {  
     
@@ -182,7 +197,15 @@ function input_data($data) {
   }
 ?>  
 
-<?php include('include/script.php'); ?>
+
+
+
+
+
+<script src="https://kit.fontawesome.com/302b58d09d.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
 

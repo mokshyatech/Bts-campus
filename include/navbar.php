@@ -17,7 +17,7 @@
           <ul class="navbar-nav mx-auto">
            
             <li class="nav-item center-menu">
-              <a class="nav-link <?php if(isset($index)) echo 'active'; ?> " href="index.php">Collage </a>
+              <a class="nav-link <?php if(isset($index)) echo 'active'; ?> " href="index.php">Campus </a>
             </li>
            
             <li class="nav-item center-menu">
@@ -75,4 +75,6 @@
         </div>
       </nav>
     </div>
+
+
 

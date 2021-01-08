@@ -71,42 +71,10 @@ nav {
 .navbar-nav > .nav-item > .right-link {
   color: #1a237e;
 }
-
+.navbar-toggler{
+ background-color:#d6d4d4;border: none; margin-bottom:3px; margin-top: 3px; height: 35px; width: 50px;
+}
 /* title in the photos */
-
-.titleup {
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-
-.titledown {
-  position: absolute;
-  top: 95%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-.titleright {
-  position: absolute;
-  top: 95%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-
-.row-image img{
-    opacity: 0.9;
-    transform: scale(1);
-    transition: transform 0.5s;
-    opacity: 0.5s;
-}
-.row-image img:hover{
-    opacity: 1;
-    transform: scale(1.30);
-}
 
 
 /* pagination*/
@@ -233,8 +201,6 @@ nav {
 p{
   font-size: 12px;
 }
-
-
 
 #navbarSupportedContent ul li a.active{
   color: green;

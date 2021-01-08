@@ -1,0 +1,42 @@
+body{
+ 
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  justify-content: center;
+  width:100vw ;
+  display: flex;
+  height: 100vh;
+}
+.container{
+	 margin-top: 50px;
+	 width: 70%;
+	 position: relative;
+	 z-index: 1;
+}
+.formtitle{
+	background-color: black;
+	 justify-content: center; 
+	 padding-top:5px;
+	 color:#ffffff;
+	 min-height: 50px; 
+	 opacity: 70%;
+	 position: relative;
+}
+.bodycol{
+	background-color: white;
+	 padding-top: 10px;
+}
+label{
+	color:#224a8f;
+}
+.textcol{
+	background-color: #224a8f; 
+	opacity: 60%; 
+	padding-top: 100px; 
+	text-align: center; 
+	color: white;
+
+}

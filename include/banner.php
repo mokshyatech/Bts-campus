@@ -1,15 +1,15 @@
- <div class="container-fluid">
+<div class="container-fluid " style="background-color: #d5d8de;">
       <div class="row top-banner p-2">
         <div class="col-lg-8 col-md-8 col-sm-12">
           <div class="row">
-            <div class="col-lg-2 col-sm-6 col-md-4">
+            <div class="col-lg-2 col-sm-4 col-md-4 col-4 mt-">
               <div class="logo">
                 <img src="frontpage/images/logo.jpg" style="margin-top: 20px;" alt="Not Available!" />
               </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-8 ">
               <div class="top-title">
-                <h1>BUDHANILKANTHA TECHNICAL COLLAGE</h1>
+                <h4>BUDHANILKANTHA TECHNICAL CAMPUS</h4>
               </div>
 
               <div class="top-subtitle">

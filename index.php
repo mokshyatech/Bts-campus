@@ -1,19 +1,12 @@
-<?php
-include"include/connection.php";
-$index='set';
-session_start();
-  if(isset($_SESSION['login_from_school']))
-  {
-      header('location:../index.php');
-  }
-  if(isset($_SESSION['login_from_engineering']))
-  {
-    header('location:../engineering/index.php');
 
-  }
+<!DOCTYPE html><?php
+include "include/connection.php";
+$index='set';
+
+session_start();
+ 
  
 ?>
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,83 +14,104 @@ session_start();
     <title>BTS</title>
 
     <!-- css  -->
-    <?php include('include/style.php'); ?>
+    <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="frontpage/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="frontpage/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   </head>
   <body>
     <!-- top banner -->
-    
-    <?php include('include/banner.php'); ?>
+   <?php include('include/banner.php'); ?>
+
     <!-- navbar -->
     <?php include('include/navbar.php'); ?>
+<!-- carousel -->
 
-    <!-- home image -->
-    <div class="row p-0">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div>
-          <img src="frontpage/images/banner-img.jpg" class="img-fluid" alt="Not Available!" />
-        </div>
-      </div>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2000">
+  <div class="carousel-inner">
+    <div class="carousel-item active" >
+      <img class="d-block w-100" src="frontpage/photos/group.jpg" alt="First slide">
     </div>
+
+    <div class="carousel-item">
+      <img class="d-block w-100" src="frontpage/photos/sports.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="frontpage/photos/oeca1.jpg" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+</div>
+   
 
     <!-- announcement section -->
     <div class="container-fluid">
-      <div class="row announcement pt-5">
+      <div class="row announcement pt-3">
         <div class="col-lg-4 ">
           <ul class="nav flex-column" style="margin-bottom: 15px;">
             <li class="nav-item">
               <a class="nav-link active" href="#">NEWS AND ANNOUNCEMENT</a>
             </li>
-             <?php 
-
-                        
-                   
+            <?php 
+ 
+                      include("include/connection.php");
                        
                          
                                               
-                      $sql="select *from news_and_event WHERE plus2=1 ORDER BY id DESC LIMIT 5";
+                      $sql="select *from news_and_event WHERE school=1 ORDER BY id DESC LIMIT 5";
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {
               ?>
-
-
 
             <li class="nav-item">
               <a class="nav-link" href="#"
                 ><i class="fa fa-circle"></i><?php echo $row['post']; ?></a
               >
             </li>
-            <?php } ?>
-            <li class="nav-item">
-              <a class="nav-link" href="View/news.php"
+            <?php }?>
+            <li class="nav-item"  style="text-align: center;">
+              <a class="nav-link" href="school/View/news.php"
                 ><button type="button" class="btn btn-success">
                   View More
                 </button></a
               >
             </li>
-          </ul>
+            
         </div>
+       
+
+
+
+
         <div class="col-lg-4">
           <ul class="nav flex-column"  style="margin-bottom: 15px;">
             <li class="nav-item">
               <a class="nav-link active" href="#">NOTICE BOARD</a>
             </li>
-            <?php                  
-                      $sql="select *from notice WHERE plus2=1 ORDER BY id DESC LIMIT 5";
+                  <?php                  
+                      $sql="select *from notice WHERE school=1 ORDER BY id DESC LIMIT 5";
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {
               ?>
-
             <li class="nav-item">
               <a class="nav-link" href="#"
-                ><i class="fa fa-circle"></i></i><?php echo $row['notice']; ?></a
+                ><i class="fa fa-circle"></i><?php echo $row['notice']; ?></a
               >
             </li>
-           <?php } ?>
-
-            <li class="nav-item">
-              <a class="nav-link" href="View/notice.php"
+               <?php }?>
+            <li class="nav-item"  style="text-align: center;">
+              <a class="nav-link" href="school/View/notice.php"
                 ><button type="button" class="btn btn-success">
                   View More
                 </button></a
@@ -105,48 +119,48 @@ session_start();
             </li>
           </ul>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4  mb-3">
           <ul class="nav flex-column">
             <li class="nav-item">
               <a class="nav-link active" href="#">CALENDAR EVENTS</a>
             </li>
             <?php                  
-                      $sql="select *from calender WHERE plus2=1 ORDER BY id DESC LIMIT 2";
+                      $sql="select *from calender WHERE school=1 ORDER BY id DESC LIMIT 2";
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {
               ?>
-
-
             <li class="nav-item">
-              <a class="nav-link" href="#"><p class="date-marker" style="width:90%; height: 60px; margin-top: 7px;"><?php echo $row['date']; ?><br /><?php echo $row['event']; ?></p>
+              <a class="nav-link" href="#"
+                ><p class="date-marker" style="width:100%; height: 60px; margin-top: 7px; margin-right: 0px;"><?php echo $row['date']; ?><br /><?php echo $row['event']; ?></p>
               </a>
             </li>
-          <?php } ?>
-
-            <li class="nav-item">
-              <a class="nav-link" href="View/cal.php"
-                ><button type="button" class="btn btn-success">
+            <?php } ?>
+             <li class="nav-item"  style="text-align: center;">
+              <a class="nav-link" href="school/View/cal.php">
+                <button type="button" class="btn btn-success">
                   View More
-                </button></a
-              >
+                </button></a>
+              
             </li>
-           
+
           </ul>
         </div>
       </div>
     </div>
 
     <!-- about us banner -->
-    <div class="row p-0">
+    <div class="container-fluid">
+       <div class="row p-0">
       <div class="col-lg-12">
         <div class="about-img">
-          <img src="frontpage/images/banner-img.jpg" alt="Not Available!" />
+          <img src="frontpage/photos/oeca1.jpg" alt="Not Available!" />
+        </div>
           <div class="title">
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline about my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link right-link" href="./description/description.php"><h1>ABOUT US</h1></a>
+                <a class="nav-link right-link" href="description/description.php"><h4 style="">ABOUT US</h4></a>
               </li>
             </ul>
           </form>
@@ -154,67 +168,59 @@ session_start();
         </div>
       </div>
     </div>
+    </div>
+   
 
     <!-- message section -->
     <div class="container-fluid">
-      <div class="row message p-5">
-        <div class="col-lg-6 col-sm-12 col-md-6" >
+      <div class="row message p-2">
+        <div class="col-lg-6 col-sm-12 col-md-6 p-sm-0 p-lg-3 p-md-3 p-1" >
           <div class="introduction"  style="margin-bottom: 20px;">
             <h4>INTRODUCTION</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit ad saepe facilis doloremque. Id asperiores nam
-              incidunt, ipsum minima suscipit magnam, repudiandae vitae at
-              deleniti cupiditate dicta! Quos nobis sed, recusandae, aut
-              perferendis a molestias omnis iste repellat commodi error harum
-              aliquam cumque eligendi eum asperiores voluptas magnam. Pariatur,
-              recusandae! Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Asperiores nobis magni cupiditate unde aliquid modi quas
-              aperiam quod eligendi, beatae tempore corporis laborum
-              exercitationem nesciunt repellendus ipsam. Cupiditate incidunt, ad
-              alias quaerat labore asperiores hic nobis quidem excepturi
-              assumenda saepe itaque consequuntur vel quibusdam? Fugiat expedita
-              beatae sapiente atque sint.<br />
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni
-              tenetur enim, nobis natus sunt vitae culpa, quae earum obcaecati
-              magnam perferendis veniam fuga molestias maiores.
+             <p>
+              Budhanilkantha is committed to academic excellence. The school is dedicated to maintain the academic environment with the help of outstanding faculty engaged in the task of creative sensibility, or sense of responsibility and moral integrity.
+            We believe that children today are responsible for citizens of tomorrow. However, the nourishment of these buds cannot blossom unless and until they get excellent academic environment which will enable them become acquainted with the nation and their society and family. Budhanilkantha is committed to create homely but disciplined environment so that children may become aware of their own future.<br>
             </p>
-            <button type="button" class="btn btn-success">View More</button>
           </div>
         </div>
-        <div class="col-lg-6 col-sm-12 col-md-6">
+        <div class="col-lg-6 col-sm-12 col-md-6 p-sm-0 p-lg-3 p-md-2 p-1">
           <div class="introduction"  style="margin-bottom: 20px;">
-            <h4>MESSAGE FROM THE CHIEF</h4>
+            <h4>MESSAGE FROM THE PRINCIPAL</h4>
             <div class="chief-img">
               <img src="frontpage/photos/1.jpg" alt="Not Available!" />
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit ad saepe facilis doloremque. Id asperiores nam
-              incidunt, ipsum minima suscipit magnam, repudiandae vitae at
-              deleniti cupiditate dicta! Quos nobis sed, recusandae, aut
-              perferendis a molestias omnis iste repellat commodi error harum
-              aliquam csuids xnxsaw witye hdhe repeltu hu powioer heui Lorem
-              ipsum dolor sit amet Lorem ipsum dolor sit amet.
+              Welcome to Budanilkanta Technical School, Kathmandu, Nepal, a school deeply committed to the mission of inspiring each student a passion for learning, the confidence and competence to pursue their dreams and the commitment to serve as a compassionate global citizen who is a steward of the environment<br>
             </p>
-            <button type="button" class="btn btn-success">View More</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- footer -->
-   <?php include('include/footer.php'); ?>
+     <?php include('include/footer.php'); ?>
+ 
+    <input type="hidden" id="admission_success_school" value="<?php if(isset($_SESSION['admission_success_school'])) {echo htmlentities($_SESSION['admission_success_school']); } unset($_SESSION['admission_success_school']); ?>">
 
     <!-- js setup -->
-    <?php include('include/script.php'); ?>
-   
-     <input type="hidden" id="admission_success_engineering" value="<?php if(isset($_SESSION['admission_success_engineering'])) {echo htmlentities($_SESSION['admission_success_engineering']); } unset($_SESSION['admission_success_engineering']); ?>">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+     <script>
 
-    <input type="hidden" id="admission_error_engineering" value="<?php if(isset($_SESSION['admission_error_engineering'])) {echo htmlentities($_SESSION['admission_error_engineering']); } unset($_SESSION['admission_error_engineering']); ?>">
-    <script>
-
-      var checksuccess =$('#admission_success_engineering').val();
+      var checksuccess =$('#admission_success_school').val();
 
       if(checksuccess!=='')
       {
@@ -226,17 +232,7 @@ session_start();
      })
     }
 
-    var checkerror=$('#admission_error_engineering').val();
-    if(checkerror!=='')
-    {
-      Swal.fire({
-       title: 'error!',
-      text: 'Opps Your form has not been submitted ',
-      icon: 'error',
-      confirmButtonText: 'OK'
-     })
-
-    }
+  
     </script>
   </body>
 </html>
