@@ -62,8 +62,8 @@
                 aria-haspopup="true"
                 aria-expanded="false" >Login</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="login/login.php">Student</a>
-                <a class="dropdown-item" href="login/teacherlogin.php">Teacher</a>
+                <a class="dropdown-item" href="login/login.php?user=student">Student</a>
+                <a class="dropdown-item" href="login/login.php?user=teacher">Teacher</a>
                 
               </div>
               </li>

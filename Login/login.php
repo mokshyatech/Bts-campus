@@ -1,9 +1,27 @@
 <?php
 include '../include/connection.php';
+   session_start();
+
+if(isset($_GET['user']))
+{
+
+  if($_GET['user']=='teacher')
+  {
+     $teacher='set';
+  } 
+  else
+  {
+    $student='set';
+  }
+}
+else
+{
+  $student='set';
+}
 
 
-$passwordErr = $uniquecodeErr= "";  
-$password = $uniquecode = "";  
+$passwordErr = $uniquecodeErr=$emailErr="";  
+$password = $uniquecode =$email= "";  
   
 //Input fields validation  
 if ($_SERVER["REQUEST_METHOD"] == "POST") {  
@@ -26,6 +44,8 @@ if(!$uppercase || !$lowercase || !$number ||  strlen($password) < 8)
             }      
     }  
 
+if(isset($_POST['uniquecode']))
+ {
  if (empty($_POST["uniquecode"])) {  
         $uniquecodeErr = " What is your Unique Login Code?";  
     } else {  
@@ -35,6 +55,23 @@ if(!$uppercase || !$lowercase || !$number ||  strlen($password) < 8)
                 $uniquecodeErr = "Only alphabets and white space are allowed";  
             }      
     }
+  }
+  if(isset($_POST['email']))
+  {
+     if (empty($_POST["email"])) {  
+        $emailErr = " What is your email";  
+    } else {  
+            $email = input_data($_POST["email"]);  
+            // check if URL address syntax is valid  
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+               
+                $emailErr = "Enter valid email";  
+            }      
+    } 
+  }
+
+
+
   }
 function input_data($data) {  
   $data = trim($data);  
@@ -64,7 +101,7 @@ function input_data($data) {
   ">
   <button type="button" class="btn btn-primary btn-lg"><a href="../index.php" style="color: black; text-decoration: none;">Home <i class="fa fa-arrow-circle-o-left"></i></a></button></div>
     <div class="row formtitle">
-      <h5>STUDENT LOGIN FORM FOR SCHOOL</h5>
+      <h5><?php if(isset($student)) echo "STUDENT"; if(isset($teacher)) echo "TEACHER"; ?> LOGIN FORM</h5>
     </div>
     <div class="row form body">
       <div class="col-lg-7 col-md-12 col-sm-12 bodycol">
@@ -73,9 +110,18 @@ function input_data($data) {
   <div class="form-row">
     
   <div class="form-group col-md-12">
-    <label for="inputRoll">UNIQUE ROLL NUMBER</label>
+    <?php if(isset($student)){ ?>
+       <label for="inputRoll">UNIQUE ROLL NUMBER</label>
    <input type="text" name="uniquecode" class="form-control" id="inputEmail" placeholder=" Unique code" autocomplete="off">  
-    <span class="error"><?php echo $uniquecodeErr; ?> </span>  
+    <span class="error"><?php echo $uniquecodeErr; ?> </span> 
+    <?php } ?>
+    <?php if(isset($teacher)){ ?>
+        <label for="inputRoll">EMAIL ID</label>
+   <input type="email" name="email" class="form-control" id="inputEmail" placeholder=" Email Id" autocomplete="off">  
+    <span class="error"><?php echo $emailErr; ?> </span>  
+    <?php } ?>   
+
+     
     
   </div>
   <div class="form-group col-md-12">
@@ -90,7 +136,14 @@ function input_data($data) {
   
   <div class="form-row">
     <div class="form-group col-md-12" style="text-align: center;">
-      <input type="submit" name="submit" value="LOGIN" class="btn btn-primary" style="background-color: #224a8f; border: none;">
+
+  
+       <?php if(isset($student)){?>
+      <input type="submit" name="student" value="LOGIN" class="btn btn-primary" style="background-color: #224a8f; border: none;">
+     <?php } ?>
+       <?php if(isset($teacher)){?>
+      <input type="submit" name="teacher" value="LOGIN" class="btn btn-primary" style="background-color: #224a8f; border: none;">
+     <?php } ?>
     </div>
   </div>
    
@@ -117,7 +170,7 @@ function input_data($data) {
 
 
 <?php  
-    if(isset($_POST['submit'])) {  
+    if(isset($_POST['student'])) {  
     
        $count=0;
 
@@ -133,7 +186,7 @@ function input_data($data) {
         ?>
            <div class="msg" style="background-color: #a7cfef; margin-top: 400px; height: 100px; width: 550px; position: fixed; text-align: center;">
       <?php
-      echo"The email and password doesn't match!!!";
+      echo"The uniquecode and password doesn't match!!!";
       ?>
     
       </div>    
@@ -142,13 +195,59 @@ function input_data($data) {
       }
       else
       {
-        session_start();
+     
         $_SESSION['login_user'] = $row['firstname'];
         $_SESSION['code']=$row['uniquecode'];
         
         
        
         header('Location: ../index.php');
+        
+      }
+    }else{
+?>
+           
+      <div class="msg" style="background-color: #a7cfef; margin-top: 400px; height: 100px; width: 550px; position: fixed; text-align: center;">
+      <?php
+      echo"Incorrect data Please fill correct data!!!";
+      ?>
+    
+      </div>   
+            
+        <?php
+  
+}
+}
+ if(isset($_POST['teacher'])) {  
+    
+       $count=0;
+
+        
+    if($passwordErr == "" && $emailErr == "" ) {
+
+      $result = mysqli_query($db, "SELECT * FROM school_teacher WHERE  email = '$email' and password = '$password'");
+      $row= mysqli_fetch_assoc($result);
+      $count=mysqli_num_rows($result);
+
+      if($count==0)
+      {
+        ?>
+              
+          <div class="msg" style="background-color: #a7cfef; margin-top: 400px; height: 100px; width: 550px; position: fixed; text-align: center;">
+      <?php
+      echo"The email and password doesn't match";
+      ?>
+    
+      </div>
+              
+        <?php
+      }
+      else
+      {
+        
+        $_SESSION['teacher'] = $row['firstname'];
+
+        header('Location: ../teacher/index.php');
         
       }
     }else{

@@ -160,7 +160,7 @@ session_start();
             <form class="form-inline about my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link right-link" href="description/description.php"><h4 style="">ABOUT US</h4></a>
+                <a class="nav-link right-link" href="aboutus.php"><h4 style="">ABOUT US</h4></a>
               </li>
             </ul>
           </form>
