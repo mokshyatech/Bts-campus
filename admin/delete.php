@@ -169,22 +169,7 @@ include('include/check_login.php');
 
     else if($type=='collage_teacher')
     {
-       $sql=" DELETE FROM college_teacher  WHERE id='$id' ";
-           if(mysqli_query($db,$sql))
-      {
-        $_SESSION['success']="One Collage Teacher  has been successfully deleted";
-          
-        header('location:collage_teacher_registration_table.php');
-     
-      }
-      else
-       {
-        $_SESSION['error']='!Opps somthing wrong in deleting student';
-              header('location:collage_teacher_registration_table.php');
-              
-     
-
-      }
+      
 
     }
 
@@ -209,7 +194,50 @@ include('include/check_login.php');
        
 
     }
+    else if($type=='gallery_delete')
+    {
+        $id=$_GET['id'];
+        $sql="select *from photos where id='$id' limit 1";
+        $res=mysqli_query($db,$sql);
+        $result=mysqli_fetch_assoc($res);
+      
+        if(file_exists('photo/'.$result['photo']))
+        {
+          unlink('photo/'.$result['photo']);
+        }
 
+        $delete="DELETE FROM photos  where id='$id'";
+        $delete_success=mysqli_query($db,$delete);
+         $_SESSION['success']=" image has been successfully deleted";
+           header('location:gallery_table.php');
+           exit();
+
+    }
+    /*-----------------------------------------------------------------------------------------------------------------------------
+                                            teacher deletes
+    -------------------------------------------------------------------------------------------------------------------------------
+    */
+
+else if($type='teacher_deletes')
+{
+   $sql=" DELETE FROM teacher  WHERE id='$id' ";
+           if(mysqli_query($db,$sql))
+      {
+        $_SESSION['success']="One Collage Teacher  has been successfully deleted";
+          
+        header('location:teacher_table.php');
+     
+      }
+      else
+       {
+        $_SESSION['error']='!Opps somthing wrong in deleting student';
+              header('location:teacher_table.php');
+              
+     
+
+      }
+
+}
        
 
 ?>

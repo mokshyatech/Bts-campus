@@ -2,7 +2,7 @@
 session_start();
 include('include/connection.php');
 
-$sql="select *from college_teacher order by id desc ";
+$sql="select *from teacher order by id desc ";
 $result=mysqli_query($db,$sql);
 $teacher='set';
 
@@ -14,7 +14,7 @@ $teacher='set';
 <html>
 
 <head>
-    <title>Managment Teacher Table</title>
+    <title>Teacher Table</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -68,14 +68,14 @@ include('include/check_login.php');
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="container uploadsection">
                      <div class="head">
-                    <p><span class="span">Management Teacher</span></p>  
+                    <p><span class="span">Teacher Table</span></p>  
                   </div>
                     <?php
                     if(isset($_SESSION['success']))
                     { 
 
                   ?>
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success mt-4" role="alert">
                         <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
                     </div>
                     <?php } ?>
@@ -84,7 +84,7 @@ include('include/check_login.php');
                     { 
 
                   ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger mt-4" role="alert">
                         <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
                     </div>
                     <?php } ?>
@@ -92,7 +92,7 @@ include('include/check_login.php');
                         <input type="text" name="search" placeholder=" search " onkeyup="search" id='search' style="border-radius:5px;border: blue;  "><i class='fa fa-search' style="margin-left: px; margin-top: 4px;"> </i>
                     </p>
                     <p style="display: inline-flex;">
-                        <a href="collage_teacher_registration.php" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px;float: right; margin-left: 20px;">register</a>
+                        <a href="teacher.php" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px;float: right; margin-left: 20px;">register</a>
                     </p>
                     <div class="col-12">
                         <div class="row justify-content-center">
@@ -123,7 +123,7 @@ include('include/check_login.php');
                                             <?php echo htmlentities($teacher['email']); ?>
                                         </td>
                                         <td>
-                                            <a href="collage_teacher_registration.php?type=edit&&id=<?php echo htmlentities($teacher['id']); ?>"><i class="fa fa-edit"> </i></a>
+                                            <a href="teacher.php?type=edit&&id=<?php echo htmlentities($teacher['id']); ?>"><i class="fa fa-edit"> </i></a>
                                             <a href="" data-toggle="modal" data-target="#exampleModalLong-<?php echo htmlentities($teacher['id']);?>">
                                                 <i class="fa fa-trash"> </i>
                                             </a>
@@ -143,7 +143,7 @@ include('include/check_login.php');
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a class="btn btn-danger" href="delete.php?type=collage_teacher&&id=<?php echo htmlentities($teacher['id']); ?>">Delete</a>
+                                                        <a class="btn btn-danger" href="delete.php?type=teacher_deletes&&id=<?php echo htmlentities($teacher['id']); ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +198,7 @@ function deletes(key)
       $('#injectdelete').html("");
       $('.modal-body').html("");
      var modal="One Collage Teacher is going to be delete";
-    var a="<a href='delete.php?type=collage_teacher&&id="+key+"' class='btn btn-danger'>delete</a>";
+    var a="<a href='delete.php?type=teacher_deletes&&id="+key+"' class='btn btn-danger'>delete</a>";
         $("#injectdelete").append(a);
          $('.modal-body').append(modal);
     
@@ -228,7 +228,7 @@ function call_data(search) {
 
 
         type: 'get',
-        url: 'ajax_fetch_data/collage_teacher.php',
+        url: 'ajax_fetch_data/teacher.php',
         data: { search: search },
         dataType: "json",
         success: function(response) {
@@ -266,7 +266,7 @@ function filltable() {
                         "<td >" + teacher[i].firstname+" "+teacher[i].lastname + "</td>" +
                          "<td >" + teacher[i].email+ "</td>" +
                         "<td >" +
-                          "<a href='school_stu_registration.php?type=edit&&id="+teacher[i].id+" '><i class='fa fa-edit'></i></a> " +" "+
+                          "<a href='teacher.php?type=edit&&id="+teacher[i].id+" '><i class='fa fa-edit'></i></a> " +" "+
                        
                            "<a onclick="+"deletes('"+teacher[i].id+"')"+"   href='#'  ><i class='fa fa-trash'></i></a> " + "</td>" +
                         "</tr>" ;

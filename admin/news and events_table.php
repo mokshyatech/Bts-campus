@@ -1,14 +1,36 @@
 <?php
 session_start();
 include('include/connection.php');
+$check_sql="select *from news_and_event order by id";
+$total=mysqli_num_rows(mysqli_query($db,$check_sql));
 
-$sql="select *from news_and_event order by id desc ";
+ $page=1;
+ $limit = 15; 
+$total_pages = ceil($total/$limit); 
+ 
+if (isset($_GET["page"])) {
+                             $page  = $_GET["page"]; 
+                          } 
+                    else{
+
+                           $page=1;
+                          }  
+$start_from = ($page-1) * $limit; 
+
+$sql="select *from news_and_event  order by id desc LIMIT $start_from, $limit ";
 $result=mysqli_query($db,$sql);
 
 $news_and_event='set';
+if($page==1)
+{
+  $x=1;
+}
+else
+{  
+$x=(($page-1)*$limit)+1;
+}
 
-// $date=now();
-// echo $date;
+
 
 
 ?>
@@ -87,7 +109,7 @@ include('include/check_login.php');
                                 </thead>
 
                                 <?php 
-                                 $x=1;
+                                
                                  while($event=mysqli_fetch_array($result))
                              {
 
@@ -111,6 +133,34 @@ include('include/check_login.php');
                               
                               ?>
                             </table>
+<?php if($total>$limit) {?>
+<nav aria-label="...">
+  <ul class="pagination">
+    <?php if($page==1) {?>
+   
+<?php } else{ ?>  
+   <li class="page-item ">
+      <a class="page-link" href="news and events_table.php?page=<?php echo $page-1; ?>" tabindex="-1">Previous</a>
+    </li>
+  <?php }
+
+     for($i=0;$i<$total_pages;$i++){
+  ?>
+
+    <li class="page-item <?php if($page==$i+1) echo "active";?>"><a class="page-link" href="news and events_table.php?page=<?php echo $i+1; ?>"><?php echo $i+1; ?></a></li>
+<?php } ?>
+
+    
+    
+<?php if($total_pages!=$page){ ?>
+    <li class="page-item">
+      <a class="page-link" href="news and events_table.php?page=<?php echo $page+1; ?>">Next</a>
+    </li>
+  <?php } ?>
+
+  </ul>
+</nav>
+<?php } ?>
                         </div>
                     </div>
                 </div>

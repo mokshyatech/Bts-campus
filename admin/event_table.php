@@ -1,13 +1,34 @@
 <?php
 session_start();
 include('include/connection.php');
+$check_sql="select *from calender order by id";
+$total=mysqli_num_rows(mysqli_query($db,$check_sql));
 
-$sql="select *from calender order by id desc ";
+ $page=1;
+ $limit = 15; 
+$total_pages = ceil($total/$limit); 
+ 
+if (isset($_GET["page"])) {
+                             $page  = $_GET["page"]; 
+                          } 
+                    else{
+
+                           $page=1;
+                          }  
+$start_from = ($page-1) * $limit; 
+
+$sql="select *from calender order by id desc LIMIT $start_from, $limit ";
 $result=mysqli_query($db,$sql);
 $event='set';
 
-// $date=now();
-// echo $date;
+if($page==1)
+{
+  $x=1;
+}
+else
+{  
+$x=(($page-1)*$limit)+1;
+}
 
 
 ?>
@@ -86,7 +107,7 @@ include('include/check_login.php');
                                 </thead>
 
                                 <?php 
-                                 $x=1;
+                          
                                  while($calender=mysqli_fetch_array($result))
                              {
 
@@ -112,6 +133,34 @@ include('include/check_login.php');
                               
                               ?>
                             </table>
+                          <?php if($total>$limit) {?>
+<nav aria-label="...">
+  <ul class="pagination">
+    <?php if($page==1) {?>
+   
+<?php } else{ ?>  
+   <li class="page-item ">
+      <a class="page-link" href="event_table.php?page=<?php echo $page-1; ?>" tabindex="-1">Previous</a>
+    </li>
+  <?php }
+
+     for($i=0;$i<$total_pages;$i++){
+  ?>
+
+    <li class="page-item <?php if($page==$i+1) echo "active";?>"><a class="page-link" href="event_table.php?page=<?php echo $i+1; ?>"><?php echo $i+1; ?></a></li>
+<?php } ?>
+
+    
+    
+<?php if($total_pages!=$page){ ?>
+    <li class="page-item">
+      <a class="page-link" href="event_table.php?page=<?php echo $page+1; ?>">Next</a>
+    </li>
+  <?php } ?>
+
+  </ul>
+</nav>
+<?php } ?>
                         </div>
                     </div>
                 </div>
@@ -120,7 +169,6 @@ include('include/check_login.php');
     </div>
     </div>
 </body>
-<script src="script.js"></script>
 <script src="https://kit.fontawesome.com/302b58d09d.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

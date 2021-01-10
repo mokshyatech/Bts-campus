@@ -75,7 +75,7 @@ include('include/check_login.php');
           </div>
           <div class="col-11"><?php if(isset($edit)){echo "Edit"; }else {echo "Insert";} ?> Event</div>
           </div>
-          <form method="post" action="insertevent.php">
+          <form method="post" action="insert.php">
             <?php 
        if(isset($edit)){
 
@@ -101,21 +101,11 @@ include('include/check_login.php');
               </div>
               </div>
                 
-          <div class="row">
+       
            
-                <div class="check" style="margin-left: 20px;">
-                  <div class="col-4"></div>
-                    <input type="checkbox" name="school" value="Yes"  <?php if(isset($edit)){ if($calender['school']==1 ) {echo "checked"; }   }    ?>>
-                  <label for="vehicle1">School</label>
-
-                   <input type="checkbox" name="plus2" value="Yes"  <?php if(isset($edit)){ if($calender['plus2']==1 ) {echo "checked"; }   }    ?>>
-                  <label for="vehicle1">plus2</label>
-
-                   <input type="checkbox" name="engineering" value="Yes"  <?php if(isset($edit)){ if($calender['engineering']==1 ) {echo "checked"; }   }    ?>>
-                  <label for="vehicle1">Engineering</label>
-                </div>
-                  <div class="col-4"><p style="float: right;">
-                  <div class="col-4"></div>
+         
+                  <div class="form-group col-md-6"><p style="float: right;">
+                 
 
               <?php if(isset($insert)) {?>
             <button type="submit" name="insert_event" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-top: 5px;">POST</button>
@@ -132,6 +122,7 @@ include('include/check_login.php');
 
 
           </div>
+
         </form>
 
         </div>

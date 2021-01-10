@@ -2,6 +2,7 @@
 session_start();
 
 include('../include/connection.php');
+include('include/check_login.php');
 
 
 ?>

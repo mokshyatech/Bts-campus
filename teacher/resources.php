@@ -1,5 +1,16 @@
 <?php
 session_start();
+include('include/check_login.php');
+include('../include/connection.php');
+if(isset($_GET['type']))
+{
+  $edit='set';
+  $id=$_GET['id'];
+  $sql="select * from resources where id='$id' limit 1";
+ $result=mysqli_query($db,$sql);
+ $resource=mysqli_fetch_assoc($result);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +36,7 @@ session_start();
   <div class="row">
     <?php include('include/sidebar.php'); ?>
     <div class="col-lg-8 col-md-8 col-sm-12">
-      <form method="post" enctype="multipart/form-data" action="insertresources.php" >
+      <form method="post" enctype="multipart/form-data" action="insert.php" >
       <div class="container uploadsection">
      <?php if(isset($_SESSION['error'])) {?>
              <div class="alert alert-danger" role="alert">
@@ -51,7 +62,7 @@ session_start();
           <div class="col-11">Post Resources</div>
           </div>
           <div class="row">
-            <textarea name="caption" style="height: 50px;"></textarea>
+            <textarea name="caption" style="height: 50px;"><?php if(isset($edit)){echo $resource['caption'];} ?></textarea>
           </div>
 
           <div class="row">
@@ -79,48 +90,40 @@ session_start();
                 <option value="first">First</option>
                 <option value="second">Second</option>
                 <option value="third">Third</option>
+                <option value="third">Fourth</option>
 
               </select> 
               
               
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4" style="margin-top: 10px; margin-left: 5px;">
-              Choose Sem<br>
-           <!--    <input type="text" name="semister" >  -->
-              <select name="semister" id="semester" required>
-               <option selected disabled>choose semester</option>
-               <option value="first">First</option>
-               <option value="second">Second</option>
-              </select>
-             
-              
+        
+                   Choose faculty<br>
+             <!--     <input type="text" name="faculty" > -->
+                 <select name="faculty" id='faculty' required>
+                <option selected disabled>choose faculty</option>
+
+                   <option value="bbs">BBS</option>
+                   <option value="bed">B.ED</option>
+                   <option value="ba">B.A</option>
+                 </select>
               
             </div>
           </div>
 
           <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-4" style="margin-top: 10px; margin-bottom: px;">
-              Choose faculty<br>
-             <!--     <input type="text" name="faculty" > -->
-                 <select name="faculty" id='faculty' required>
-                <option selected disabled>choose faculty</option>
-
-                   <option value="civil">Civil</option>
-                   <option value="computer">Computer</option>
-                 </select>
-             
-            
-            </div>
-          
-        
-           <div class="col-lg-3 col-md-4 col-sm-4" style="margin-top: 10px; margin-left: 5px;">
-              Choose subject<br>
+             Choose subject<br>
             <!--  <input type="text" name="subject" >  -->
             <select name="subject" id="subject" required>
               <option selected disabled>choose subject</option>
               
             </select>
+             
+            
             </div>
+          
+        
           </div>
           <br>
 
@@ -137,17 +140,6 @@ session_start();
 </div></div>
 </body>
 
-
-
-
-
-
-
-
-
-
-
-<script src="script.js"></script>
 <script src="https://kit.fontawesome.com/302b58d09d.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

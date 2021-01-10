@@ -7,7 +7,7 @@
         </div>
                 <div class="col-lg-8 col-md-8 col-12">
                    <div class="top-title">
-                <h1>BUDHANILKANTHA TECHNICAL SCHOOL</h1>
+                <h1>BUDHANILKANTHA TECHNICAL CAMPUS</h1>
               </div>
 
               <div class="top-subtitle">

@@ -2,6 +2,15 @@
 include '../include/connection.php';
    session_start();
 
+   if(isset($_SESSION['teacher']))
+{
+  header('location:../teacher/index.php');
+}
+if(isset($_SESSION['login_user']))
+{
+  header('location:../index.php');
+}
+
 if(isset($_GET['user']))
 {
 
@@ -106,18 +115,18 @@ function input_data($data) {
     <div class="row form body">
       <div class="col-lg-7 col-md-12 col-sm-12 bodycol">
         
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  method="post" >
+        <form action="../Login/login.php?user=<?php if(isset($_GET['user'])) echo $_GET['user']; ?>"  method="post" >
   <div class="form-row">
     
   <div class="form-group col-md-12">
     <?php if(isset($student)){ ?>
        <label for="inputRoll">UNIQUE ROLL NUMBER</label>
-   <input type="text" name="uniquecode" class="form-control" id="inputEmail" placeholder=" Unique code" autocomplete="off">  
+   <input type="text" name="uniquecode" class="form-control" id="inputEmail" placeholder=" Unique code" autocomplete="off" value="<?php if(isset($_POST['uniquecode']))echo $_POST['uniquecode'] ?>">  
     <span class="error"><?php echo $uniquecodeErr; ?> </span> 
     <?php } ?>
     <?php if(isset($teacher)){ ?>
         <label for="inputRoll">EMAIL ID</label>
-   <input type="email" name="email" class="form-control" id="inputEmail" placeholder=" Email Id" autocomplete="off">  
+   <input type="email" name="email" class="form-control" id="inputEmail" placeholder=" Email Id" autocomplete="off" value="<?php if(isset($_POST['email']))echo $_POST['email'] ?>">  
     <span class="error"><?php echo $emailErr; ?> </span>  
     <?php } ?>   
 
@@ -177,7 +186,7 @@ function input_data($data) {
         
     if($passwordErr == "" && $uniquecodeErr == "" ) {
 
-      $result = mysqli_query($db, "SELECT * FROM school WHERE  uniquecode = '$uniquecode' and password = '$password'");
+      $result = mysqli_query($db, "SELECT * FROM student WHERE  uniquecode = '$uniquecode' and password = '$password'");
       $row= mysqli_fetch_assoc($result);
       $count=mysqli_num_rows($result);
 
@@ -225,7 +234,7 @@ function input_data($data) {
         
     if($passwordErr == "" && $emailErr == "" ) {
 
-      $result = mysqli_query($db, "SELECT * FROM school_teacher WHERE  email = '$email' and password = '$password'");
+      $result = mysqli_query($db, "SELECT * FROM teacher WHERE  email = '$email' and password = '$password'");
       $row= mysqli_fetch_assoc($result);
       $count=mysqli_num_rows($result);
 
@@ -246,6 +255,7 @@ function input_data($data) {
       {
         
         $_SESSION['teacher'] = $row['firstname'];
+        $_SESSION['teacher_id'] = $row['id'];
 
         header('Location: ../teacher/index.php');
         

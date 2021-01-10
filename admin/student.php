@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>BTS</title>
+    <title>Student Registration</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
@@ -27,7 +27,7 @@ if(isset($_GET['type']))
 {
   $id=$_GET['id'];
   $edit='set';
-  $sql="select * from college where uniquecode='$id' limit 1 ";
+  $sql="select * from student where uniquecode='$id' limit 1 ";
   $result=mysqli_query($db,$sql);
   $student=mysqli_fetch_assoc($result);
 
@@ -38,7 +38,7 @@ if(isset($_GET['type']))
 ?>
     <div class="container">
         <div class="row formtitle">
-            <h5>COLLAGE STUDENT REGISTRATION FORM</h5>
+            <h5>STUDENT REGISTRATION FORM</h5>
         </div>
         <div class="row form body">
             <div class="col-lg-7 col-md-12 col-sm-12 bodycol">
@@ -140,9 +140,8 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="inputEmail">PASSWORD</label>  <a href="#" class="show-password" ><i class="fa fa-eye-slash" id="font-eye"></i></a>
-                            <input type="password"
-                             required name="password" class="form-control" id="password" placeholder=" Password" autocomplete="off" value="<?php
+                            <label for="inputEmail">PASSWORD</label> <a href="#" class="show-password"><i class="fa fa-eye-slash" id="font-eye"></i></a>
+                            <input type="password" required name="password" class="form-control" id="password" placeholder=" Password" autocomplete="off" value="<?php
          if(isset($edit))
       {
         echo($student['password']);
@@ -165,10 +164,20 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
              echo($student['uniquecode']);
          }
 
-             ?>" <?php  if(isset($edit)) { echo "disabled" ; } ?> >
-                            
+             ?>" <?php if(isset($edit)) { echo "disabled" ; } ?> >
                             <span class="error"><small>
                                     <?php if(isset($_SESSION['uniquecodeErr'])) echo $_SESSION['uniquecodeErr']; unset($_SESSION['uniquecodeErr']); ?> </small></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail">Faculty</label>
+                             <select class="form-control" name="faculty">
+                              <option disabled selected>--choose faculty--</option>
+                               <option value="bbs" <?php if(isset($_SESSION['faculty'])){if($_SESSION['faculty']=='bbs') echo "selected";} else { if(isset($edit)){ if($student['faculty']=='bbs')echo "selected";  }  }?>>BBS</option>
+                              <option value="bed" <?php if(isset($_SESSION['faculty'])){if($_SESSION['faculty']=='bed') echo "selected";} else { if(isset($edit)){ if($student['faculty']=='bed')echo "selected";  }  }?>>B.E.D</option>
+                             <option value="ba" <?php if(isset($_SESSION['faculty'])){if($_SESSION['faculty']=='ba') echo "selected"; unset($_SESSION['faculty']);} else { if(isset($edit)){ if($student['faculty']=='ba')echo "selected";  }  }?>>B.A</option>
+                             </select>
+                             <span class="error"><small>
+                                    <?php if(isset($_SESSION['facultyErr'])) echo $_SESSION['facultyErr']; unset($_SESSION['facultyErr']); ?> </small></span>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail">DATE OF BIRTH</label>
@@ -188,9 +197,9 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
                             <?php if(!isset($edit)) 
     {
     ?>
-                            <input type="submit" name="collage_student_insert" value="REGISTER" class="btn btn-primary" style="background-color: #224a8f; border: none;">
+                            <input type="submit" name="student_insert" value="REGISTER" class="btn btn-primary" style="background-color: #224a8f; border: none;">
                             <?php }  else {?>
-                            <input type="submit" name="collage_student_edit" value="update" class="btn btn-primary" style="background-color: #224a8f; border: none;">
+                            <input type="submit" name="student_edit" value="update" class="btn btn-primary" style="background-color: #224a8f; border: none;">
                             <?php } ?>
                         </div>
                     </div>
@@ -208,13 +217,8 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
                     <?php if(isset($_SESSION['success'])) {echo $_SESSION['success']; unset($_SESSION['success']); } ?>
                 </h4>
                 <br>
-                <a href="collage_student_registration_table.php" class="btn-primary btn btn-sm">Click to go previous page</a>
+                <a href="student_table.php" class="btn-primary btn btn-sm">Click to go previous page</a>
                 <br>
-                <?php if(!isset($edit)) {?>
-                <form style="margin-top: 25px;" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF"]); ?>">
-                    <input method='post' name="reset" type="submit" class="btn-primary btn-sm btn" value="reset form data">
-                </form>
-                <?php } ?>
             </div>
         </div>
     </div>
@@ -222,28 +226,21 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script >
+    <script>
+    $('.show-password').click(function() {
 
+        if ($('#font-eye').hasClass('fa-eye-slash')) {
 
-      $('.show-password').click(function(){
-
-      if($('#font-eye').hasClass('fa-eye-slash'))
-      {
-          
-      $('#font-eye').removeClass('fa-eye-slash');
-      $('#font-eye').addClass('fa-eye');
-      $('#password').attr('type','text');
-      }
-
-      else
-      {
-        $('#font-eye').removeClass('fa-eye');
-        $('#font-eye').addClass('fa-eye-slash');
-         $('#password').attr('type','password');
-      }
+            $('#font-eye').removeClass('fa-eye-slash');
+            $('#font-eye').addClass('fa-eye');
+            $('#password').attr('type', 'text');
+        } else {
+            $('#font-eye').removeClass('fa-eye');
+            $('#font-eye').addClass('fa-eye-slash');
+            $('#password').attr('type', 'password');
+        }
 
     });
-
     </script>
 </body>
 

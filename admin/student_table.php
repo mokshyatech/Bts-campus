@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('include/connection.php');
-$sql="select *from college order by id desc ";
+$sql="select *from student order by id desc ";
 $result=mysqli_query($db,$sql);
 $students='set';
 ?>
@@ -10,7 +10,7 @@ $students='set';
 <html>
 
 <head>
-    <title>Collage Student Table</title>
+    <title> Student Table</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -63,7 +63,7 @@ include('include/check_login.php');
             <div class="col-lg-8 col-md-8 col-sm-12">
                 <div class="container uploadsection">
                     <div class="head">
-                        <p><span class="span">Management Student</span></p>
+                        <p><span class="span">Student Table</span></p>
                     </div>
                     <?php
                     if(isset($_SESSION['success']))
@@ -87,7 +87,7 @@ include('include/check_login.php');
                         <input type="text" name="search" placeholder=" search " onkeyup="search" id='search' style="border-radius:5px;border: blue;  "><i class='fa fa-search' style="margin-left: px; margin-top: 4px;"> </i>
                     </p>
                     <p style="display: inline-flex;">
-                        <a href="collage_student_registration.php" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px; float: right;  margin-left: 20px;">register</a>
+                        <a href="student.php" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px; float: right;  margin-left: 20px;">register</a>
                     </p>
                     <div class="col-12">
                         <div class="row justify-content-center">
@@ -97,6 +97,7 @@ include('include/check_login.php');
                                         <TH>SN</TH>
                                          <th>Name</th>
                                         <th>UNIQUECODE</th>
+                                        <th>FACUlTY</th>
                                        
                                         <th>ACTION</th>
                                     </tr>
@@ -113,13 +114,16 @@ include('include/check_login.php');
                                             <?php echo htmlentities($x); ?>
                                         </td>
                                         <td>
-                                            <?php echo  htmlentities($student['firstname']);  echo  htmlentities($student['lastname']);?>
+                                            <?php echo  htmlentities($student['firstname']);echo "  "; echo  htmlentities($student['lastname']);?>
                                         </td>
                                         <td>
                                             <?php echo htmlentities($student['uniquecode']); ?>
                                         </td>
+                                         <td style="text-transform: uppercase;">
+                                            <?php echo htmlentities($student['faculty']); ?>
+                                        </td>
                                         <td>
-                                            <a href="collage_student_registration.php?type=edit&&id=<?php echo htmlentities($student['uniquecode']); ?>"><i class="fa fa-edit"> </i></a>
+                                            <a href="student.php?type=edit&&id=<?php echo htmlentities($student['uniquecode']); ?>"><i class="fa fa-edit"> </i></a>
                                             <a href="" data-toggle="modal" data-target="#exampleModalLong-<?php echo htmlentities($student['uniquecode']);?>">
                                                 <i class="fa fa-trash"> </i>
                                             </a>
@@ -226,7 +230,7 @@ function call_data(search) {
 
 
         type: 'get',
-        url: 'ajax_fetch_data/collage_student.php',
+        url: 'ajax_fetch_data/student.php',
         data: { search: search },
         dataType: "json",
         success: function(response) {
@@ -267,8 +271,9 @@ function filltable() {
                
                 "<td >" + student[i].firstname + " " + student[i].lastname + "</td>" +
                  "<td >" + student[i].uniquecode + "</td>" +
+                 "<td style='text-transform: uppercase;'>" + student[i].faculty + "</td>" +
                 "<td >" +
-                "<a href='collage_student_registration.php?type=edit&&id=" + student[i].uniquecode + " '><i class='fa fa-edit'></i></a> " + " " +
+                "<a href='student.php?type=edit&&id=" + student[i].uniquecode + " '><i class='fa fa-edit'></i></a> " + " " +
 
                 "<a onclick=" + "deletes('" + student[i].id + "')" + "   href='#'  ><i class='fa fa-trash'></i></a> " + "</td>" +
                 "</tr>";

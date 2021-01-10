@@ -15,7 +15,7 @@
 
              <li class="btn <?php if(isset($teacher)){echo "active";} ?>"><a href="teacher_table.php"><i class="fas fa-chalkboard-teacher"></i>Teacher</a></li>
 
-              <li class="btn <?php if(isset($student)){echo "active";} ?>"><a href="student_table.php"><i class="fa fa-user"  ></i>Student</a></li>
+              <li class="btn <?php if(isset($students)){echo "active";} ?>"><a href="student_table.php"><i class="fa fa-user"  ></i>Student</a></li>
 
          
           </ul>

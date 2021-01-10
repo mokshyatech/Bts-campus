@@ -1,17 +1,40 @@
 <?php
 session_start();
 include('include/connection.php');
+$check_sql="select *from photos order by id";
+$total=mysqli_num_rows(mysqli_query($db,$check_sql));
 
-$sql="select *from photos order by id DESC";
+ $page=1;
+ $limit = 10; 
+$total_pages = ceil($total/$limit); 
+ 
+if (isset($_GET["page"])) {
+                             $page  = $_GET["page"]; 
+                          } 
+                    else{
+
+                           $page=1;
+                          }  
+$start_from = ($page-1) * $limit; 
+
+$sql="select *from photos order by id DESC LIMIT $start_from, $limit";
 $result=mysqli_query($db,$sql);
 $gallery='set';
 
+if($page==1)
+{
+  $x=1;
+}
+else
+{  
+$x=(($page-1)*$limit)+1;
+}
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Engineering Student Table</title>
+    <title>Gallery Table</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -82,7 +105,7 @@ include('include/check_login.php');
                     { 
 
                   ?>
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success mt-4" role="alert">
                         <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
                     </div>
                     <?php } ?>
@@ -91,29 +114,28 @@ include('include/check_login.php');
                     { 
 
                   ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger mt-4" role="alert">
                         <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
                     </div>
                     <?php } ?>
                    
                     <p>
-                        <a href="gallery1.php" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px;  float:right; ">Add</a>
+                        <a href="gallery.php" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px;  float:right; ">Add</a>
                     </p>
                             <table class="table">
                                 <thead class="blue ">
                                     <tr>
                                         <TH>SN</TH>
                                         <th>IMAGE</th>
-                                        <th>+2</th>
-                                        <th>school</th>
-                                        <th>engineering</th>
+                                      
                                         <th>ACTION</th>
                                        
                                     </tr>
                                 </thead >
                                 <tbody id="tbody">
                                 <?php 
-                                 $x=1;
+                                 
+                               
                                  while($photo=mysqli_fetch_array($result))
                              {
 
@@ -125,16 +147,12 @@ include('include/check_login.php');
                                      <td>
                                             <img src="photo/<?php echo $photo['photo']?>" alt="" class="rounded" >
                                     </td>
-                                    <td>
-                                          <?php if($photo['plus2']==1) {?><i class="fa fa-check"></i><?php } ?>
-                                    </td>
-                                    <td> <?php if($photo['school']==1) {?><i class="fa fa-check"></i><?php } ?></td>
-                                    <td> <?php if($photo['engineering']==1) {?><i class="fa fa-check"></i><?php } ?></td>
+                                  
                                    
                                     <td>
-                                        <a href="gallery1.php?type=edit&&id=<?php echo htmlentities($photo['id']); ?>"><i class="fa fa-edit"> </i></a>
+                                        <a href="gallery.php?type=edit&&id=<?php echo htmlentities($photo['id']); ?>"><i class="fa fa-eye"> </i></a>
 
-                                        <a href="upload.php?delete&&id=<?php echo htmlentities($photo['id']); ?>"><i class="fa fa-trash"> </i></a>
+                                        <a href="delete.php?type=gallery_delete&&id=<?php echo htmlentities($photo['id']); ?>"><i class="fa fa-trash"> </i></a>
                                     </td>
 
                                     
@@ -151,6 +169,34 @@ include('include/check_login.php');
                               </tbody>
                               
                             </table>
+<?php if($total>$limit) {?>
+<nav aria-label="...">
+  <ul class="pagination">
+    <?php if($page==1) {?>
+   
+<?php } else{ ?>  
+   <li class="page-item ">
+      <a class="page-link" href="gallery_table.php?page=<?php echo $page-1; ?>" tabindex="-1">Previous</a>
+    </li>
+  <?php }
+
+     for($i=0;$i<$total_pages;$i++){
+  ?>
+
+    <li class="page-item <?php if($page==$i+1) echo "active";?>"><a class="page-link" href="gallery_table.php?page=<?php echo $i+1; ?>"><?php echo $i+1; ?></a></li>
+<?php } ?>
+
+    
+    
+<?php if($total_pages!=$page){ ?>
+    <li class="page-item">
+      <a class="page-link" href="gallery_table.php?page=<?php echo $page+1; ?>">Next</a>
+    </li>
+  <?php } ?>
+
+  </ul>
+</nav>
+<?php } ?>
                         </div>
                     </div>
                 </div>

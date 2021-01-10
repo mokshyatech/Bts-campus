@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Collage Teacher registration</title>
+  <title>Teacher registration</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
@@ -26,7 +26,7 @@ if(isset($_GET['type']))
 {
   $id=$_GET['id'];
   $edit='set';
-  $sql="select * from college_teacher where id='$id' limit 1 ";
+  $sql="select * from teacher where id='$id' limit 1 ";
   $result=mysqli_query($db,$sql);
   $teacher=mysqli_fetch_assoc($result);
 
@@ -35,7 +35,7 @@ if(isset($_GET['type']))
 ?>  
   <div class="container">
         <div class="row formtitle">
-            <h5>COLLAGE TEACHER REGISTRATION FORM</h5>
+            <h5>CAMPUS TEACHER REGISTRATION FORM</h5>
         </div>
         <div class="row form body">
             <div class="col-lg-7 col-md-12 col-sm-12 bodycol">
@@ -51,7 +51,7 @@ if(isset($_GET['type']))
      <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputName">FIRST NAME</label>  
-    <input type="text" name="fname" class="form-control" id="inputName" placeholder="Name" autocomplete="off"
+    <input type="text" name="fname" class="form-control" id="inputName" required placeholder="Name" autocomplete="off"
     value="<?php 
 
     if(isset($_SESSION['fname'])){echo $_SESSION['fname']; unset($_SESSION['fname']); }
@@ -64,7 +64,7 @@ if(isset($_GET['type']))
       </div>
    <div class="form-group col-md-6">
       <label for="inputName">LAST NAME</label>  
-    <input type="text" required name="lname" class="form-control" id="inputName" placeholder="Last Name" autocomplete="off" 
+    <input type="text" required name="lname" class="form-control" required id="inputName" placeholder="Last Name" autocomplete="off" 
 
   value="<?php if(isset($_SESSION['lname'])){echo $_SESSION['lname']; unset($_SESSION['lname']); }else if(isset($edit)){ echo $teacher['lastname'];  }  ?>"
     >  
@@ -74,7 +74,7 @@ if(isset($_GET['type']))
 <div class="form-row">
     <div class="form-group col-md-12">
       <label for="inputEmail">ADDRESS</label>   
-    <input type="text" requird name="address" class="form-control" id="inputAddress" placeholder="Address" autocomplete="off"
+    <input type="text" requird name="address" class="form-control" required id="inputAddress" placeholder="Address" autocomplete="off"
    value="<?php if(isset($_SESSION['address'])){echo $_SESSION['address']; unset($_SESSION['address']); } else{if(isset($edit)){ echo $teacher['address'];  }} ?>"
     >  
      <span class="error"><small><?php if(isset($_SESSION['addressErr'])){ echo $_SESSION['addressErr']; unset($_SESSION['addressErr']); }  ?></small></span>
@@ -116,9 +116,9 @@ if(isset($_GET['type']))
 
  
      <?php if(isset($edit)){?>
-   <input type="submit" name="collage_teacher_edit" value="update" class="btn btn-primary" style="background-color: #224a8f; border: none;">
+   <input type="submit" name="teacher_edit" value="update" class="btn btn-primary" style="background-color: #224a8f; border: none;">
      <?php } else {?>
-         <input type="submit" name="collage_teacher_insert" value="REGISTER" class="btn btn-primary" style="background-color: #224a8f; border: none;">
+         <input type="submit" name="teacher_insert" value="REGISTER" class="btn btn-primary" style="background-color: #224a8f; border: none;">
 
 
      <?php } ?>   
@@ -128,11 +128,11 @@ if(isset($_GET['type']))
 </form>  
   </div>
   <div class="col-lg-5 col-md-12 col-sm-12 textcol" style="background-color: #224a8f; opacity: 60%; padding-top: 100px; text-align: center; color: white;">
-                <h1>Collage +2</h1>
+                <h1>Campus</h1>
                 <h4 style="padding-top: 50px;">REGISTER TO<br> CONTINUE ACCESS<br> PAGE</h4>
 
                 <br>
-                <a href="collage_teacher_registration_table.php" class="btn-primary btn btn-sm">Click to go previous page</a>
+                <a href="teacher_table.php" class="btn-primary btn btn-sm">Click to go previous page</a>
             </div>
 
             

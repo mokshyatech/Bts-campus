@@ -76,7 +76,7 @@ include('include/check_login.php');
           </div>
           <div class="col-11"><?php if(isset($insert)){echo "Post";} else {echo "Edit";}?> Notice</div>
           </div>
-          <form method="post" action="insertnotice.php">
+          <form method="post" action="insert.php">
             <?php 
             if(isset($edit))
             {
@@ -86,21 +86,11 @@ include('include/check_login.php');
            <?php } ?>
              
           <div class="row">
-             <textarea name="notice">  <?php if(isset($edit)){echo htmlspecialchars($notice['notice']); } ?></textarea>
+             <textarea name="notice">    <?php if(isset($edit)){echo htmlspecialchars($notice['notice']); } ?></textarea>
           </div>
           <div class="row">
            
-       <div class="check" style="margin-top: 10px; margin-left: 7px; color: #224a8f;">
-            <div class="col-4"></div>
-              <input type="checkbox" name="school" value="Yes"  <?php if(isset($edit)){ if($notice['school']==1 ) {echo "checked"; }   }    ?>>
-            <label for="vehicle1">School</label>
-
-             <input type="checkbox" name="plus2" value="Yes"  <?php if(isset($edit)){ if($notice['plus2']==1 ) {echo "checked"; }   }    ?> >
-            <label for="vehicle1">plus2</label>
-
-             <input type="checkbox" name="engineering" value="Yes"  <?php if(isset($edit)){ if($notice['engineering']==1 ) {echo "checked"; }   }    ?>>
-            <label for="vehicle1">Engineering</label>
-          </div>
+   
             <div class="col-4"><p style="float: right;">
             <div class="col-4"></div>
 
@@ -136,13 +126,6 @@ include('include/check_login.php');
   
   </div>
 </div>
-
-
-
-<script src="script.js"></script>
-
-
-
 
 
 <script src="https://kit.fontawesome.com/302b58d09d.js" crossorigin="anonymous"></script>

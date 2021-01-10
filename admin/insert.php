@@ -19,28 +19,9 @@
       $post= $_POST['title'];
       $date = $_POST['date'];
    	  $NewsAndEvent=$_POST['NewsAndEvent'];
-        if($_POST['school']=='Yes'){
-         $school=1;
-        }
-        else{
-         $school=0;
-        }
-        if($_POST['plus2']=='Yes'){
-         $plus2=1;
-        }
-        else{
-         $plus2=0;
-        }
-        if($_POST['engineering']=='Yes'){
-         $engineering=1;
-        }
-        else{
-         $engineering=0;
-        }
-
-
-
-   	  $sql="insert into news_and_event (post,description,date,school,plus2,engineering) values('$post','$NewsAndEvent','$date',$school,$plus2,$engineering) ";
+      $created_at=date('Y-m-d');
+       
+   	  $sql="insert into news_and_event (post,description,date,created_at) values('$post','$NewsAndEvent','$date','$created_at') ";
    	   
 
    	  if(mysqli_query($db,$sql))
@@ -53,7 +34,7 @@
    	  else
    	   {
    	  	$_SESSION['error']='!Opps somthing wrong in posting event and news';
-   	    	  	header('location:news_&_event.php');
+   	    	  	header('location:news_&_event.php?type=insert');
    	 
 
    	  }
@@ -64,35 +45,12 @@
 
    if(isset($_POST['news_and_event_edit']))
    {
-
-
-
        $id=$_POST['id'];
       $post= $_POST['title'];
       $date = $_POST['date'];
       $NewsAndEvent=$_POST['NewsAndEvent'];
-        if($_POST['school']=='Yes'){
-         $school=1;
-        }
-        else{
-         $school=0;
-        }
-        if($_POST['plus2']=='Yes'){
-         $plus2=1;
-        }
-        else{
-         $plus2=0;
-        }
-        if($_POST['engineering']=='Yes'){
-         $engineering=1;
-        }
-        else{
-         $engineering=0;
-        }
-
-
-
-      $sql="update news_and_event set post='$post' ,description='$NewsAndEvent' ,date='$date',school='$school',plus2='$plus2',engineering='$engineering' where id='$id' ";
+      $updated_at=date("Y-m-d");
+     $sql="update news_and_event set post='$post' ,description='$NewsAndEvent' ,date='$date', updated_at='$updated_at' where id='$id' ";
        
 
       if(mysqli_query($db,$sql))
@@ -113,7 +71,206 @@
 
 
    }
+   /*----------------------------------------------------------------------------------------------------------------------------
+                                                  notice section        
+      ----------------------------------------------------------------------------------------------------------------------*/
+         if(isset($_POST['notice_insert']))
+   {
 
+     
+     $date=date("Y-m-d");
+
+      $notice=$_POST['notice'];
+
+        
+
+
+
+      $sql="insert into notice (notice,created_at) values('$notice','$date') ";
+       
+
+      if(mysqli_query($db,$sql))
+      {
+        $_SESSION['success']='Notice has been successfully posted';
+          
+        header('location:notice_table.php');
+     
+      }
+      else
+       {
+        $_SESSION['success']='!Opps somthing wrong in posting event and news';
+             header('location:notice_table.php');
+     
+
+      }
+      
+
+
+   }
+
+
+    if(isset($_POST['notice_update']))
+   {
+     $id=$_POST['id'];
+      $notice=$_POST['notice'];
+       
+       $updated_at=date("Y-m-d");
+
+
+      $sql="UPDATE notice  SET notice='$notice',updated_at='$updated_at' where id='$id' ";
+       
+
+      if(mysqli_query($db,$sql))
+      {
+        $_SESSION['success']='notices has been updated successfully';
+          
+        header('location:notice_table.php');
+     
+      }
+      else
+       {
+        $_SESSION['success']='!Opps somthing wrong in updating in notice';
+              header('location:notice_table.php');
+     
+
+      }
+      
+
+
+   }
+
+   
+   /*----------------------------------------------------------------------------------------------------------------------------
+                                                  calender event section        
+      ----------------------------------------------------------------------------------------------------------------------*/
+       if(isset($_POST['insert_event']))
+   {
+       $event=$_POST['event'];
+      $date=$_POST['date'];
+      $created_at=date("Y-m-d");
+
+
+       
+
+
+
+      $sql="insert into calender (event,date,created_at) values('$event','$date','$created_at')";
+       
+
+      if(mysqli_query($db,$sql))
+      {
+        $_SESSION['success']='Calender Event has been successfully posted';
+         header('location:event_table.php');
+     
+      }
+      else
+       {
+        $_SESSION['success']='!Opps somthing wrong in posting event and news';
+                 header('location:event_table.php');
+     
+
+      }
+    
+   }
+
+   if(isset($_POST['update_event']))
+   {
+       $id=$_POST['id'];
+       $event=$_POST['event'];
+      $date=$_POST['date'];
+       $updated_at=date("Y-m-d");
+
+
+      
+
+
+      $sql="update calender  SET event='$event',date='$date',updated_at='$updated_at' WHERE id='$id' ";
+       
+
+      if(mysqli_query($db,$sql))
+      {
+        $_SESSION['success']=' Calender Event has been successfully updated';
+          
+        header('location:event_table.php');
+     
+      }
+      else
+       {
+        $_SESSION['error']='!Opps somthing wrong in Calender Event';
+              header('location:event_table.php');
+     
+
+      }
+   }
+
+   
+   /*----------------------------------------------------------------------------------------------------------------------------
+                                                   Gallery section        
+      ----------------------------------------------------------------------------------------------------------------------*/
+       if(isset($_POST['gallery_insert']))
+   {
+    
+   
+
+   
+
+  $created_at=date("Y-m-d");
+  
+
+   
+   $image=$_FILES['image']['name'];
+  
+
+   $temp=$_FILES['image']['tmp_name'];
+  
+   $dir="photo/".$image;
+  
+   move_uploaded_file($temp, $dir);
+
+
+   $sql="insert into photos(photo,created_at)
+      values('$image','$created_at')";
+     
+
+
+      if( $query=mysqli_query($db,$sql))
+     {
+        $_SESSION['success']='uploaded successfuly';
+           header('location:gallery_table.php');
+     }
+     else
+     {
+       $_SESSION['error']='opps somthing went wrong';
+        header('location:gallery_table.php');
+     }
+     
+}
+
+
+
+
+  if(isset($_GET['gallery_delete']))
+  {
+     $id=$_GET['id'];
+     $sql="DELETE from photos where id='$id'";
+     
+
+
+      if( $query=mysqli_query($db,$sql))
+     {
+        $_SESSION['success']='image has been deleted successfuly';
+           header('location:gallery_table.php');
+     }
+     else
+     {
+       $_SESSION['error']='opps somthing went wrong';
+        header('location:gallery_table.php');
+     }
+      
+  }
+     /*----------------------------------------------------------------------------------------------------------------------------
+                                                    section        
+      ----------------------------------------------------------------------------------------------------------------------*/
 
    if(isset($_POST['stu_registration']))
    {   
@@ -324,96 +481,58 @@ if(isset($_POST['engineering_teacher_insert']))
 
  }
 
- if(isset($_POST['collage_student_insert']))
+
+ /*----------------------------------------------------------------------------------------------------------------------------
+                               teacher register and edit section 
+ ---------------------------------------------------------------------------------------------------------------------------
+ */
+
+ if(isset($_POST['teacher_insert']))
  {
-     include('collage_student_registration/old_data.php');
-     include('collage_student_registration/global_validate.php');
-     include('collage_student_registration/validate.php');
-
-
-       if(mysqli_query($db,"INSERT INTO  college(firstname,lastname,address,fathername,phone,password,uniquecode,dob) VALUES('$fname', '$lname', '$address', '$fathername', '$contact', '$password','$uniquecode','$dob')"))
-       {
-         include('collage_student_registration/clear_old_data.php');
-        $_SESSION['success']="you have successfully insert student data";  
-        header('location:collage_student_registration_table.php');     
-       } 
-       else
-       {
-        $_SESSION['error']="opps somthing went worng";
-       }
-
- }
-
- if(isset($_POST['collage_student_edit']))
- {
-   $edit='set';
-   $id=input_data($_POST['uniquecode']);
-
-    include('collage_student_registration/old_data.php');
-     include('collage_student_registration/global_validate.php');
-     include('collage_student_registration/validate.php');
-
-     $sql="update college set firstname='$fname', lastname='$lname' ,address='$address',fathername='$fathername',phone='$contact',password='$password',dob='$dob'   where uniquecode='$id' ";
-
-      if(mysqli_query($db,$sql))
-      {
-         $_SESSION['success']="Informaton of uniquecode=".$uniquecode." has been successfully edited";
-        header('location:collage_student_registration_table.php'); 
-       
-      }
-      else
-      {
-        $_SESSION['error']="Informaton of uniquecode=".$uniquecode." has not edited somthing went wrong";
-        header('location:collage_student_registration_table.php'); 
-
-      }
+     include('teacher_registration/old_data.php');
+     include('teacher_registration/global_validate.php');
+     include('teacher_registration/validate.php');
+     $created_at=date("Y-m-d");
       
- }
-
- if(isset($_POST['collage_teacher_insert']))
- {
-     include('collage_teacher_registration/old_data.php');
-     include('collage_student_registration/global_validate.php');
-     include('collage_teacher_registration/validate.php');
-      
-        $sql="INSERT INTO college_teacher(firstname,lastname,address,email,phone,password) VALUES('$fname', '$lname', '$address', '$email', '$contact', '$password')"; 
+        $sql="INSERT INTO teacher(firstname,lastname,address,email,phone,password,created_at) VALUES('$fname', '$lname', '$address', '$email', '$contact', '$password','$created_at')"; 
 
      if(mysqli_query($db,$sql))
      {
       $_SESSION['success']=" New teacher ".$fname." ".$lname ." is added successfully";
-             include('collage_teacher_registration/clear_old_data.php');
+             include('teacher_registration/clear_old_data.php');
 
-            header('location:collage_teacher_registration_table.php'); 
+            header('location:teacher_table.php'); 
 
      }
      else
      {
        $_SESSION['error']=" ".$fname." ".$lname ." cannot added something went wrong";
-        header('location:collage_teacher_registration_table.php'); 
+        header('location:teacher_table.php'); 
 
 
      }
 
  }
 
- if(isset($_POST['collage_teacher_edit']))
+ if(isset($_POST['teacher_edit']))
  {
      $edit='set';
      $id=$_POST['id'];
 
-     include('collage_teacher_registration/old_data.php');
-     include('collage_student_registration/global_validate.php');
-     include('collage_teacher_registration/validate.php');
+     include('teacher_registration/old_data.php');
+     include('teacher_registration/global_validate.php');
+     include('teacher_registration/validate.php');
+     $updated_at=date("Y-m-d");
 
-         $sql="UPDATE  college_teacher SET firstname='$fname',lastname='$lname' ,address='$address',phone='$contact',password='$password' where id='$id' "; 
+         $sql="UPDATE  teacher SET firstname='$fname',lastname='$lname' ,address='$address',phone='$contact',password='$password',updated_at='$updated_at' where id='$id' "; 
 
      if(mysqli_query($db,$sql))
      {
-           include('collage_teacher_registration/clear_old_data.php');
+           include('teacher_registration/clear_old_data.php');
            $_SESSION['success']="Informaton of ".$email." is edited successfully";
            
 
-            header('location:collage_teacher_registration_table.php'); 
+            header('location:teacher_table.php'); 
 
      }
      else
@@ -421,13 +540,70 @@ if(isset($_POST['engineering_teacher_insert']))
        $_SESSION['error']="Informaton of ".$email." is not edited!! somthing went wrong";
            
 
-            header('location:collage_teacher_registration_table.php'); 
+            header('location:teacher_table.php'); 
 
      }
         
 
 
  }
+  /*----------------------------------------------------------------------------------------------------------------------------
+                               student insert and edit  section 
+ ---------------------------------------------------------------------------------------------------------------------------
+ */
+  if(isset($_POST['student_insert']))
+ {
+     include('student_registration/old_data.php');
+     include('teacher_registration/global_validate.php');
+     include('student_registration/validate.php');
+     $faculty=$_POST['faculty'];
+     $created_at=date("Y-m-d");
+       if(mysqli_query($db,"INSERT INTO  student(firstname,lastname,address,fathername,phone,password,uniquecode,faculty,dob,created_at) VALUES('$fname', '$lname', '$address', '$fathername', '$contact', '$password','$uniquecode','$faculty','$dob','$created_at')"))
+       {
+         include('student_registration/clear_old_data.php');
+        $_SESSION['success']="you have successfully insert student data";  
+        header('location:student_table.php');     
+       } 
+       else
+       {
+        $_SESSION['error']="opps somthing went worng";
+          header('location:student_table.php');   
+       }
+
+ }
+
+ if(isset($_POST['student_edit']))
+ {
+   $edit='set';
+   $id=input_data($_POST['uniquecode']);
+
+    include('student_registration/old_data.php');
+     include('teacher_registration/global_validate.php');
+     include('student_registration/validate.php');
+      $updated_at=date("Y-m-d");
+       $faculty=$_POST['faculty'];
+
+     $sql="update student set firstname='$fname', lastname='$lname' ,address='$address',fathername='$fathername',phone='$contact',password='$password',dob='$dob',updated_at='$updated_at' ,faculty='$faculty'  where uniquecode='$id' ";
+
+      if(mysqli_query($db,$sql))
+      {
+         $_SESSION['success']="Informaton of uniquecode=".$uniquecode." has been successfully edited";
+        header('location:student_table.php'); 
+       
+      }
+      else
+      {
+        $_SESSION['error']="Informaton of uniquecode=".$uniquecode." has not edited somthing went wrong";
+        header('location:student_table.php'); 
+
+      }
+      
+ }
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+                               student insert and edit  section 
+ ---------------------------------------------------------------------------------------------------------------------------
+ */
 
 
 
