@@ -17,6 +17,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="frontpage/css/font-awesome.min.css" />
     <link rel="stylesheet" href="frontpage/css/style.css" />
+      <link rel="shortcut icon" href="frontpage/images/logo1.jpg" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   </head>
   <body>
@@ -80,7 +81,7 @@ session_start();
             </li>
             <?php }?>
             <li class="nav-item"  style="text-align: center;">
-              <a class="nav-link" href="school/View/news.php"
+              <a class="nav-link" href="readmore_news.php"
                 ><button type="button" class="btn btn-success">
                   View More
                 </button></a
@@ -111,7 +112,7 @@ session_start();
             </li>
                <?php }?>
             <li class="nav-item"  style="text-align: center;">
-              <a class="nav-link" href="school/View/notice.php"
+              <a class="nav-link" href="readmore_notice.php"
                 ><button type="button" class="btn btn-success">
                   View More
                 </button></a
@@ -137,7 +138,7 @@ session_start();
             </li>
             <?php } ?>
              <li class="nav-item"  style="text-align: center;">
-              <a class="nav-link" href="school/View/cal.php">
+              <a class="nav-link" href="readmore_calender.php">
                 <button type="button" class="btn btn-success">
                   View More
                 </button></a>

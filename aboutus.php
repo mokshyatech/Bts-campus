@@ -14,6 +14,7 @@ session_start();
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="aboutus/aboutus.css">
        <link rel="stylesheet" href="frontpage/css/style.css" />
+        <link rel="shortcut icon" href="frontpage/images/logo1.jpg" />
 
 </head>
 <body>

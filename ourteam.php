@@ -16,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href="ourteam.css">
   <link rel="stylesheet" type="text/css" href="./ourteam.css">
   <link rel="stylesheet" href="frontpage/css/style.css" />
+   <link rel="shortcut icon" href="frontpage/images/logo1.jpg" />
 
 
 </head>
