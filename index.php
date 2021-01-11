@@ -67,7 +67,7 @@ session_start();
                        
                          
                                               
-                      $sql="select *from news_and_event WHERE school=1 ORDER BY id DESC LIMIT 5";
+                      $sql="select *from news_and_event  ORDER BY id DESC LIMIT 5";
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {
@@ -99,7 +99,7 @@ session_start();
               <a class="nav-link active" href="#">NOTICE BOARD</a>
             </li>
                   <?php                  
-                      $sql="select *from notice WHERE school=1 ORDER BY id DESC LIMIT 5";
+                      $sql="select *from notice  ORDER BY id DESC LIMIT 5";
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {
@@ -125,7 +125,7 @@ session_start();
               <a class="nav-link active" href="#">CALENDAR EVENTS</a>
             </li>
             <?php                  
-                      $sql="select *from calender WHERE school=1 ORDER BY id DESC LIMIT 2";
+                      $sql="select *from calender   ORDER BY id DESC LIMIT 2";
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {

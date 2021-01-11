@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('include/check_login.php');
+$result='set';
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,7 @@ include('include/check_login.php');
 
    <?php include('include/sidebar.php'); ?>
     <div class="col-lg-8 col-md-8 col-sm-12">
-      <form method="post" enctype="multipart/form-data" action="insertresult.php" >
+      <form method="post" enctype="multipart/form-data" action="insert.php" >
       <div class="container uploadsection">
              <?php if(isset($_SESSION['error'])) {?>
              <div class="alert alert-danger" role="alert">
@@ -69,7 +70,7 @@ include('include/check_login.php');
               
             </div>
             <div class="col-lg-6 col-md-4 col-sm-4"><p style=" margin-left: 280px;">
-            <button type="submit" name="submit" class="btn btn-success" style="border: none; border-radius: 20px; margin-top: 5px; float: right;">POST</button>
+            <button type="submit" name="insert_csv" class="btn btn-success" style="border: none; border-radius: 20px; margin-top: 5px; float: right;">POST</button>
 
             </p></div>
 </form>

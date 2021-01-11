@@ -2,7 +2,7 @@
       <div class="row bottom-section p-5 pb-0">
         <div class="col-sm-12">
           <div class="bottom-title">
-            <h5>BUDHANILKANTHA TECHNICAL SCHOOL</h5>
+            <h5>BUDHANILKANTHA TECHNICAL CAMPUS</h5>
           </div>
         </div>
       </div>

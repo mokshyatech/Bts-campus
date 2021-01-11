@@ -19,6 +19,7 @@ include('include/check_login.php');
     <link rel="stylesheet" href="../frontpage/css/style.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="landing.css">
+  
 </head>
 <body>
 </body>
@@ -36,6 +37,16 @@ include('include/check_login.php');
      <?php 
          include('include/sidebar.php');
      ?>
+      <div class="col-md-8 mt-5">
+    <div class="about-img">
+          <img src="pic.jpeg" style="height: 350px; width: 650px;">
+        </div>
+          <div class="title">
+            
+                <h4 style=" color: blue; font-size: 100px; margin-bottom: 150px;">WELCOME</h4></a>
+              
+          </div>
+  </div>
   
   </div>
 </div>

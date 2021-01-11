@@ -41,7 +41,7 @@ if (isset($_GET["page"])) {
 $start_from = ($page-1) * $limit;  
 
                                  
-                      $sql="select *from news_and_event WHERE school =1 ORDER BY id DESC LIMIT $start_from, $limit";
+                      $sql="select *from news_and_event ORDER BY id DESC LIMIT $start_from, $limit";
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {
@@ -75,7 +75,7 @@ $start_from = ($page-1) * $limit;
      <?php if($page>=2){  
         ?><li class='page-item'> 
           <?php 
-            echo "<a class='page-link' href='events.php?page=".($page-1)."'>  Prev </a>";   
+            echo "<a class='page-link' href='event.php?page=".($page-1)."'>  Prev </a>";   
         ?>
         </li>
         <?php 
@@ -83,14 +83,14 @@ $start_from = ($page-1) * $limit;
       </li>
     <li class="page-item">
       <?php  
-$result_db = mysqli_query($db,"SELECT COUNT(id) FROM college_resource"); 
+$result_db = mysqli_query($db,"SELECT COUNT(id) FROM news_and_event"); 
 $row_db = mysqli_fetch_row($result_db);  
 $total_records = $row_db[0];  
 $total_pages = ceil($total_records / $limit); 
 /* echo  $total_pages; */
 $pagLink = "<ul class='pagination'>"; 
 for ($i=1; $i<=$total_pages; $i++) {
-$pagLink .= "<li class='page-item'><a class='page-link' class ='active' href='events.php?page=".$i."' >".$i."</a></li>"; 
+$pagLink .= "<li class='page-item'><a class='page-link' class ='active' href='event.php?page=".$i."' >".$i."</a></li>"; 
 }
 echo $pagLink . "</ul>";  
 ?>
@@ -101,7 +101,7 @@ echo $pagLink . "</ul>";
         ?>
         <li class='page-item'>
         <?php   
-            echo "<a class='page-link' href='events.php?page=".($page+1)."'>  Next </a>"; ?>
+            echo "<a class='page-link' href='event.php?page=".($page+1)."'>  Next </a>"; ?>
             </li>
             <?php  
         }   

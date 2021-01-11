@@ -35,6 +35,13 @@
              <li class="nav-item center-menu">
               <a class="nav-link" href="results/results.php">Results</a>
             </li>
+                  <?php
+        if(!isset($_SESSION['login_user'])){
+         ?>
+               <li class="nav-item center-menu <?php if(isset($gallery)){ echo 'active'; } ?> ">
+              <a class="nav-link" href="admission.php">Admission Form</a>
+            </li>
+       <?php } ?>
             <li class="nav-item center-menu">
               <a class="nav-link <?php if(isset($contactus)){echo 'active'; } ?>" href="contactus.php">Contact Us</a>
             </li>

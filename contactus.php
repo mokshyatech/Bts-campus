@@ -143,7 +143,7 @@ function input_data($data) {
       </div>
       <div class="col" style="text-align: center; color: white;" >
         <div class="text-section">
-        <h3>BUDHANILKANTHA TECHNICAL SCHOOL</h3>
+        <h3>BUDHANILKANTHA TECHNICAL CAMPUS</h3>
         <P>01-4372300<br>
           bnktechschool@gmail.com<br>
           Budhanilkantha-3, Kathmandu, Nepal

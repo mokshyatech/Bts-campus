@@ -38,7 +38,15 @@ include('../include/connection.php');
 	$caption=$_POST['caption'];
 	$year=$_POST['year'];
 	$faculty=$_POST['faculty'];
-	$subject ="sdfs";
+	if(isset($_POST['subject'])
+	{
+    	$subject =$_POST['subject'];
+	}
+	else
+	{
+        	$subject ="no subject";
+	}
+
 	$created_at=date("Y-m-d");
 	$posted_by=$_SESSION['teacher_id'];
 	
@@ -75,6 +83,66 @@ if(mysqli_query($db,$sql)){
 		
 		    }
 		}
+
+ if(isset($_POST['insert_csv']))
+   {
+   	
+
+
+	  $fileName=$_FILES['csv']['name'];
+	
+
+	 $fileTmpName=$_FILES['csv']['tmp_name'];
+	 	$posted_by=$_SESSION['teacher_id'];
+	 	$created_at=date("Y-m-d");
+
+
+	 $fileExtension=pathinfo($fileName,PATHINFO_EXTENSION);
+		
+	 $allowedType=array('csv');
+	 if (!in_array($fileExtension,$allowedType))
+	 {
+	 	?>
+	 	<div class="alert alert-danger">
+	 		Inavalid File extension 
+	 	</div> 
+	 	<?php
+	 }
+	else{
+		$handle=fopen($fileTmpName,'r');
+		while(($myData=fgetcsv($handle,1000,','))!==FALSE)
+		  {
+			$uniquecode=$myData[0];
+			$subject=$myData[1];
+			$marks=$myData[2];
+			$faculty=$myData[3];
+			$year=$myData[4];
+			$term=$myData[5];
+			
+			
+			$sql1="insert into results(uniquecode,subject,marks,faculty,year,term,posted_by,created_at) 
+			                          values('$uniquecode','$subject','$marks','$faculty','$year','$term','$posted_by','$created_at')";
+			$query1=mysqli_query($db,$sql1);
+;
+			  // $last_id = mysqli_insert_id($db);
+			
+		  }
+		 
+		if(!$query1){
+			
+			$_SESSION['error']='error in uploading'.mysql_error();
+			header('location:result.php');
+
+		            }
+		else{?>
+			
+			<?php
+			$_SESSION['success']='RESULT HAS BEEN POSTED SUCCESFULLY';
+			header('location:result.php');
+
+		    }
+		}
+	}
 	
 	?>
 

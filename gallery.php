@@ -46,7 +46,7 @@ if (isset($_GET["page"])) {
   };  
 $start_from = ($page-1) * $limit;               
                                               
-                    $sql="select * from photos WHERE school=1 ORDER BY id DESC LIMIT $start_from, $limit"; 
+                    $sql="select * from photos  ORDER BY id DESC LIMIT $start_from, $limit"; 
                       $query=mysqli_query($db,$sql);
                       while($row=mysqli_fetch_array($query))
                         {
@@ -54,14 +54,14 @@ $start_from = ($page-1) * $limit;
 
         <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2" >
           <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal<?php echo $row['id'] ?>">
-   <img src="../admin/photo/<?php echo $row['photo']; ?>" class="img-fluid" style="height: 250px; width: 350px;">
+   <img src="admin/photo/<?php echo $row['photo']; ?>" class="img-fluid" style="height: 250px; width: 350px;">
 </button>
 
 <!-- Modal -->
 
 
-<div class="modal fade" id="exampleModal<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" id="exampleModal<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -69,7 +69,7 @@ $start_from = ($page-1) * $limit;
         </button>
       </div>
       <div class="modal-body">
-        <img src="../admin/photo/<?php echo $row['photo']; ?>" class="img-fluid" style="height: 350px; width: 450px;">
+        <img src="admin/photo/<?php echo $row['photo']; ?>" class="img-fluid" style="height: 800px; width: 800px;">
       </div>
       
     </div>
@@ -104,7 +104,7 @@ $start_from = ($page-1) * $limit;
       </li>
     <li class="page-item">
       <?php  
-$result_db = mysqli_query($db,"SELECT COUNT(id) FROM college_resource"); 
+$result_db = mysqli_query($db,"SELECT COUNT(id) FROM photos"); 
 $row_db = mysqli_fetch_row($result_db);  
 $total_records = $row_db[0];  
 $total_pages = ceil($total_records / $limit); 

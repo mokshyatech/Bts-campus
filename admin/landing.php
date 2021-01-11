@@ -42,6 +42,7 @@ if (empty($uname)) {
          include('include/sidebar.php');
      ?>
   </div>
+  
   <div class="col-md-8 mt-5">
     <div class="about-img">
           <img src="pic.jpeg" style="height: 350px; width: 650px;">
