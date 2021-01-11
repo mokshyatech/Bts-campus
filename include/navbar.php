@@ -27,7 +27,7 @@
               <a class="nav-link <?php if(isset($event)){echo'active';  } ?>" href="event.php">Events</a>
             </li>
             <li class="nav-item center-menu">
-              <a class="nav-link" href="resources/resource.php">Resources</a>
+              <a class="nav-link <?php if(isset($resource)){echo 'active'; } ?>" href="resources.php">Resources</a>
             </li>
             <li class="nav-item center-menu">
               <a class="nav-link <?php if(isset($ourteam)){echo'active'; } ?>" href="ourteam.php">Our Team</a>
