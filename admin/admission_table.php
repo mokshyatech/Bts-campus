@@ -1,17 +1,44 @@
 <?php
 session_start();
 include('include/connection.php');
+$check_sql="select *from news_and_event order by id";
+$total=mysqli_num_rows(mysqli_query($db,$check_sql));
 
-$sql="select *from admissions order by id desc ";
-$admission=[];
+ $page=1;
+ $limit = 15; 
+$total_pages = ceil($total/$limit); 
+ 
+if (isset($_GET["page"])) {
+                             $page  = $_GET["page"]; 
+                          } 
+                    else{
+
+                           $page=1;
+                          }  
+$start_from = ($page-1) * $limit; 
+
+$sql="select *from admissions  order by id desc LIMIT $start_from, $limit ";
 $result=mysqli_query($db,$sql);
+
 $admission='set';
+if($page==1)
+{
+  $x=1;
+}
+else
+{  
+$x=(($page-1)*$limit)+1;
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>BTS admision table</title>
+    <title>News and event</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -26,21 +53,8 @@ $admission='set';
     .blue{
         background-color:#000071;
         color: white; 
+        
     }
-    .head{
-    color:#1a237e;
-    font-weight: bold;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
-    font-size:30px;
-    margin-top: 50px;
-   }
-   .span{
-    border-left: 5px solid #1a237e;
-    border-top: 5px solid #1a237e;
-    border-radius: 6px;
-    box-shadow: 10px 10px 0.6px;
-   }
     </style>
 
 <body>
@@ -59,13 +73,31 @@ include('include/check_login.php');
          include('include/sidebar.php');
      ?>
             <!-- content -->
-            <div class="col-lg-8 col-md-8 col-sm-12">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="container">
-                    <div class="head">
-                        <p><span class="span">College Student Form</span></p>
-                    </div>
+                  <?php
+                    if(isset($_SESSION['success']))
+                    { 
+
+                  ?>
+                  <div class="alert alert-success mt-4" role="alert">
+                        <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                  </div>
+
+                 <?php } ?>
+
+                  <?php
+                    if(isset($_SESSION['error']))
+                    { 
+
+                  ?>
+                  <div class="alert alert-danger mt-4" role="alert">
+                        <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                  </div>
+
+                 <?php } ?>
                    
-                            <table class="table">
+                            <table class="table mt-5">
                                 <thead class="blue">
                                     <tr>
                                         <TH>ID</TH>
@@ -78,14 +110,15 @@ include('include/check_login.php');
                                 </thead>
 
                                 <?php 
-                                 $x=1;
+                                
                                  while($admission=mysqli_fetch_array($result))
                              {
 
                                  ?>
-                                <tr>
+                                
+     <tr>
                                    <td><?php echo htmlentities($x); ?></td>
-                                    <td><?php echo  htmlentities($admission['f_name']); echo htmlentities($admission['l_name']); ?> </td>
+                                    <td><?php echo  htmlentities($admission['f_name']); echo  htmlentities($admission['l_name']); ?> </td>
                                    
                                     <td> <?php echo htmlentities($admission['per_municipality'])."-"; echo htmlentities($admission['per_wardno'])."-";echo htmlentities($admission['per_district']); ?></td>
                                    
@@ -94,6 +127,10 @@ include('include/check_login.php');
                                     <td><?php echo htmlentities($admission['mobile_no']); ?></td>
                                     <td>
                                         <a href="admision_form.php?id=<?php echo $admission['id']; ?>&&faculty=management" class="btn btn-danger">View</a>
+                                         <a href="delete.php?id=<?php echo $admission['id']; ?>&&type=admission" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i></a>
+
+
+
                                     </td>
                                 </tr>
 
@@ -104,6 +141,34 @@ include('include/check_login.php');
                               
                               ?>
                             </table>
+<?php if($total>$limit) {?>
+<nav aria-label="...">
+  <ul class="pagination">
+    <?php if($page==1) {?>
+   
+<?php } else{ ?>  
+   <li class="page-item ">
+      <a class="page-link" href="news and events_table.php?page=<?php echo $page-1; ?>" tabindex="-1">Previous</a>
+    </li>
+  <?php }
+
+     for($i=0;$i<$total_pages;$i++){
+  ?>
+
+    <li class="page-item <?php if($page==$i+1) echo "active";?>"><a class="page-link" href="news and events_table.php?page=<?php echo $i+1; ?>"><?php echo $i+1; ?></a></li>
+<?php } ?>
+
+    
+    
+<?php if($total_pages!=$page){ ?>
+    <li class="page-item">
+      <a class="page-link" href="news and events_table.php?page=<?php echo $page+1; ?>">Next</a>
+    </li>
+  <?php } ?>
+
+  </ul>
+</nav>
+<?php } ?>
                         </div>
                     </div>
                 </div>

@@ -201,7 +201,7 @@ session_start();
     <!-- footer -->
      <?php include('include/footer.php'); ?>
  
-    <input type="hidden" id="admission_success_school" value="<?php if(isset($_SESSION['admission_success_school'])) {echo htmlentities($_SESSION['admission_success_school']); } unset($_SESSION['admission_success_school']); ?>">
+    <input type="hidden" id="admission_success" value="<?php if(isset($_SESSION['admission_success'])) {echo htmlentities($_SESSION['admission_success']); } unset($_SESSION['admission_success']); ?>">
 
     <!-- js setup -->
     <script
@@ -221,13 +221,13 @@ session_start();
     ></script>
      <script>
 
-      var checksuccess =$('#admission_success_school').val();
+      var checksuccess =$('#admission_success').val();
 
       if(checksuccess!=='')
       {
       Swal.fire({
        title: 'success!',
-      text: 'Your form has been submitte successfully',
+      text: 'Your form has been submitted successfully',
       icon: 'success',
       confirmButtonText: 'OK'
      })

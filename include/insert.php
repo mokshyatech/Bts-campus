@@ -4,10 +4,9 @@
 
 
 
-  include('include/connection.php');
+  include('connection.php');
 
 
-    
 
   if(isset($_POST['college_form']))
   { 
@@ -92,50 +91,50 @@
         $name=$_FILES['slc_gradesheet']['name'];
         $slc_gradesheet=time().$name;
         $temp=$_FILES['slc_gradesheet']['tmp_name'];
-        $dir="file/".$slc_gradesheet;
+        $dir="../file/".$slc_gradesheet;
         move_uploaded_file($temp, $dir);
 
 
         $name=$_FILES['slc_certificate']['name'];
          $slc_certificate=time().$name;
         $temp=$_FILES['slc_certificate']['tmp_name'];
-        $dir="file/".$slc_certificate;
+        $dir="../file/".$slc_certificate;
         move_uploaded_file($temp, $dir);
 
         $name=$_FILES['plus2_character']['name'];
          $plus2_character=time().$name;
         $temp=$_FILES['plus2_character']['tmp_name'];
-        $dir="file/".$plus2_character;
+        $dir="../file/".$plus2_character;
         move_uploaded_file($temp, $dir);
 
         $name=$_FILES['plus2_transcript']['name'];
          $plus2_transcript=time().$name;
         $temp=$_FILES['plus2_transcript']['tmp_name'];
-        $dir="file/".$plus2_transcript;
+        $dir="../file/".$plus2_transcript;
         move_uploaded_file($temp, $dir);
 
         $name=$_FILES['migration']['name'];
          $migration=time().$name;
         $temp=$_FILES['migration']['tmp_name'];
-        $dir="file/".$migration;
+        $dir="../file/".$migration;
         move_uploaded_file($temp, $dir);
 
         $name=$_FILES['provision']['name'];
          $provision=time().$name;
         $temp=$_FILES['provision']['tmp_name'];
-        $dir="file/".$provision;
+        $dir="../file/".$provision;
         move_uploaded_file($temp, $dir);
 
-$name=$_FILES['citizenship']['name'];
-         $citizenship=time().$name;
+        $name=$_FILES['citizenship']['name'];
+        $citizenship=time().$name;
         $temp=$_FILES['citizenship']['tmp_name'];
-        $dir="file/".$citizenship;
+        $dir="../file/".$citizenship;
         move_uploaded_file($temp, $dir);
 
         $name=$_FILES['pp']['name'];
         $pp=time().$name;
         $temp=$_FILES['pp']['tmp_name'];
-        $dir="file/".$pp;
+        $dir="../file/".$pp;
         move_uploaded_file($temp, $dir);
 
        
@@ -145,7 +144,7 @@ $name=$_FILES['citizenship']['name'];
                 '$school_science',
                 '$school_math',
                 '$plus2_collage_name',
-                'plus2_passed_year',
+                '$plus2_passed_year',
                 '$plus2_gpa',
                 'plus2_english',
                 '$plus2_science',
@@ -161,17 +160,17 @@ $name=$_FILES['citizenship']['name'];
 
       if(mysqli_query($db,$sql))
       {
-       $_SESSION['admission_success_college']='set';
+       $_SESSION['admission_success']='set';
           
           include('reset_old_data.php');
-        header('location:index.php');
+        header('location:../index.php');
         exit();
      
       }
       else
        {
         $_SESSION['error']='!Opps somthing wrong in wrong plz check data again';
-        header('location:admission.php');
+        header('location:../index.php');
         exit();
               
      

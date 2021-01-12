@@ -5,11 +5,8 @@ include('include/connection.php');
 include('include/check_login.php');
 
   $id=$_GET['id'];
-  $faculty=$_GET['faculty'];
   $type=$_GET['type'];
-
-
-     $sql="select * from admissions where id='$id' limit 1";
+  $sql="select * from admissions where id='$id' limit 1";
     $result=mysqli_query($db,$sql);
     $admission=mysqli_fetch_assoc($result);
   
@@ -22,18 +19,19 @@ include('include/check_login.php');
     $file6 = $admission['citizenship'];
     $file7= $admission['pp'];
 
-      $path='../admission/photo/'.$file;
-      $path1='../admission/photo/'.$file1;
-      $path2='../admission/photo/'.$file2;
-      $path3='../admission/photo/'.$file3;
-      $path4='../admission/photo/'.$file4;
-      $path5='../admission/photo/'.$file5;
-      $path6='../admission/photo/'.$file6;
-      $path7='../admission/photo/'.$file7;
+      $path='../file/'.$file;
+      $path1='../file/'.$file1;
+      $path2='../file/'.$file2;
+      $path3='../file/'.$file3;
+      $path4='../file/'.$file4;
+      $path5='../file/'.$file5;
+      $path6='../file/'.$file6;
+      $path7='../file/'.$file7;
+   
      
 
 
-    if($type=='slc_gradesheet')
+    if($type=='slcgradesheet')
     {
 
     if(!empty($file) && file_exists($path))
@@ -48,7 +46,7 @@ include('include/check_login.php');
     }
    }
 
-    if($type=='slc_certificate')
+    if($type=='slccharacter')
    {
     if(!empty($file1) && file_exists($path1))
     {
@@ -108,7 +106,7 @@ include('include/check_login.php');
    }
     
 
-if($type=='provision')
+if($type=='provisional')
 
    {
     if(!empty($file5) && file_exists($path5))
@@ -156,5 +154,13 @@ if($type=='pp')
 
   
 
-  echo "Woops!!! Something went wrong file uploaded by student is currupted";
+  echo "Woops!!! Something went wrong file uploaded by student is corrupted";
 ?>
+
+
+
+
+
+
+
+

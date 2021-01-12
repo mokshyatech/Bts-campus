@@ -143,7 +143,7 @@ include('include/check_login.php');
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a class="btn btn-danger" href="delete.php?type=collage_student&&id=<?php echo htmlentities($student['id']); ?>">Delete</a>
+                                                        <a class="btn btn-danger" href="delete.php?type=student&&id=<?php echo htmlentities($student['id']); ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +198,7 @@ function deletes(key) {
     $('#injectdelete').html("");
     $('.modal-body').html("");
     var modal = " One Collage Student is going to be delete";
-    var a = "<a href='delete.php?type=collage_student&&id=" + key + "' class='btn btn-danger'>delete</a>";
+    var a = "<a href='delete.php?type=student&&id=" + key + "' class='btn btn-danger'>delete</a>";
     $("#injectdelete").append(a);
     $('.modal-body').append(modal);
 

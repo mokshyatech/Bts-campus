@@ -1,6 +1,10 @@
 <?php
 session_start();
 include "include/connection.php";
+if(!isset($_SESSION['login_user']))
+{
+   header('location:index.php');
+}
 $code=$_SESSION['code']; 
 
 $sql="select * from student where uniquecode='$code' LIMIT 1 ";

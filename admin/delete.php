@@ -77,123 +77,9 @@ include('include/check_login.php');
 
        }
 
-       else if($type=='school_student')
-       {
-          $sql=" DELETE FROM school  WHERE uniquecode='$id' ";
-
-       
-
-      if(mysqli_query($db,$sql))
-      {
-        $_SESSION['success']='student record  has been successfully deleted';
-          
-        header('location:school_stu_registration_table.php');
-     
-      }
-      else
-       {
-        $_SESSION['error']='!Opps somthing wrong in deleting student';
-            header('location:school_stu_registration_table.php');
-              
-     
-
-      }
-
-       }
-
-      else if($type=='school_teacher')
-      {    
-           $sql=" DELETE FROM school_teacher  WHERE email='$id' ";
-           if(mysqli_query($db,$sql))
-      {
-        $_SESSION['success']="Teacher ".$name." record  has been successfully deleted";
-          
-        header('location:school_teacher_registration_table.php');
-     
-      }
-      else
-       {
-        $_SESSION['error']='!Opps somthing wrong in deleting student';
-            header('location:school_teacher_registration_table.php');
-              
-     
-
-      }
-    }
-
-    else if($type=='engineering_student')
-    {
-     
-         $sql=" DELETE FROM engineering  WHERE uniquecode='$id' ";
-           if(mysqli_query($db,$sql))
-      {
-        $_SESSION['success']="Student with ".$id." record  has been successfully deleted";
-          
-        header('location:engineering_student_registration_table.php');
-     
-      }
-      else
-       {
-        $_SESSION['error']='!Opps somthing wrong in deleting student';
-              header('location:engineering_student_registration_table.php');
-              
-     
-
-      }
 
 
-    }
-
-    else if($type=='engineering_teacher')
-    {
-     
-         $sql=" DELETE FROM engineering_teacher  WHERE email='$id' ";
-           if(mysqli_query($db,$sql))
-      {
-        $_SESSION['success']="Teacher with ".$id." record  has been successfully deleted";
-          
-        header('location:engineering_teacher_registration_table.php');
-     
-      }
-      else
-       {
-        $_SESSION['error']='!Opps somthing wrong in deleting student';
-              header('location:engineering_teacher_registration_table.php');
-              
-     
-
-      }
-
-
-    }
-
-    else if($type=='collage_teacher')
-    {
-      
-
-    }
-
-    else if($type=='collage_student')
-    {
-      $sql=" DELETE FROM college  WHERE id='$id' ";
-           if(mysqli_query($db,$sql))
-      {
-        $_SESSION['success']=" One Collage Student  has been successfully deleted";
-          
-        header('location:collage_student_registration_table.php');
-     
-      }
-      else
-       {
-        $_SESSION['error']='!Opps somthing wrong in deleting student';
-              header('location:collage_student_registration_table.php');
-              
-     
-
-      }
-       
-
-    }
+  
     else if($type=='gallery_delete')
     {
         $id=$_GET['id'];
@@ -218,8 +104,10 @@ include('include/check_login.php');
     -------------------------------------------------------------------------------------------------------------------------------
     */
 
-else if($type='teacher_deletes')
+else if($type=='teacher_deletes')
 {
+     
+
    $sql=" DELETE FROM teacher  WHERE id='$id' ";
            if(mysqli_query($db,$sql))
       {
@@ -233,11 +121,97 @@ else if($type='teacher_deletes')
         $_SESSION['error']='!Opps somthing wrong in deleting student';
               header('location:teacher_table.php');
               
-     
-
-      }
+        }
 
 }
+    /*-----------------------------------------------------------------------------------------------------------------------------
+                                            student deletes
+    -------------------------------------------------------------------------------------------------------------------------------
+    */
+       else if($type=='student')
+       {
+         
+          $sql=" DELETE FROM student  WHERE id='$id' ";
+           if(mysqli_query($db,$sql))
+        {
+        $_SESSION['success']="One student has been successfully deleted";
+          
+        header('location:student_table.php');
        
+        }
+      else
+         {
+        $_SESSION['error']='!Opps somthing wrong in deleting student';
+              header('location:student_table.php');
+              
+     
+
+         }
+
+       }
+      
+
+
+      /*-----------------------------------------------------------------------------------------------------------------------------
+                                            admission form deletes
+    -------------------------------------------------------------------------------------------------------------------------------
+    */
+
+
+     else if($type=='admission')
+       {
+         $sql="select *from admissions where id='$id' limit 1";
+         $result=mysqli_fetch_assoc(mysqli_query($db,$sql));
+          
+          if(file_exists("../file/".$result['slc_certificate']))
+          {
+            unlink("../file/".$result['slc_certificate']);
+          }
+           if(file_exists("../file/".$result['slc_gradesheet']))
+          {
+            unlink("../file/".$result['slc_gradesheet']);
+          }
+           if(file_exists("../file/".$result['plus2_transcript']))
+          {
+            unlink("../file/".$result['plus2_transcript']);
+          }
+           if(file_exists("../file/".$result['plus2_character']))
+          {
+            unlink("../file/".$result['plus2_character']);
+          }
+           if(file_exists("../file/".$result['migration']))
+          {
+            unlink("../file/".$result['migration']);
+          }
+           if(file_exists("../file/".$result['provision']))
+          {
+            unlink("../file/".$result['provision']);
+          }
+           if(file_exists("../file/".$result['citizenship']))
+          {
+            unlink("../file/".$result['citizenship']);
+          }
+           if(file_exists("../file/".$result['pp']))
+          {
+            unlink("../file/".$result['pp']);
+          }
+
+          
+
+         $sql=" DELETE FROM admissions  WHERE id='$id' ";
+      if(mysqli_query($db,$sql))
+             {
+               $_SESSION['success']="Admission form has been deleted successfully";        
+                header('location:admission_table.php');
+       
+             }
+       else
+          {
+              $_SESSION['error']='!Opps somthing wrong in deleting student';
+              header('location:admission_table.php');
+          }
+
+       }
+
 
 ?>

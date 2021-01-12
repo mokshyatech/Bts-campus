@@ -80,18 +80,13 @@
 
                   <ul class="card-list">
                     <li>C. English</li>
-                    <li>C. Nepali</li>
+                    <li>POM</li>
                     <li>Accountancy</li>
+                    <li>Business Statistics</li>
                     <li>Economics</li>
                   </ul>
 
-                  <h5>Choose Any One</h5>
-
-                  <ul class="card-list">
-                    <li>Business Studies</li>
-                    <li>Hotel Management</li>
-                    <li>Computer Science</li>
-                  </ul>
+                  
                 </div>
               </div>
             </div>
@@ -130,18 +125,16 @@
 
                   <ul class="card-list">
                     <li>C. English</li>
-                    <li>Accountancy</li>
-                    <li>Economics</li>
+                    <li>C. Nepali</li>
+                    <li>Found Of Edu</li>
+                    <li>Maj.English</li>
+                    <li>Maj.Health & phy .Edu</li>
+                    <li>Maj.Nepali</li>
                   </ul>
 
-                  <h5>Choose Any One</h5>
+                 
 
-                  <ul class="card-list">
-                    <li>Hotel Management</li>
-                    <li>Computer Science</li>
-                    <li>Business Maths</li>
-                    <li>Marketing</li>
-                  </ul>
+                
                 </div>
               </div>
             </div>
@@ -158,10 +151,10 @@
                 <button
                   class="btn btn-link"
                   data-toggle="collapse"
-                  data-target="#collapseTwo"
+                  data-target="#collapseThree"
                   aria-expanded="true"
                   style="float: right"
-                  aria-controls="collapseTwo"
+                  aria-controls="collapseThree"
                 >
                   View&nbsp; Details <i class="fa fa-chevron-down"></i>
                 </button>
@@ -169,7 +162,7 @@
             </div>
 
             <div
-              id="collapseTwo"
+              id="collapseThree"
               class="collapse"
               aria-labelledby="headingTwo"
               data-parent="#accordion"
@@ -178,20 +171,15 @@
                 <div class="job-info">
                   <h5>Compulsory Subjects</h5>
 
-                  <ul class="card-list">
+                <ul class="card-list">
                     <li>C. English</li>
-                    <li>Accountancy</li>
-                    <li>Economics</li>
+                    <li>C. Nepali</li>
+                    
+                    <li>Maj.Sociology</li>
+                    <li>Maj.English</li>
                   </ul>
 
-                  <h5>Choose Any One</h5>
-
-                  <ul class="card-list">
-                    <li>Hotel Management</li>
-                    <li>Computer Science</li>
-                    <li>Business Maths</li>
-                    <li>Marketing</li>
-                  </ul>
+                 
                 </div>
               </div>
             </div>
@@ -212,7 +200,7 @@
             </div>
           </div>
           <div class="admission-form col-lg-12 col-sm-12 col-md-12">
-            <form action="insert.php" method="POST" enctype="multipart/form-data">
+            <form action="include/insert.php" method="POST" enctype="multipart/form-data">
               <h5>Personal Details</h5>
               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -303,7 +291,7 @@
                     <input
                       class="form-check-input"
                       type="radio"
-                      name="exampleRadios"
+                      name="gender"
                       id="exampleRadios2"
                       value="female"
                     <?php

@@ -5,10 +5,6 @@ include('include/connection.php');
 include('include/check_login.php');
 
 $id=$_GET['id'];
-$faculty=$_GET['faculty'];
-
-
-
 $sql="select * from admissions where id='$id' limit 1";
 $result=mysqli_query($db,$sql);
 $admission=mysqli_fetch_assoc($result);
@@ -129,7 +125,7 @@ $admission=mysqli_fetch_assoc($result);
                 <div class="col-sm-4">
                   <label for="gender">Gender: </label>
                   <div class="form-check-inline">
-                     <input disabled
+                     <input 
                       class="form-check-input"
                       type="radio"
                       name="gender"
@@ -139,15 +135,19 @@ $admission=mysqli_fetch_assoc($result);
                       {
 
                              echo"checked";
+                      }else
+                      {
+                        echo "disabled";
                       }
                         ?>
+                      
                     />
                     <label class="form-check-label" for="exampleRadios1">
                       Male
                     </label>
                   </div>
                   <div class="form-check-inline">
-                    <input disabled
+                    <input 
                       class="form-check-input"
                       type="radio"
                       name="gender"
@@ -157,6 +157,9 @@ $admission=mysqli_fetch_assoc($result);
                        {
 
                              echo"checked";
+                        }else
+                        {
+                          echo "disabled";
                         }
                         ?>
                     />
@@ -493,7 +496,7 @@ $admission=mysqli_fetch_assoc($result);
                     class="form-control"
                     placeholder="Enter English Marks"
                     disabled
-                    value="<?php echo htmlentities($admission['school_english']) ?>"
+                    value="<?php echo htmlentities($admission['school_English']) ?>"
                   />
                 </div>
                
@@ -616,7 +619,7 @@ $admission=mysqli_fetch_assoc($result);
                      <label for="file" class="file-label"
                     >SEE/SLC Gradesheet</label
                   ><br>
-                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=slcgradesheet">download  <i class="fa fa-download"></i> </a>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=slcgradesheet">download  <i class="fa fa-download"></i> </a>
                    </div>
 
                    <div class="col-lg-4 col-md-4 col-sm-12">
@@ -624,42 +627,50 @@ $admission=mysqli_fetch_assoc($result);
                     >SEE/SLC Character Certificate</label
                   >
                   <br>
-                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=slccharacter">download  <i class="fa fa-download"></i> </a>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=slccharacter">download  <i class="fa fa-download"></i> </a>
                    </div>
 
                    <div class="col-lg-4 col-md-4 col-sm-12">
                      <label for="file" class="file-label"
-                    >Birth Certificate/Citizenship</label
+                    >+2 Transcript Photocopy</label
                   ><br>
-                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=citizenship">download  <i class="fa fa-download"></i> </a>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=plus2_transcript">download  <i class="fa fa-download"></i> </a>
                    </div>
 
                    <div class="col-lg-4 col-md-4 col-sm-12">
                      <label for="file" class="file-label"
-                    >Entrance Admit Card</label
+                    >+2 Character Certificate</label
                   ><br>
-                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=admit_card">download  <i class="fa fa-download"></i> </a>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=plus2_character">download  <i class="fa fa-download"></i> </a>
                    </div>
 
                    <div class="col-lg-4 col-md-4 col-sm-12">
                      <label for="file" class="file-label"
-                    >Recommendation Letter from Entrance appearing School</label
+                    >Migration Certificate Photocopy</label
                   ><br>
-                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=letter">download  <i class="fa fa-download"></i> </a>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=migration">download  <i class="fa fa-download"></i> </a>
                    </div>
 
                    <div class="col-lg-4 col-md-4 col-sm-12">
                      <label for="file" class="file-label"
-                    >Result Copy</label
+                    >Provisional Certificate Photocopy</label
                   ><br>
-                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=result_copy">download  <i class="fa fa-download"></i> </a>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=provisional">download  <i class="fa fa-download"></i> </a>
                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                     <label for="file" class="file-label"
+                    >Citizenship Photocopy</label
+                  ><br>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=citizenship">download  <i class="fa fa-download"></i> </a>
+                   </div>
+
 
                    <div class="col-lg-4 col-md-4 col-sm-12">
                      <label for="file" class="file-label"
                     >Recent PP size Photo</label
                   ><br>
-                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=pp">download  <i class="fa fa-download"></i> </a>
+                  <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&type=pp">download  <i class="fa fa-download"></i> </a>
                    </div>
               </div>
               

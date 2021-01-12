@@ -1,5 +1,5 @@
 # Bts-campus
 #CSV format
 
-uniquecode,subject,marks,faculty,year,term<br>
-CLS-185,POM,25,BBS,first,1
+uniquecode,subject,full_mark,pass_marks,marks,faculty,year,term<br>
+CLS-185,POM,100,40,25,BBS,first,1
