@@ -26,15 +26,19 @@
             <li class="nav-item center-menu">
               <a class="nav-link <?php if(isset($event)){echo'active';  } ?>" href="event.php">Events</a>
             </li>
+            <?php if(isset($_SESSION['login_user'])){ ?>
             <li class="nav-item center-menu">
               <a class="nav-link <?php if(isset($resource)){echo 'active'; } ?>" href="resources.php">Resources</a>
             </li>
+          <?php } ?>
             <li class="nav-item center-menu">
               <a class="nav-link <?php if(isset($ourteam)){echo'active'; } ?>" href="ourteam.php">Our Team</a>
             </li>
+            <?php if(isset($_SESSION['login_user'])) {?>
              <li class="nav-item center-menu">
               <a class="nav-link<?php if(isset($result)){echo'active'; } ?>" href="result.php">Results</a>
             </li>
+          <?php } ?>
                   <?php
         if(!isset($_SESSION['login_user'])){
          ?>
