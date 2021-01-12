@@ -38,7 +38,7 @@ include('../include/connection.php');
 	$caption=$_POST['caption'];
 	$year=$_POST['year'];
 	$faculty=$_POST['faculty'];
-	if(isset($_POST['subject'])
+	if(isset($_POST['subject']))
 	{
     	$subject =$_POST['subject'];
 	}
@@ -102,11 +102,8 @@ if(mysqli_query($db,$sql)){
 	 $allowedType=array('csv');
 	 if (!in_array($fileExtension,$allowedType))
 	 {
-	 	?>
-	 	<div class="alert alert-danger">
-	 		Inavalid File extension 
-	 	</div> 
-	 	<?php
+	 	 $_SESSION['error']='invalid file format';
+	 	header("location:result.php");
 	 }
 	else{
 		$handle=fopen($fileTmpName,'r');
@@ -114,16 +111,18 @@ if(mysqli_query($db,$sql)){
 		  {
 			$uniquecode=$myData[0];
 			$subject=$myData[1];
-			$marks=$myData[2];
-			$faculty=$myData[3];
-			$year=$myData[4];
-			$term=$myData[5];
+			$full_marks=$myData[2];
+			$pass_marks=$myData[3];
+			$marks=$myData[4];
+			$faculty=$myData[5];
+			$year=$myData[6];
+			$term=$myData[7];
 			
 			
-			$sql1="insert into results(uniquecode,subject,marks,faculty,year,term,posted_by,created_at) 
-			                          values('$uniquecode','$subject','$marks','$faculty','$year','$term','$posted_by','$created_at')";
+			$sql1="insert into results(uniquecode,subject,full_marks,pass_marks,marks,faculty,year,term,posted_by,created_at) 
+			                          values('$uniquecode','$subject','$full_marks','$pass_marks','$marks','$faculty','$year','$term','$posted_by','$created_at')";
 			$query1=mysqli_query($db,$sql1);
-;
+
 			  // $last_id = mysqli_insert_id($db);
 			
 		  }

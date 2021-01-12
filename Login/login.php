@@ -4,11 +4,26 @@ include '../include/connection.php';
 
    if(isset($_SESSION['teacher']))
 {
-  header('location:../teacher/index.php');
+    if(isset($_GET['user']))
+    {
+      if($_GET['user']=='teacher')
+      {
+          header('location:../teacher/index.php');
+      }
+   
+    }
+
 }
 if(isset($_SESSION['login_user']))
 {
-  header('location:../index.php');
+  if(isset($_GET['user']))
+    {
+      if($_GET['user']=='student')
+      {
+          header('location:../index.php');
+      }
+     
+    }
 }
 
 if(isset($_GET['user']))

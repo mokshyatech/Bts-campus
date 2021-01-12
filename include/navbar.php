@@ -60,7 +60,7 @@
                 <a class="nav-link right-link" href="school/student/detail/profile.php"><?php echo "$_SESSION[login_user]";?></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link right-link" href="login/logout.php">Logout</a>
+                <a class="nav-link right-link" href="login/student_logout.php">Logout</a>
               </li>
               <?php }else{
            ?>

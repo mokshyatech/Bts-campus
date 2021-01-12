@@ -1,8 +1,10 @@
 <?php
 session_start();
+include "include/connection.php";
 $code=$_SESSION['code']; 
 
-
+$sql="select * from student where uniquecode='$code' LIMIT 1 ";
+$student=mysqli_fetch_assoc(mysqli_query($db,$sql));
 
 ?>
 <!DOCTYPE html>
@@ -58,64 +60,29 @@ $code=$_SESSION['code'];
         <div class="row" style="margin-top: 50px;">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <h6>NAME:
-                    <?php echo $_SESSION['login_user'];?>
+                    <?php echo $student['firstname']."  ".$student['lastname'];?>
                 </h6>
                 <?php 
                     
                     $show_drop_down=true;
                         
-                     include "include/connection.php";
 
 
-                      $sql1="select distinct faculty from results where uniquecode='$code'";
+                      $sql1="select distinct faculty from results where uniquecode='$code' LIMIT 1";
+                      $sql2="select distinct year from results where uniquecode='$code' LIMIT 1";
+                         ?>
 
-                      $query1=mysqli_query($db,$sql1);
-                      if(is_null($query1) == true){
-                           $show_drop_down=false;
-                         }
-
-
-                      $class=[];
-                      while($row=mysqli_fetch_array($query1))
-                      {
-                         $class[]=$row['class'];
-                      }
-                       
+                 <h6>FACULTY: <?php echo mysqli_fetch_assoc(mysqli_query($db,$sql1))['faculty']; ?></h6>
+                   <input type="hidden" name="faculty" value="<?php  echo mysqli_fetch_assoc(mysqli_query($db,$sql1))['faculty']; ?>" id="faculty">
                     
-                                              
-                      $sql="select *from collegeresult where uniquecode='$code' LIMIT 1 ";
-                      $query=mysqli_query($db,$sql);
-                      while($row=mysqli_fetch_array($query))
-                        {
-              ?>
-                <h6>CLASS:
-                    <?php if($show_drop_down==false)
-           { echo "no class";
-           }
-         
-          else
-        {
-          ?>
-                    <select id="class">
-                        <?php 
-               foreach ($class as $value) {
-           
-
-          ?>
-                        <option value="<?php echo $value ?>">
-                            <?php echo $value ?>
-                        </option>
-                        <?php } ?>
-                    </select>
-                    <?php }?>
-                </h6>
+          
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <h6>ROLL:
+                <h6>ROLL: <?php echo $code; ?>
                     
                 </h6>
-                <?php } ?>
-                <h6>SECTION:</h6>
+            
+                <h6>YEAR: <?php echo mysqli_fetch_assoc(mysqli_query($db,$sql2))['year'] ; ?></h6>
             </div>
         </div>
 
@@ -167,7 +134,7 @@ $code=$_SESSION['code'];
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <h6>PRINCIPAL:</h6>
-                        <h6>TERM:</h6>
+                        <h6>TERM:<span id="term">first</span></h6>
                     </div>
                 </div>
             </div>
@@ -176,26 +143,21 @@ $code=$_SESSION['code'];
     </div>
         <!-- footer -->
 
-       <?php include('../include/footer.php'); ?>
+       <?php include('include/footer.php'); ?>
 
         <input type="hidden" id="uniquecode" value="<?php echo $code; ?>">
         <script>
         var result = [];
         var total=0;
+        var total_full=0;
         var percentage=0;
         var uniquecode = $('#uniquecode').val();
         var stu_class = $('#class option:selected').val();
         var selected_term = 1;
 
-        $('#class').change(function(){
-
-          var stu_class =$('#class option:selected').val();
-
-          call_data(selected_term,stu_class);
-        });
-
+     
         $(document).ready(function() {
-            
+             var stu_faculty =$('#faculty').val();
 
           $('#print').click(function(){
 
@@ -209,8 +171,8 @@ $code=$_SESSION['code'];
 
             var term = 1;
 
-            call_data(term, stu_class);
-            $('#class :selected').text();
+            call_data(term, stu_faculty);
+          
 
 
 
@@ -219,12 +181,30 @@ $code=$_SESSION['code'];
 
 
         function load_on_term(term) {
-          var stu_class =$('#class option:selected').val();
+
+           $('#term').html("");
+          
+           if(term==1)
+           {
+               $('#term').append("first");
+           }
+           else if(term==2)
+           {
+                $('#term').append("second");
+           }
+           else if(term==3)
+           {
+               $('#term').append("third");
+           }
+           else{
+             $('#term').append("fourth");
+           }
+          var stu_faculty =$('#faculty').val();
             underline_term(term);
 
 
 
-            call_data(term, stu_class);
+            call_data(term, stu_faculty);
 
         }
 
@@ -271,13 +251,13 @@ $code=$_SESSION['code'];
 
         }
 
-        function call_data(term, stu_class) {
+        function call_data(term, stu_faculty) {
             $.ajax({
 
 
                 type: 'get',
-                url: 'fetch_result.php',
-                data: { class: stu_class, uniquecode: uniquecode, term: term },
+                url: 'include/fetch_result.php',
+                data: { faculty: stu_faculty, uniquecode: uniquecode, term: term },
                 dataType: "json",
                 success: function(response) {
                     result='';
@@ -291,6 +271,17 @@ $code=$_SESSION['code'];
                 }
             });
 
+        }
+        function passfailcheck(passmark,Obtainedmarks)
+        {
+           if(Obtainedmarks>passmark || Obtainedmarks==passmark)
+           {
+            return "pass";
+           }
+           else
+           {
+            return "fail";
+           }
         }
 
         function filltable() {
@@ -309,15 +300,16 @@ $code=$_SESSION['code'];
                 var x = 1;
                 for (var i = 0; i < result.length; i++) {
                      total=total+parseInt(result[i].marks);
+                     total_full=parseInt(result[i].full_marks);
 
 
                     var tr_str = "<tr>" +
                         "<th scope='row' >" + x + "</td>" +
                         "<td >" + result[i].subject + "</td>" +
-                        "<td >" + ".." + "</td>" +
-                        "<td >" + ".."+ "</td>" +
+                        "<td >" + result[i].full_marks + "</td>" +
+                        "<td >" + result[i].pass_marks+ "</td>" +
                         "<td >" + result[i].marks + "</td>" +
-                        "<td >" + ".." + "</td>" +
+                        "<td >" + passfailcheck(result[i].pass_marks,result[i].marks) + "</td>" +
                         
                         "</tr>";
 
@@ -327,7 +319,7 @@ $code=$_SESSION['code'];
 
                     x++;
 
-                } percentage=((total)/(result.length*100))*100;
+                } percentage=((total)/(result.length*total_full))*100;
 
             var per=percentage.toFixed(2)
 

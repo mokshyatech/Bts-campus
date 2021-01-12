@@ -121,14 +121,10 @@ $start_from = ($page-1) * $limit;
           <p style="text-align: center;"> <?php echo $row['subject'];?></p>
           
           </div>
-          <?php
-          }?>
-          </div>   
-                       
-                      
-   
-<div class="modal fade" id="exampleModal<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+
+          <!-- model  -->
+          <div class="modal fade-modal-lg" id="exampleModal<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -136,12 +132,19 @@ $start_from = ($page-1) * $limit;
         </button>
       </div>
       <div class="modal-body">
-        <img src="../admin/photo/<?php echo $row['photo']; ?>" class="img-fluid" style="height: 350px; width: 450px;">
+        <img src="teacher/photo/<?php echo $row['image']; ?>" class="img-fluid" style="height: 800px; width: 800px;">
       </div>
       
     </div>
   </div>
 </div>
+          <?php
+          }?>
+          </div>   
+                       
+                      
+   
+
         
 
  <nav aria-label="Page navigation example" style="background-color: #d5d8de;">
@@ -150,7 +153,7 @@ $start_from = ($page-1) * $limit;
      <?php if($page>=2){  
         ?><li class='page-item'> 
           <?php 
-            echo "<a class='page-link' href='resource.php?page=".($page-1)."'>  Prev </a>";   
+            echo "<a class='page-link' href='resources.php?page=".($page-1)."'>  Prev </a>";   
         ?>
         </li>
         <?php 
@@ -165,7 +168,7 @@ $total_pages = ceil($total_records / $limit);
 /* echo  $total_pages; */
 $pagLink = "<ul class='pagination'>"; 
 for ($i=1; $i<=$total_pages; $i++) {
-$pagLink .= "<li class='page-item'><a class='page-link' class ='active' href='resource.php?page=".$i."'>".$i."</a></li>"; 
+$pagLink .= "<li class='page-item'><a class='page-link' class ='active' href='resources.php?page=".$i."'>".$i."</a></li>"; 
 }
 echo $pagLink . "</ul>";  
 ?>
@@ -176,7 +179,7 @@ echo $pagLink . "</ul>";
         ?>
         <li class='page-item'>
         <?php   
-            echo "<a class='page-link' href='resource.php?page=".($page+1)."'>  Next </a>"; ?>
+            echo "<a class='page-link' href='resources.php?page=".($page+1)."'>  Next </a>"; ?>
             </li>
             <?php  
         }   
@@ -252,11 +255,27 @@ $start_from = ($page-1) * $limit;
 
         
           <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2" style=" margin-left: px;" >
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal<?php echo $row['id'] ?>">
           <img src="teacher/photo/<?php echo $row['image']; ?>" class="img-fluid" style="height: 350px; width: 350px;">
-          
+          </button>
           <p style="text-align: center;"> <?php echo $row['subject'];?></p>
           
           </div>
+                    <div class="modal fade-modal-lg" id="exampleModal<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="teacher/photo/<?php echo $row['image']; ?>" class="img-fluid" style="height: 800px; width: 800px;">
+      </div>
+      
+    </div>
+  </div>
+</div>
           <?php
                  }
           }?>
