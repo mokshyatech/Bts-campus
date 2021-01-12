@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2021 at 05:17 AM
+-- Generation Time: Jan 12, 2021 at 02:07 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `bts-campus`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_user`
+--
+
+CREATE TABLE `admin_user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_user`
+--
+
+INSERT INTO `admin_user` (`id`, `username`, `password`) VALUES
+(1, 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -93,21 +112,6 @@ CREATE TABLE `calender` (
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `calender`
---
-
-INSERT INTO `calender` (`id`, `event`, `date`, `created_at`, `updated_at`) VALUES
-(8, 'Holiday', '2021-01-21', '2021-01-10', NULL),
-(9, 'Holiday', '2021-01-12', '2021-01-10', '2021-01-10'),
-(10, 'Holiday', '2021-01-26', '2021-01-10', NULL),
-(11, 'jitu', '2021-01-13', '2021-01-10', NULL),
-(12, 'jitu', '2021-01-20', '2021-01-10', NULL),
-(13, 'asdfa', '2021-01-19', '2021-01-10', NULL),
-(14, 'asdfa', '2021-01-20', '2021-01-10', NULL),
-(15, 'sadf', '2021-01-14', '2021-01-10', NULL),
-(16, 'asdf', '2021-01-27', '2021-01-10', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -123,21 +127,6 @@ CREATE TABLE `news_and_event` (
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `news_and_event`
---
-
-INSERT INTO `news_and_event` (`id`, `post`, `description`, `date`, `created_at`, `updated_at`) VALUES
-(22, 'asdfa', '  asdf', '2021-01-27', '0000-00-00', NULL),
-(23, 'asdf', '  asdf', '2021-01-20', '0000-00-00', NULL),
-(24, 'jit', 'rana', '2021-01-28', '2021-01-10', '2021-01-10'),
-(25, 'maga', '  maga', '2021-01-14', '2021-01-10', '2021-01-10'),
-(26, 'asdfa', '  ds', '2021-01-28', '2021-01-10', NULL),
-(27, 'asdfa', '  asdfa', '2021-01-03', '2021-01-10', '2021-01-10'),
-(28, 'asd', '  asd', '0000-00-00', '2021-01-10', NULL),
-(29, 'asd', '  asd', '2021-01-28', '2021-01-10', NULL),
-(30, 'asdasd', '  asd', '2021-01-22', '2021-01-10', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -151,31 +140,6 @@ CREATE TABLE `notice` (
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `notice`
---
-
-INSERT INTO `notice` (`id`, `notice`, `created_at`, `updated_at`) VALUES
-(13, '         rana', '2021-01-10', '2021-01-10'),
-(14, '    dsf', '2021-01-10', NULL),
-(15, '    asdf', '2021-01-10', NULL),
-(16, '    asdf', '2021-01-10', NULL),
-(17, '    asdf', '2021-01-10', NULL),
-(18, '    afsd', '2021-01-10', NULL),
-(19, '    asdf', '2021-01-10', NULL),
-(20, '    asdf', '2021-01-10', NULL),
-(21, '    asdf', '2021-01-10', NULL),
-(22, '    sadf', '2021-01-10', NULL),
-(23, '    asdf', '2021-01-10', NULL),
-(24, '    asdf', '2021-01-10', NULL),
-(25, '    asdf', '2021-01-10', NULL),
-(26, '    asdf', '2021-01-10', NULL),
-(27, '    asdf', '2021-01-10', NULL),
-(28, '    asdf', '2021-01-10', NULL),
-(29, '    asdf', '2021-01-10', NULL),
-(30, '    sadf', '2021-01-10', NULL),
-(31, '    asdf', '2021-01-10', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -188,18 +152,6 @@ CREATE TABLE `photos` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `photos`
---
-
-INSERT INTO `photos` (`id`, `photo`, `created_at`, `updated_at`) VALUES
-(12, 'Capture (1).jpg', '2021-01-10', NULL),
-(14, 'images.jpg', '2021-01-10', NULL),
-(15, 'download.jpg', '2021-01-10', NULL),
-(17, 'Sunflower-field-Fargo-North-Dakota.jpg', '2021-01-10', NULL),
-(18, 'low-angle-shot-red-flower-filed-with-cloudy-sky-background_181624-17520.jpg', '2021-01-10', NULL),
-(19, 'images.jpg', '2021-01-10', NULL);
 
 -- --------------------------------------------------------
 
@@ -220,15 +172,6 @@ CREATE TABLE `resources` (
   `caption` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `resources`
---
-
-INSERT INTO `resources` (`id`, `posted_by`, `image`, `pdf`, `year`, `subject`, `faculty`, `created_at`, `updated_at`, `caption`) VALUES
-(16, 6, '137289297_1207151123021493_3865626504653871214_n.jpg', 'QA for BTS.pdf', 'first', 'sdfs', 'bbs', '2021-01-10', NULL, 'asdf'),
-(17, 6, '137289297_1207151123021493_3865626504653871214_n.jpg', 'QA for BTS.pdf', 'first', 'sdfs', 'bbs', '2021-01-10', NULL, 'dsfg'),
-(18, 6, '137289297_1207151123021493_3865626504653871214_n (1).jpg', 'QA for BTS.pdf', 'first', 'POM', 'bbs', '2021-01-11', NULL, '  Pom notes');
-
 -- --------------------------------------------------------
 
 --
@@ -239,6 +182,8 @@ CREATE TABLE `results` (
   `id` int(100) NOT NULL,
   `uniquecode` varchar(50) NOT NULL,
   `subject` varchar(100) NOT NULL,
+  `full_marks` varchar(10) NOT NULL,
+  `pass_marks` varchar(10) NOT NULL,
   `marks` varchar(15) NOT NULL,
   `faculty` varchar(15) NOT NULL,
   `year` varchar(15) NOT NULL,
@@ -247,22 +192,6 @@ CREATE TABLE `results` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `results`
---
-
-INSERT INTO `results` (`id`, `uniquecode`, `subject`, `marks`, `faculty`, `year`, `term`, `posted_by`, `created_at`, `updated_at`) VALUES
-(1, 'CLS-185', 'POM', '25', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(2, 'CLS-1d5', 'POM', '25', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(3, 'CLS-14874', 'POM', '105', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(4, 'CLS-14815', 'POM', '100', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(5, 'CLS-1485', 'POM', '90', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(6, 'CLS-1485', 'POM', '80', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(7, 'CLS-1465', 'POM', 'BBS', 'first', '1', '', 6, '2021-01-11', NULL),
-(8, 'CLS-1425', 'POM', '60', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(9, 'CLS-1445', 'POM', '50', 'BBS', 'first', '1', 6, '2021-01-11', NULL),
-(10, 'CLS-1488', 'POM', '25', 'BBS', 'first', '1', 6, '2021-01-11', NULL);
 
 -- --------------------------------------------------------
 
@@ -321,17 +250,14 @@ CREATE TABLE `user_message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_message`
---
-
-INSERT INTO `user_message` (`id`, `name`, `phone`, `email`, `message`, `created_at`) VALUES
-(1, 'rabin', 2147483647, 'rabinbasansth@gmail.com', 'dsasdadada', NULL),
-(2, 'rr', 2147483647, 'r@gmail.com', 'asdad', NULL),
-(3, 'rr', 2147483647, 'rabin@gmail.com', 'asdasd', NULL);
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_user`
+--
+ALTER TABLE `admin_user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `admissions`
@@ -398,46 +324,52 @@ ALTER TABLE `user_message`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_user`
+--
+ALTER TABLE `admin_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `admissions`
 --
 ALTER TABLE `admissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `calender`
 --
 ALTER TABLE `calender`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `news_and_event`
 --
 ALTER TABLE `news_and_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -455,7 +387,7 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `user_message`
 --
 ALTER TABLE `user_message`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
