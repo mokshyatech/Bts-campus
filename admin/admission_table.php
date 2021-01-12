@@ -2,7 +2,7 @@
 session_start();
 include('include/connection.php');
 
-$sql="select *from admission order by id desc ";
+$sql="select *from admissions order by id desc ";
 $admission=[];
 $result=mysqli_query($db,$sql);
 $admission='set';
@@ -85,13 +85,13 @@ include('include/check_login.php');
                                  ?>
                                 <tr>
                                    <td><?php echo htmlentities($x); ?></td>
-                                    <td><?php echo  htmlentities($admission['firstname']); echo  htmlentities($admission['lastname']); ?> </td>
+                                    <td><?php echo  htmlentities($admission['f_name']); echo htmlentities($admission['l_name']); ?> </td>
                                    
-                                    <td> <?php echo htmlentities($admission['municipality'])."-"; echo htmlentities($admission['wardno'])."-";echo htmlentities($admission['district']); ?></td>
+                                    <td> <?php echo htmlentities($admission['per_municipality'])."-"; echo htmlentities($admission['per_wardno'])."-";echo htmlentities($admission['per_district']); ?></td>
                                    
                                     <td><?php echo htmlentities($admission['email']); ?> </td>
                                    
-                                    <td><?php echo htmlentities($admission['mobilenumber']); ?></td>
+                                    <td><?php echo htmlentities($admission['mobile_no']); ?></td>
                                     <td>
                                         <a href="admision_form.php?id=<?php echo $admission['id']; ?>&&faculty=management" class="btn btn-danger">View</a>
                                     </td>

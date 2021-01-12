@@ -9,23 +9,12 @@ $faculty=$_GET['faculty'];
 
 
 
-if($faculty=='management')
-{
-$sql="select * from admission where id='$id' limit 1";
+$sql="select * from admissions where id='$id' limit 1";
 $result=mysqli_query($db,$sql);
 $admission=mysqli_fetch_assoc($result);
  $management='set';
-}
 
-elseif ($faculty=='engineering') 
-{
- $sql="select * from engineeringadmission where id='$id' limit 1";
-$result=mysqli_query($db,$sql);
-$admission=mysqli_fetch_assoc($result);
-$engineering='set';
 
-}
- 
 
 ?>
 <!DOCTYPE html>
@@ -36,10 +25,9 @@ $engineering='set';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- css links -->
-    <link rel="stylesheet" type="text/css" href="../+2/admission/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="../+2/admission/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../+2/admission/css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="../+2/admission/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="frontpage/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../frontpage/admission/css/style.css" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -69,72 +57,71 @@ $engineering='set';
      </div>
 
     <!-- form -->
-
-    <div class="area-to-print">
-    <div class="title">
-      <h4>Amission Form for XI XII</h4>
-
-    </div>
-    <div class="container">
+ <div class="container">
       <div class="form-container">
         <div class="row">
-          <div class="school-info col-lg-12 col-sm-12 col-md-12">
-            
+          <div class="school-info col-lg-4 col-sm-12 col-md-12">
             <div class="form-title">
               <h4>Education for Enlightenment!</h4>
             </div>
           </div>
           <div class="admission-form col-lg-12 col-sm-12 col-md-12">
-            <form action="insert.php" method="POST">
+            <form action="insert.php" method="POST" enctype="multipart/form-data">
               <h5>Personal Details</h5>
               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="firstName">First Name</label>
-                  <input disabled
-                    id="firstName"
+                  <input
+                  disabled
+                    id="f_name"
                     type="text"
+                    name= "f_name"
                     class="form-control"
                     placeholder="First name"
-                    name="firstname"
-                    value="<?php if(isset($management)){ echo htmlentities($admission['firstname']); }
-                          if(isset($engineering)){ echo htmlentities($admission['sname']);}
-                     ?>"
+                    required
+                    value="<?php echo htmlentities($admission['f_name']);?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="middleName">Middle Name</label>
-                  <input disabled
+                  <input
+                  disabled
+                    id="m_name"
+                  name="m_name"
                     type="text"
                     class="form-control"
                     placeholder="Middle name"
-                    name="middle name"
-                    
-                      value="<?php if(isset($management)){ echo htmlentities($admission['middlename']); }
-                          if(isset($engineering)){ echo htmlentities($admission['mname']);}
-                     ?>"
+                    value="<?php echo htmlentities($admission['m_name']);?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="lastName">Last Name</label>
-                  <input disabled
+                  <input
+                  disabled
+                     id="l_name"
+                   name="l_name"
                     type="text"
                     class="form-control"
                     placeholder="Last name"
-                    name="last name"
-                     value="<?php if(isset($management)){ echo htmlentities($admission['lastname']); }
-                          if(isset($engineering)){ echo htmlentities($admission['lname']);} ?>"                  />
+                    id="lastName"
+                    required
+                    value="<?php echo htmlentities($admission['l_name']);?>"
+                    
+                  />
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="dob">Date of Birth</label>
-                  <input disabled
-                    id="dob"
+                  <input
+                  disabled
+                     id="dob"
+                    name="dob"
                     type="date"
                     class="form-control"
                     placeholder="DD-MM-YYYY"
-                    name="DOB"
-                    value="<?php echo htmlentities($admission['DOB']); ?>"
+                    required
+                     value="<?php echo htmlentities($admission['dob']);?>"
                   />
                 </div>
               </div>
@@ -142,7 +129,7 @@ $engineering='set';
                 <div class="col-sm-4">
                   <label for="gender">Gender: </label>
                   <div class="form-check-inline">
-                    <input disabled
+                     <input disabled
                       class="form-check-input"
                       type="radio"
                       name="gender"
@@ -178,86 +165,10 @@ $engineering='set';
                     </label>
                   </div>
                 </div>
-                <?php  if(isset($management)) { ?>
-                <div class="col-sm-8">
-                  <label for="gender">Caste: </label>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="caste"
-                      id="exampleRadios1"
-                      value="dalit"
-                     <?php if ($admission['caste']=="dalit")
-                       {
-
-                             echo"checked";
-                        }
-                        ?> 
-
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Dalit
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="caste"
-                      id="exampleRadios2"
-                      value="janjati"
-                         <?php if ($admission['caste']=="janjati")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Janajati
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="caste"
-                      id="exampleRadios2"
-                      value="brahmin"
-                         <?php if ($admission['caste']=="brahmin")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Brahmin/Chhetri
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="caste"
-                      id="exampleRadios2"
-                      value="others"
-                         <?php if ($admission['caste']=="others")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Others
-                    </label>
-                  </div>
-                </div>
-              <?php } ?>
+                
               </div>
-              <div class="form-row">
+              
+               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="dob">Nationality</label>
                   <input disabled
@@ -278,7 +189,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="Mobile No."
                     name="mobilenumber"
-                    value="<?php echo htmlentities($admission['mobilenumber']) ?>"
+                    value="<?php echo htmlentities($admission['mobile_no']) ?>"
                   />
                 </div>
 
@@ -294,35 +205,6 @@ $engineering='set';
                 </div>
                 
               </div>
-             <?php if(isset($management)) { ?>
-              <div class="form-row">
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                  <label for="dob">Religion</label>
-                  <input disabled
-                    id="dob"
-                    type="text"
-                    class="form-control"
-                    placeholder="Religion"
-                    name="religion"
-                    value="<?php echo htmlentities($admission['religion']) ?>"
-                  />
-                </div>
-             
-               
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                  <label for="lastName">Facebook Account</label>
-                  <input disabled
-                    type="text"
-                    class="form-control"
-                    placeholder="Facebook Account"
-                    name="facebook"
-                    value="<?php echo htmlentities($admission['facebook']) ?>"
-                  />
-                </div>
-              </div>
-
-            <?php } ?>
-
               <h5>Permanent Address</h5>
               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -333,7 +215,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="Province"
                     name="zone"
-                    value="<?php echo htmlentities($admission['zone']) ?>"
+                    value="<?php echo htmlentities($admission['per_zone']) ?>"
                   />
                 </div> 
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -344,7 +226,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="Province"
                     name="province"
-                    value="<?php echo htmlentities($admission['province']) ?>"
+                    value="<?php echo htmlentities($admission['per_province']) ?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -355,7 +237,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="District"
                     name="district"
-                    value="<?php echo htmlentities($admission['district']) ?>"
+                    value="<?php echo htmlentities($admission['per_district']) ?>"
                   />
                 </div>
               </div>
@@ -368,7 +250,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="Municipality/Rural Municipality"
                     name="municiipality"
-                    value="<?php echo htmlentities($admission['municipality']) ?>"
+                    value="<?php echo htmlentities($admission['per_municipality']) ?>"
                   />
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-12">
@@ -379,21 +261,23 @@ $engineering='set';
                     class="form-control"
                     placeholder="Ward No."
                     name="wardno"
-                    value="<?php echo htmlentities($admission['wardno']) ?>"
+                    value="<?php echo htmlentities($admission['per_wardno']) ?>"
                   />
                 </div>
               </div>
+              <br>
               <h5>Temporary Address</h5>
+              
               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="dob">Zone</label>
-                  <input disabled
+                 <input disabled
                     id="dob"
                     type="text"
                     class="form-control"
                     placeholder="Province"
                     name="zone1"
-                    value="<?php echo htmlentities($admission['zone1']) ?>"
+                    value="<?php echo htmlentities($admission['temp_zone']) ?>"
                   />
                 </div> 
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -404,7 +288,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="Province"
                     name="province1"
-                    value="<?php echo htmlentities($admission['province1']) ?>"
+                    value="<?php echo htmlentities($admission['temp_province']) ?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -416,7 +300,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="District"
                     name="district1"
-                    value="<?php echo htmlentities($admission['district1']) ?>"
+                    value="<?php echo htmlentities($admission['temp_district']) ?>"
  
                   />
                 </div>
@@ -431,7 +315,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="Municipality/Rural Municipality"
                     name="municipality1"
-                    value="<?php echo htmlentities($admission['municipality1']) ?>"
+                    value="<?php echo htmlentities($admission['temp_municipality']) ?>"
                   />
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-12">
@@ -443,7 +327,7 @@ $engineering='set';
                     class="form-control"
                     placeholder="Ward No."
                     name="warno1"
-                    value="<?php echo htmlentities($admission['wardno1']) ?>"
+                    value="<?php echo htmlentities($admission['temp_wardno']) ?>"
                   />
                 </div>
               </div>
@@ -452,115 +336,112 @@ $engineering='set';
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="firstName">Father's Name</label>
                   <input
-                  disabled
-                    id="firstName"
+
+                    name="father_name"
                     type="text"
                     class="form-control"
                     placeholder="Father's name"
-                    name="pfirst"
-                    value="<?php if(isset($management))
-                               {echo htmlentities($admission['pfirst']);
-                               } 
-                               if(isset($engineering))
-                               {echo htmlentities($admission['fname']);
-
-                               }  ?>"
+                    required
+                    disabled
+                    value="<?php echo htmlentities($admission['father_name']) ?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="middleName">Contact No.</label>
-                  <input disabled
+                  <input
+                  name="father_contact"
                     type="text"
                     class="form-control"
                     placeholder="Contact No."
-                    name="contact"
-                    value="<?php echo htmlentities($admission['contact']) ?>"
-                  />
+                    required
+                     disabled
+                    value="<?php echo htmlentities($admission['father_contact']) ?>"/>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="lastName">Occupation</label>
-                  <input disabled
+                  <input
+                    name="father_occupation"
                     type="text"
                     class="form-control"
                     placeholder="Occupation"
-                    name="occupation"
-                    value="<?php echo htmlentities($admission['occupation']) ?>"
+                    disabled
+                    value="<?php echo htmlentities($admission['father_occupation']) ?>"
                   />
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="firstName">Mother's Name</label>
-                  <input disabled
-                    id="firstName"
-                    type="text"
+                  <input
+                    name="mother_name"
+                     type="text"
                     class="form-control"
                     placeholder="Mother's name"
-                    name="mname"
-                    value="<?php echo htmlentities($admission['mname']) ?>"
+                    required
+                     disabled
+                    value="<?php echo htmlentities($admission['mother_name']) ?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="middleName">Contact No.</label>
-                  <input disabled
+                  <input
+                  name="mother_contact"
                     type="text"
                     class="form-control"
                     placeholder="Contact No."
-                    name="mcontact"
-                    value="<?php echo htmlentities($admission['mcontact']) ?>"
+                    required
+                     disabled
+                    value="<?php echo htmlentities($admission['mother_contact']) ?>"
                   />
+                  
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="lastName">Occupation</label>
-                  <input disabled
+                  <input
+                    name="mother_occupation"
                     type="text"
                     class="form-control"
                     placeholder="Occupation"
-                    name="occupation1"
-                    value="<?php
-                     if(isset($management))
-                     {
-                     echo htmlentities($admission['ocuupation1']);
-                     }
-                     if(isset($engineering))
-                     {
-                       echo htmlentities($admission['moccupation']);
-                     }
-
-                      ?>"
+                    disabled
+                    value="<?php echo htmlentities($admission['mother_occupation']) ?>"
                   />
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="firstName">Guardian's Name</label>
-                  <input disabled
-                    id="firstName"
+                  <input
+                    name="guardian_name"
                     type="text"
                     class="form-control"
                     placeholder="Guardian's name"
-                    name="gname"
-                    value="<?php echo htmlentities($admission['gname']) ?>"
+                    required
+                     disabled
+                    value="<?php echo htmlentities($admission['guardian_name']) ?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="middleName">Contact No.</label>
-                  <input disabled
+                 <input
+                    name="guardian_contact"
                     type="text"
                     class="form-control"
                     placeholder="Contact No."
-                    name="gcontact"
-                    value="<?php echo htmlentities($admission['gcontact']) ?>"
+                    required
+                     disabled
+                    value="<?php echo htmlentities($admission['guardian_contact']) ?>"
                   />
+                    
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                   <label for="lastName">Occupation</label>
-                  <input disabled
+                  <input
+                    name="guardian_occupation"
                     type="text"
                     class="form-control"
                     placeholder="Occupation"
-                    name="goccupation"
-                    value="<?php echo htmlentities($admission['goccupation']) ?>"
+                    disabled
+                    value="<?php echo htmlentities($admission['guardian_occupation']) ?>"
                   />
                 </div>
               </div>
@@ -568,365 +449,111 @@ $engineering='set';
               <div class="form-row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                   <label for="firstName">School Name</label>
-                  <input disabled
-                    id="firstName"
+                  <input
+                    name="school_name"
                     type="text"
                     class="form-control"
-                    placeholder="School name"
-                    name="sname"
-                    value="<?php echo htmlentities($admission['sname']) ?>"
+                    placeholder="Enter School Name"
+                     disabled
+                    value="<?php echo htmlentities($admission['school_name']) ?>"
                   />
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12">
                   <label for="middleName">Passed Year</label>
-                  <input disabled
-                    type="text"
+                  <input
+                     
+                    name="school_passed_year"
+                    type="date"
                     class="form-control"
-                    placeholder="Passed Year"
-                    name="passed"
-                    value="<?php echo htmlentities($admission['passed']) ?>"
+                    placeholder="DD-MM-YYYY"
+                      disabled
+                    value="<?php echo htmlentities($admission['school_passed_year']) ?>"
                   />
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12">
-                  <label for="lastName">SEE GPA Point</label>
-                  <input disabled
+                  <label for="lastName">SLC/SEE GPA Point</label>
+                  <input
+                    name="school_gpa"
                     type="text"
                     class="form-control"
-                    placeholder="GPA Point"
-                    name="GPA"
-                    value="<?php echo htmlentities($admission['GPA']) ?>"
+                    placeholder="Enter SEE GPA Point"
+                    disabled
+                    value="<?php echo htmlentities($admission['school_gpa']) ?>"
                   />
                 </div>
               </div>
               <h6>Marks / Grades In</h6>
               <div class="form-row">
-                <?php if(isset($management))
-                {?>
-                <div class="col-lg-2 col-md-2 col-sm-2">
-                  <label for="firstName">Nepali</label>
-                  <input disabled
-                    id="firstName"
-                    type="text"
-                    class="form-control"
-                    placeholder="Nepali"
-                    name="nepali"
-                    value="<?php echo htmlentities($admission['nepali']) ?>"
-                  />
-                </div>
-              <?php }?>
-                <div class="col-lg-2 col-md-2 col-sm-2">
+               
+                <div class="col-lg-4 col-md-4 col-sm-4">
                   <label for="middleName">English</label>
-                  <input disabled
+                  <input
+                    name="school_english"
                     type="text"
                     class="form-control"
-                    placeholder="English"
-                    name="english"
-                    value="<?php if(isset($management)){echo htmlentities($admission['english']);}
-                                 if(isset($engineering)){echo htmlentities($admission['English']);}
-                      ?>"
+                    placeholder="Enter English Marks"
+                    disabled
+                    value="<?php echo htmlentities($admission['school_english']) ?>"
                   />
                 </div>
-                <?php if(isset($management))
-                {?>
-                <div class="col-lg-2 col-md-2 col-sm-2">
-                  <label for="lastName">Social Std.</label>
-                  <input disabled
-                    type="text"
-                    class="form-control"
-                    placeholder="Social Std."
-                    name="social"
-                    value="<?php echo htmlentities($admission['social']) ?>"
-                  />
-                </div>
-              <?php }?>
-                <div class="col-lg-2 col-md-2 col-sm-2">
+               
+                <div class="col-lg-4 col-md-4 col-sm-4">
                   <label for="firstName">Science</label>
-                  <input disabled
-                    id="firstName"
+                  <input
+                    name="school_science"
                     type="text"
                     class="form-control"
-                    placeholder="Science"
-                    name="science"
-                     value="<?php if(isset($management)){echo htmlentities($admission['science']);}
-                                 if(isset($engineering)){echo htmlentities($admission['Science']);}
-                      ?>"
+                    placeholder="Enter Science Marks"
+                    disabled
+                    value="<?php echo htmlentities($admission['school_science']) ?>"
                   />
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="col-lg-4 col-md-4 col-sm-4">
                   <label for="middleName">Maths</label>
-                  <input disabled type="text" class="form-control" placeholder="Maths" name="math" 
-                     value="<?php if(isset($management)){echo htmlentities($admission['math']);}
-                                 if(isset($engineering)){echo htmlentities($admission['Math']);}
-                      ?>"
-
+                  <input
+                    name="school_math"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter math Marks"
+                   disabled
+                    value="<?php echo htmlentities($admission['school_math']) ?>"
                   />
                 </div>
-                <?php if(isset($management))
-                {?>
-                <div class="col-lg-2 col-md-2 col-sm-2">
-                  <label for="lastName">EPH</label>
-                  <input disabled type="text" class="form-control" placeholder="EPH" name="eph" value="<?php echo htmlentities($admission['eph']) ?>"/>
-                </div>
-                <?php  }
-                ?>
+
               </div>
-
-              <?php  if(isset($management)){ ?>
-              <h5>ELECTIVE SUBJECTS XI</h5>
-              <div class="form-row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <label for="gender"><h4>Elective</h4></label><br>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="elective"
-                      id="exampleRadios1"
-                       value="business"
-                      <?php if ($admission['elective']=="business")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Business Studies
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                         name="elective"
-                      id="exampleRadios2"
-                     value="hotel"
-                      <?php if ($admission['elective']=="hotel")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Hotel Management 
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                        name="elective"
-                      id="exampleRadios2"
-                       value="computer"
-                      <?php if ($admission['elective']=="computer")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Computer Science 
-                    </label>
-                  </div>
-                </div>
-                </div>
-                <h5>ELECTIVE SUBJECTS XII</h5>
-              <div class="form-row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <label for="gender"><h4>Elective I</h4></label><br>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="elective2"
-                      id="exampleRadios1"
-                      value="business1"
-                        <?php if ($admission['elective2']=="business1")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Business Studies
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                     name="elective2"
-                      id="exampleRadios2"
-                       value="hotel1"
-                         <?php if ($admission['elective2']=="hotel1")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Hotel Management 
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                     name="elective2"
-                      id="exampleRadios2"
-                      value="computer1"
-                        <?php if ($admission['elective2']=="computer1")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Computer Science 
-                    </label>
-                  </div>
-                </div>
-                </div>
-
-                 <div class="form-row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <label for="gender"><h4>Elective II</h4></label><br>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="elective3"
-                     
-                      id="exampleRadios1"
-                       value="businessmath"
-                            <?php if ($admission['elective3']=="businessmath")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Business Math
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="elective3"
-                     
-                      id="exampleRadios2"
-                      value="marketing"
-                          <?php if ($admission['elective3']=="marketing")
-                       {
-
-                             echo"checked";
-                        }
-                        ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Marketing 
-                    </label>
-                  </div>
-                </div>
-                </div>
-              <?php } ?>
-
-              <?php if(isset($engineering)){ ?>
-              <h5>Type of School</h5>
-              <div class="form-row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="schooltype"
-                      id="exampleRadios1"
-                      value="government"
-                      <?php
-                        if($admission['schooltype']=='government')
-                          echo "checked";
-
-                      ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Government
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="schooltype"
-                      id="exampleRadios2"
-                      value="community"
-                       <?php
-                        if($admission['schooltype']=='community')
-                          echo "checked";
-
-                      ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Community
-                    </label>
-                  </div>
-                  <div class="form-check-inline">
-                    <input disabled
-                      class="form-check-input"
-                      type="radio"
-                      name="schooltype"
-                      id="exampleRadios2"
-                      value="private"
-                       <?php
-                        if($admission['schooltype']=='private')
-                          echo "checked";
-
-                      ?>
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Private 
-                    </label>
-                  </div>
-                </div>
-                </div>
-
-
                <div class="form-row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                  <label for="firstName">School Name</label>
-                  <input disabled
-                    id="firstName"
+                  <label for="firstName">High School/+2 Name</label>
+                 <input
+                    name="plus2_collage_name"
                     type="text"
                     class="form-control"
-                    placeholder="School name"
-                    name="school1"
-                    value="<?php echo htmlentities($admission['school1']); ?>" 
+                    placeholder="Enter Plus 2 Name"
+                    disabled
+                    value="<?php echo htmlentities($admission['plus2_collage_name']) ?>"
                   />
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12">
                   <label for="middleName">Passed Year</label>
-                  <input disabled
-                    type="text"
+                   <input
+                     
+                    name="plus2_passed_year"
+                    type="date"
                     class="form-control"
-                    placeholder="Passed Year"
-                    name="passed1"
-                    value="<?php echo htmlentities($admission['passed1']); ?>"
+                    placeholder="DD-MM-YYYY"
+                      disabled
+                    value="<?php echo htmlentities($admission['plus2_passed_year']) ?>"
                   />
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12">
-                  <label for="lastName">TSLC</label>
-                  <input disabled
+                  <label for="lastName">+2/PCL GPA Point</label>
+                  <input
+                    name="plus2_gpa"
                     type="text"
                     class="form-control"
-                    placeholder="GPA Point or %"
-                    name="GPA1"
-                    value="<?php echo htmlentities($admission['GPA1']); ?>"
+                    placeholder="Enter +2/PCL GPA Point"
+                   disabled
+                    value="<?php echo htmlentities($admission['plus2_gpa']) ?>"
                   />
                 </div>
               </div>
@@ -934,42 +561,58 @@ $engineering='set';
               <div class="form-row">
                  <div class="col-lg-4 col-md-4 col-sm-4">
                   <label for="middleName">English</label>
-                  <input disabled
+                  <input
+                    name="plus2_english"
                     type="text"
                     class="form-control"
-                    placeholder="English"
-                    name="english1"
-                    value="<?php echo htmlentities($admission['english1']); ?>"
+                    placeholder="Enter math Marks"
+                    disabled
+                    value="<?php echo htmlentities($admission['plus2_English']) ?>"
                   />
                 </div>
                
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <label for="firstName">Science</label>
-                  <input disabled
-                    id="firstName"
+                  <input
+                    name="plus2_science"
                     type="text"
                     class="form-control"
-                    placeholder="Science"
-                    name="science1"
-                    value="<?php echo htmlentities($admission['science1']); ?>"
+                    placeholder="Enter Science Marks"
+                   disabled
+                    value="<?php echo htmlentities($admission['plus2_science']) ?>"
                   />
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <label for="middleName">Maths</label>
-                  <input disabled type="text" class="form-control" placeholder="Maths" name="math1" value="<?php echo htmlentities($admission['math1']); ?>"/>
+                  <input
+                    name="plus2_math"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter math Marks"
+                    disabled
+                    value="<?php echo htmlentities($admission['plus2_math']) ?>"
+                  />
                 </div>
               </div>
 
-              <?php } ?> 
-              
-              <h5>Important Documents</h5>
+              <h6>ELECTIVE SUBJECT </h6>
               <div class="form-row">
-               
-                 <?php 
-                     if(isset($engineering))
-                     {
-                 ?>
-                   <div class="col-lg-4 col-md-4 col-sm-12">
+                 <div class="col-lg-4 col-md-4 col-sm-4">
+                  <label for="middleName">ELECTIVE I</label>
+                  <input
+                    name="elective"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Elective Subject Marks"
+                   disabled
+                    value="<?php echo htmlentities($admission['elective']) ?>"
+                  />
+                </div>
+                
+              </div>
+              <h5>Important Documents</h5>
+               <div class="form-row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
                      <label for="file" class="file-label"
                     >SEE/SLC Gradesheet</label
                   ><br>
@@ -1018,48 +661,27 @@ $engineering='set';
                   ><br>
                   <a class="btn-secondary btn center" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=engineering&&type=pp">download  <i class="fa fa-download"></i> </a>
                    </div>
-
-                <?php }?>
-
-                <?php 
-                     if(isset($management))
-                     {
-                 ?>
-                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <label for="file" class="file-label"
-                    >SEE/SLC Gradesheet</label
-                  ><BR>
-                  <a class="btn-secondary btn center file-upload" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=management&&type=slcgradesheet">download  <i class="fa fa-download"></i> </a>
-                </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                    <label for="file" class="file-label"
-                    >SEE/SLC Character Certificate</label
-                  >
-                  <BR>  
-                  <a class="btn-secondary btn center file-upload" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=management&&type=slccharacter">download  <i class="fa fa-download"></i> </a>
-                </div>
-              
-                 <div class="col-lg-4 col-md-4 col-sm-12">
-                  <label for="file" class="file-label"
-                    >Recent PP size Photo</label
-                  ><br>
-                  <a class="btn-secondary btn center file-upload" href="download.php?id=<?php echo $admission['id'] ?>&&faculty=management&&type=pp">download  <i class="fa fa-download"></i> </a>
-                </div>
-              
-              
-                <?php }?>
-               
-            
-               
               </div>
-         
+              
             
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+
+    <!-- javascripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
 
     <!-- javascripts -->
     <script
