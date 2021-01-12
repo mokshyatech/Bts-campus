@@ -33,7 +33,7 @@
               <a class="nav-link <?php if(isset($ourteam)){echo'active'; } ?>" href="ourteam.php">Our Team</a>
             </li>
              <li class="nav-item center-menu">
-              <a class="nav-link" href="results/results.php">Results</a>
+              <a class="nav-link<?php if(isset($result)){echo'active'; } ?>" href="result.php">Results</a>
             </li>
                   <?php
         if(!isset($_SESSION['login_user'])){
