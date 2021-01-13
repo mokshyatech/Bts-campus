@@ -358,13 +358,23 @@ function filltable() {
         var x = 1;
         for (var i = 0; i < student.length; i++) {
 
+           if(student[i].payment=='yes')
+           {
+              var  class_btn='btn-success';
+              var paid='paid';
+           }
+           else
+           {
+             var class_btn='btn-danger';
+             var paid='unpaid';
+           }
 
             var tr_str = "<tr>" +
                 "<td scope='row' >" + x + "</td>" +
                
                 "<td >" + student[i].firstname + " " + student[i].lastname + "</td>" +
-                 "<td >" + student[i].uniquecode + "</td>" +
-                 "<td style='text-transform: uppercase;'>" + student[i].faculty + "</td>" +
+                 "<td style='text-transform: uppercase;'>" + student[i].faculty+" ["+student[i].batch + "]</td>" +
+                 "<td >" + "<a class='btn "+class_btn+"' id='payment"+student[i].id+"' style='color:white' onclick='changes("+student[i].id+")'>"+paid+"</a>"+ "</td>" +
                 "<td >" +
                 "<a href='student.php?type=edit&&id=" + student[i].uniquecode + " '><i class='fa fa-edit'></i></a> " + " " +
 
@@ -393,3 +403,5 @@ function filltable() {
 </script>
 
 </html>
+
+                                             
