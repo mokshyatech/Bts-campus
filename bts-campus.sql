@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2021 at 02:07 PM
+-- Generation Time: Jan 13, 2021 at 09:14 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -87,8 +87,8 @@ CREATE TABLE `admissions` (
   `plus2_English` varchar(20) NOT NULL,
   `plus2_science` varchar(20) NOT NULL,
   `plus2_math` varchar(20) NOT NULL,
-  `elective` varchar(40) NOT NULL,
   `faculty` varchar(20) NOT NULL,
+  `elective` varchar(40) NOT NULL,
   `slc_gradesheet` varchar(255) NOT NULL,
   `slc_certificate` varchar(255) NOT NULL,
   `plus2_transcript` varchar(255) NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE `student` (
   `uniquecode` varchar(50) NOT NULL,
   `faculty` varchar(20) NOT NULL,
   `batch` varchar(20) NOT NULL,
-  `payment` varchar(20) NOT NULL,
+  `payment` varchar(20) NOT NULL DEFAULT 'no',
   `password` varchar(50) NOT NULL,
   `image` varchar(225) DEFAULT NULL,
   `dob` date NOT NULL,
