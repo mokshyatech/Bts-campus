@@ -345,8 +345,9 @@
      include('teacher_registration/global_validate.php');
      include('student_registration/validate.php');
      $faculty=$_POST['faculty'];
+     $batch=$_POST['batch'];
      $created_at=date("Y-m-d");
-       if(mysqli_query($db,"INSERT INTO  student(firstname,lastname,address,fathername,phone,password,uniquecode,faculty,dob,created_at) VALUES('$fname', '$lname', '$address', '$fathername', '$contact', '$password','$uniquecode','$faculty','$dob','$created_at')"))
+       if(mysqli_query($db,"INSERT INTO  student(firstname,lastname,address,fathername,phone,password,uniquecode,faculty,dob,created_at,batch) VALUES('$fname', '$lname', '$address', '$fathername', '$contact', '$password','$uniquecode','$faculty','$dob','$created_at','$batch')"))
        {
          include('student_registration/clear_old_data.php');
         $_SESSION['success']="you have successfully insert student data";  
@@ -370,8 +371,9 @@
      include('student_registration/validate.php');
       $updated_at=date("Y-m-d");
        $faculty=$_POST['faculty'];
+        $batch=$_POST['batch'];
 
-     $sql="update student set firstname='$fname', lastname='$lname' ,address='$address',fathername='$fathername',phone='$contact',password='$password',dob='$dob',updated_at='$updated_at' ,faculty='$faculty'  where uniquecode='$id' ";
+     $sql="update student set firstname='$fname', lastname='$lname' ,address='$address',fathername='$fathername',phone='$contact',password='$password',dob='$dob',updated_at='$updated_at' ,faculty='$faculty',batch='$batch'  where uniquecode='$id' ";
 
       if(mysqli_query($db,$sql))
       {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('include/check_login.php');
-$result='set';
+$results='set';
 ?>
 <!DOCTYPE html>
 <html>

@@ -28,6 +28,7 @@ $student=mysqli_fetch_assoc(mysqli_query($db,$sql));
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./results.css">
+    <link rel="shortcut icon" href="frontpage/images/logo1.jpg" />
          <link rel="stylesheet" href="frontpage/css/style.css" />
 
 </head>

@@ -1,3 +1,5 @@
+
+
  
     <div>
       <nav class="navbar navbar-expand-lg navbar-light py-0 ">
@@ -34,11 +36,11 @@
             <li class="nav-item center-menu">
               <a class="nav-link <?php if(isset($ourteam)){echo'active'; } ?>" href="ourteam.php">Our Team</a>
             </li>
-            <?php if(isset($_SESSION['login_user'])) {?>
+            <?php if(isset($_SESSION['login_user'])) {  if($_SESSION['payment']=='yes') {?>
              <li class="nav-item center-menu">
               <a class="nav-link<?php if(isset($result)){echo'active'; } ?>" href="result.php">Results</a>
             </li>
-          <?php } ?>
+          <?php }} ?>
                   <?php
         if(!isset($_SESSION['login_user'])){
          ?>

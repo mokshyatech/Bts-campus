@@ -35,7 +35,7 @@
       <div class="row bottom-section">
         <div class="col-sm-12">
           <div class="bottom-title">
-            <h5>&copy; All rights reserved Budhanilkantha Technical School</h5>
+            <h5>&copy; All rights reserved Budhanilkantha Technical Campus</h5>
             <h5 style="font-size: 13px;">Product of <a style="color: white;" href="https://www.facebook.com/mokshyatech">Mokshya Tech</a> And I.T Solutions</h5>
           </div>
         </div>

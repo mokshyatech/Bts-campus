@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="frontpage/admission/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="frontpage/admission/css/animate.css" />
     <link rel="stylesheet" type="text/css" href="frontpage/admission/css/style.css" />
+      <link rel="shortcut icon" href="frontpage/images/logo1.jpg" />
       <link rel="stylesheet" href="frontpage/css/style.css" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -770,6 +771,20 @@
                     placeholder="Enter Elective Subject Marks"
                     value="<?php  if(isset($_SESSION['elective'])) { echo $_SESSION['elective']; } unset($_SESSION['elective']) ?>"
                   />
+                </div>
+                
+              </div>
+
+                <div class="form-row">
+                 <div class="col-lg-4 col-md-4 col-sm-4">
+                  <label for="middleName">SELECT FACULTY YOU ARE APPLYING FOR</label>
+              
+                   <select name="faculty" class="form-control">
+                    <option value="BBS">BBS</option>
+                    <option value="B.ED">B.ED</option>
+                    <option value="B.A">B.A</option>
+                    
+                  </select>
                 </div>
                 
               </div>

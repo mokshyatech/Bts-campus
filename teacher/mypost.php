@@ -5,6 +5,7 @@ include('../include/connection.php');
 $id=$_SESSION['teacher_id'];
 $sql="select *from resources where posted_by='$id' order by id desc ";
 $result=mysqli_query($db,$sql);
+$mypost='set';
 
 ?>
 <!DOCTYPE html>
@@ -85,14 +86,14 @@ $result=mysqli_query($db,$sql);
                                    <td>php</td>
                                     <td><a href="#"><img src="photo/<?php echo $post['image']; ?>" alt="" ></a></td>
                                     <td><a href="read.php?id=<?php echo $post['id']; ?>"><i class="fas fa-file-pdf fa-3x"></i></a></td>
-                                    <td>Prinicple of managment Prinicple of managment</td>
+                                    <td><?php echo $post['caption']; ?>[<?php echo $post['subject']; ?>]<span style="text-transform: uppercase;">[<?php echo $post['faculty']; ?>]</span></td>
                                    
                           
                                     <td><?php echo $post['created_at']; ?></td>
                                   
                                     <td>
                                        
-                                        <a href="delete.php?id=<&&type=news_and_event"><i class="fa fa-trash fa-lg"> </i></a>
+                                        <a href="include/delete.php?id=<?php echo $post['id']; ?>&&type=resources"><i class="fa fa-trash fa-lg"> </i></a>
                                     </td>
                                 </tr>
                               <?php } ?>

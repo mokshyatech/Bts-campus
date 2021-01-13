@@ -1,9 +1,31 @@
 <?php
 session_start();
 include('include/connection.php');
-$sql="select *from student order by id desc ";
-$result=mysqli_query($db,$sql);
+
 $students='set';
+
+ $sql1="select distinct batch from student";
+$batch=[];
+$query1=mysqli_query($db,$sql1);
+ while($row=mysqli_fetch_array($query1))
+                      {
+                         $batch[]=$row['batch'];
+                         
+                      }
+                       
+if(isset($_GET['faculty']) && isset($_GET['batch']))
+{
+     $faculty=$_GET['faculty'];
+     $batchs=$_GET['batch'];
+  $sql="select *from student where faculty='$faculty' and batch='$batchs' order by id desc ";
+ $result=mysqli_query($db,$sql);
+}
+else
+{
+ $sql="select *from student order by id desc limit 20 ";
+$result=mysqli_query($db,$sql);   
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +43,7 @@ $students='set';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="landing.css">
+    <link rel="shortcut icon" href="../frontpage/images/logo1.jpg" />
 </head>
 <style>
     .blue {
@@ -88,16 +111,47 @@ include('include/check_login.php');
                     </p>
                     <p style="display: inline-flex;">
                         <a href="student.php" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px; float: right;  margin-left: 20px;">register</a>
+
                     </p>
+                        <br>
+                         <form action="student_table.php">
+                       <p style="display: inline-flex;">
+                       
+                        <select name="faculty" class="form-control" style="margin-right: 15px;">
+                            <option selected disabled>faculty</option>
+                    <option  value="bbs" <?php if(isset($_GET['faculty'])){if($_GET['faculty']=='bbs') echo "selected"; } ?>>BBS</option>
+                        <option value="ba" <?php if(isset($_GET['faculty'])){if($_GET['faculty']=='ba') echo "selected"; } ?>>BA</option>
+                        <option value="bed" <?php if(isset($_GET['faculty'])){if($_GET['faculty']=='bed') echo "selected"; } ?>>BED</option>
+                        </select>
+                         <select name="batch" class="form-control">
+                            <option selected disabled>batch</option>
+                           <?php foreach ($batch as  $value) { ?>
+                             <option value="<?php echo $value ?>" <?php if(isset($_GET['batch'])){if($_GET['batch']==$value) echo "selected"; } ?>><?php echo $value; ?></option>
+                           <?php } ?>
+                           
+                        </select>
+                        <input type="submit" class="btn btn-primary" style="background-color: #224a8f; border: none; border-radius: 20px; margin-bottom: 5px; float: right;  margin-left: 20px;" value="GO">
+                       
+                    </p>
+                </form>
+               
+
+                        
+                           
+                 
+                     
+                   
                     <div class="col-12">
+                          
                         <div class="row justify-content-center">
                             <table class="table">
                                 <thead class="blue ">
                                     <tr>
                                         <TH>SN</TH>
                                          <th>Name</th>
-                                        <th>UNIQUECODE</th>
-                                        <th>FACUlTY</th>
+                                        <th>FACULTY</th>
+                                      <!--   <th>FACUlTY</th> -->
+                                        <th>PAYMENT</th>
                                        
                                         <th>ACTION</th>
                                     </tr>
@@ -116,12 +170,22 @@ include('include/check_login.php');
                                         <td>
                                             <?php echo  htmlentities($student['firstname']);echo "  "; echo  htmlentities($student['lastname']);?>
                                         </td>
-                                        <td>
-                                            <?php echo htmlentities($student['uniquecode']); ?>
+                                        <td style="text-transform: uppercase;">
+                                            <?php echo htmlentities($student['faculty']."[".$student['batch']."]"); ?>
                                         </td>
-                                         <td style="text-transform: uppercase;">
+                                     <!--     <td style="text-transform: uppercase;">
                                             <?php echo htmlentities($student['faculty']); ?>
-                                        </td>
+                                        </td> -->
+                                        <td> 
+                                           
+                                            <?php if($student['payment']=='yes'){ ?>
+                                                 <a class="btn btn-success" id="payment<?php echo $student['id']; ?>" style="color:white" onclick="changes(<?php echo $student['id']; ?>)">paid</a>
+                                            <?php }else{ ?>
+                                                 <a class="btn btn-danger" id="payment<?php echo $student['id']; ?>" style="color:white" onclick="changes(<?php echo $student['id']; ?>)">unpaid</a>
+
+                                            <?php } ?>
+
+                                         
                                         <td>
                                             <a href="student.php?type=edit&&id=<?php echo htmlentities($student['uniquecode']); ?>"><i class="fa fa-edit"> </i></a>
                                             <a href="" data-toggle="modal" data-target="#exampleModalLong-<?php echo htmlentities($student['uniquecode']);?>">
@@ -205,6 +269,35 @@ function deletes(key) {
     $('#delete').modal('show');
    }
 
+
+function changes(id)
+{
+      if($('#payment'+id).hasClass('btn-success'))
+      {
+        $('#payment'+id).removeClass('btn-success');
+        $('#payment'+id).addClass('btn-danger');
+        $('#payment'+id).html('unpaid');
+      }
+       else
+      {
+        $('#payment'+id).removeClass('btn-danger');
+        $('#payment'+id).addClass('btn-success');
+        $('#payment'+id).html('paid');
+      }
+     
+       $.ajax({
+
+
+        type: 'get',
+        url: 'ajax_fetch_data/payment.php',
+        data: { id: id },
+        dataType: "json",
+        success: function(response) {
+
+    }
+    });
+   
+}
 
 
 $(document).ready(function() {

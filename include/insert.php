@@ -72,6 +72,7 @@
          $plus2_science=$_POST['plus2_science'];
          $plus2_math=$_POST['plus2_math'];
          $elective= $_POST['elective'];
+         $faculty= $_POST['faculty'];
 
          $slc_gradesheet=$_FILES['slc_gradesheet']['name'];
          $slc_certificate =$_FILES['slc_certificate']['name'];
@@ -139,7 +140,7 @@
 
        
         $sql=" insert into admissions
-               (f_name,m_name,l_name,dob,gender,nationality,mobile_no,email,per_zone,per_province,per_district,per_municipality,per_wardno,temp_zone,temp_province, temp_district,temp_municipality,temp_wardno,father_name,father_contact,father_occupation,mother_name,mother_contact,mother_occupation,guardian_name,guardian_contact,guardian_occupation,school_name,school_passed_year,school_gpa,school_english,school_science,school_math,plus2_collage_name, plus2_passed_year,plus2_gpa,plus2_english,plus2_science,plus2_math,elective,slc_certificate,slc_gradesheet,plus2_transcript,plus2_character,migration,provision,citizenship,pp)
+               (f_name,m_name,l_name,dob,gender,nationality,mobile_no,email,per_zone,per_province,per_district,per_municipality,per_wardno,temp_zone,temp_province, temp_district,temp_municipality,temp_wardno,father_name,father_contact,father_occupation,mother_name,mother_contact,mother_occupation,guardian_name,guardian_contact,guardian_occupation,school_name,school_passed_year,school_gpa,school_english,school_science,school_math,plus2_collage_name, plus2_passed_year,plus2_gpa,plus2_english,plus2_science,plus2_math,elective,slc_certificate,slc_gradesheet,plus2_transcript,plus2_character,migration,provision,citizenship,pp,faculty)
               values('$f_name','$m_name','$l_name','$dob','$gender','$nationality','$mobile_no','$email','$per_zone','$per_province','$per_district','$per_municipality','$per_wardno','$temp_zone','$temp_province','$temp_district','$temp_municipality','$temp_wardno','$father_name','$father_contact','$father_occupation','$mother_name','$mother_contact','$mother_occupation','$guardian_name','$guardian_contact','$guardian_occupation','$school_name','$school_passed_year','$school_gpa','$school_english',
                 '$school_science',
                 '$school_math',
@@ -156,7 +157,7 @@
                 '$plus2_character',
                 '$migration',
                 '$provision',
-                '$citizenship','$pp')";
+                '$citizenship','$pp','$faculty')";
 
       if(mysqli_query($db,$sql))
       {

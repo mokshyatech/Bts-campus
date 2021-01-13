@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../frontpage/css/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./Registration.css">
+    <link rel="shortcut icon" href="../frontpage/images/logo1.jpg" />
     <style>
         .error{
      color: red;
@@ -169,13 +170,19 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
                                     <?php if(isset($_SESSION['uniquecodeErr'])) echo $_SESSION['uniquecodeErr']; unset($_SESSION['uniquecodeErr']); ?> </small></span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputEmail">Faculty</label>
+                            <label for="inputEmail">FACULTY</label>
                              <select class="form-control" name="faculty">
                               <option disabled selected>--choose faculty--</option>
                                <option value="bbs" <?php if(isset($_SESSION['faculty'])){if($_SESSION['faculty']=='bbs') echo "selected";} else { if(isset($edit)){ if($student['faculty']=='bbs')echo "selected";  }  }?>>BBS</option>
                               <option value="bed" <?php if(isset($_SESSION['faculty'])){if($_SESSION['faculty']=='bed') echo "selected";} else { if(isset($edit)){ if($student['faculty']=='bed')echo "selected";  }  }?>>B.E.D</option>
                              <option value="ba" <?php if(isset($_SESSION['faculty'])){if($_SESSION['faculty']=='ba') echo "selected"; unset($_SESSION['faculty']);} else { if(isset($edit)){ if($student['faculty']=='ba')echo "selected";  }  }?>>B.A</option>
                              </select>
+                             <span class="error"><small>
+                                    <?php if(isset($_SESSION['facultyErr'])) echo $_SESSION['facultyErr']; unset($_SESSION['facultyErr']); ?> </small></span>
+                        </div>
+                            <div class="form-group col-md-6">
+                            <label for="inputEmail">BATCH</label>
+                             <input type="text" name="batch" class="form-control" placeholder="Eg 2019/2020/2021/" required value="<?php if(isset($_SESSION['batch'])) {echo $_SESSION['batch']; unset($_SESSION['batch']);} else{ if(isset($edit)) echo $student['batch']; }?>">
                              <span class="error"><small>
                                     <?php if(isset($_SESSION['facultyErr'])) echo $_SESSION['facultyErr']; unset($_SESSION['facultyErr']); ?> </small></span>
                         </div>

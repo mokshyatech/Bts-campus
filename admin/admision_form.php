@@ -24,6 +24,7 @@ $admission=mysqli_fetch_assoc($result);
     <link rel="stylesheet" type="text/css" href="frontpage/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../frontpage/admission/css/style.css" />
+      <link rel="shortcut icon" href="../frontpage/images/logo1.jpg" />
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -610,6 +611,19 @@ $admission=mysqli_fetch_assoc($result);
                    disabled
                     value="<?php echo htmlentities($admission['elective']) ?>"
                   />
+                </div>
+                
+              </div>
+                <div class="form-row">
+                 <div class="col-lg-4 col-md-4 col-sm-4">
+                  <label for="middleName">SELECTED FACULTY</label>
+              
+                   <select name="faculty" class="form-control">
+                    <option value="BBS" <?php if($admission['faculty']=="BBS") echo "selected"; else echo "disabled"; ?> >BBS</option>
+                    <option value="B.ED" <?php if($admission['faculty']=="B.ED") echo "selected"; else echo "disabled"; ?>>B.ED</option>
+                    <option value="B.A" <?php if($admission['faculty']=="B.A") echo "selected"; else echo "disabled"; ?>>B.A</option>
+                    
+                  </select>
                 </div>
                 
               </div>

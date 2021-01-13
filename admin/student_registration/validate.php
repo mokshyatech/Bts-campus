@@ -97,7 +97,7 @@
     if(isset($edit))
        {
 
-        if($fnameErr==true || $lnameErr==true || $addressErr==true ||  $passwordErr==true || $contactErr==true ||$fathernameErr==true ||$uniquecodeErr==true || $facultyErr==true)  
+        if($fnameErr==true || $lnameErr==true || $addressErr==true ||  $passwordErr==true || $contactErr==true ||$fathernameErr==true  || $facultyErr==true)  
        {
          header("location:student.php?type=edit&&id=$id");
          exit();
@@ -106,7 +106,7 @@
 
       else
       {  
-          if($fnameErr==true || $lnameErr==true || $addressErr==true || $emailErr==true || $passwordErr==true || $contactErr==true ||$fathernameErr==true || $facultyErr==true)  
+          if($fnameErr==true || $lnameErr==true || $addressErr==true || $emailErr==true || $passwordErr==true || $contactErr==true ||$fathernameErr==true || $facultyErr==true ||$uniquecodeErr==true)  
        {
          header("location:student.php");
          exit();
