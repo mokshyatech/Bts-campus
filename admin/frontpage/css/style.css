@@ -11,10 +11,11 @@ body {
 /* top banner */
 .top-banner {
   background-color:#d5d8de;
+    height:300px;
+
 }
 
 .top-banner img {
-  width: 100%;
 }
 
 .top-title h1 {

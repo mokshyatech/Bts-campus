@@ -18,13 +18,14 @@ include('include/connection.php');
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BTS</title>
+  <title>Gallery</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="frontpage/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../frontpage/css/style.css" />
+     <link rel="shortcut icon" href="../frontpage/images/logo1.jpg" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="landing.css">
 </head>
@@ -38,11 +39,6 @@ include('include/connection.php');
   </style>
 <body>
 </body>
-<?php 
-
-include('include/check_login.php');
-
-?>
 
 
 <!-- top banner -->
@@ -59,11 +55,7 @@ include('include/check_login.php');
      <?php 
          include('include/sidebar.php');
      ?>
-
-
-
-
-            <!-- content -->
+      <!-- content -->
     <div class="col-lg-8 col-md-8 col-sm-12">
       <form method="post" enctype="multipart/form-data" action="insert.php" >
         <?php if(isset($edit)) {?>

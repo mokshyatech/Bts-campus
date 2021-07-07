@@ -1,5 +1,5 @@
 <?php
-    $fnameErr = $lnameErr = $addressErr = $emailErr  = $passwordErr = $contactErr= false;  
+    $fnameErr = $lnameErr = $addressErr = $emailErr =$cemailErr = $passwordErr = $contactErr= false;  
   
         $fname = input_data($_POST["fname"]);  
             
@@ -50,6 +50,7 @@
 
 
            $email = input_data($_POST["email"]);  
+           $cemail = input_data($_POST["cemail"]);  
             // check if URL address syntax is valid  
 
             if (email($_POST['email'])==true) 
@@ -58,6 +59,11 @@
                 $_SESSION['emailErr'] = "Enter is invalid";
                 $emailErr=true;  
 
+           }
+           if($email!=$cemail)
+           {
+              $cemailErr=ture;
+              $_SESSION['cemailErr']="Confirm email didnot match";
            }
   }  
              
@@ -100,7 +106,7 @@
 
       else
       {  
-      	  if($fnameErr==true || $lnameErr==true || $addressErr==true || $emailErr==true || $passwordErr==true || $contactErr==true)  
+      	  if($fnameErr==true || $lnameErr==true || $addressErr==true || $emailErr==true || $passwordErr==true || $contactErr==true || $cemailErr==true)  
        {
        	 header("location:teacher.php");
        	 exit();

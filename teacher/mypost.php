@@ -11,13 +11,14 @@ $mypost='set';
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BTS</title>
+  <title>My post</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../frontpage/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../frontpage/css/font-awesome.min.css" />
     <link rel="stylesheet" href="gal.css" />
+     <link rel="shortcut icon" href="../frontpage/images/logo1.jpg" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="gal.css">
 </head>
@@ -28,10 +29,7 @@ $mypost='set';
         color: white; 
         
     }
-    img{
-      height: 50px;
-      width: 50px;
-    }
+    
   </style>
 
 <!-- top banner -->

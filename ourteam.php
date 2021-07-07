@@ -33,15 +33,18 @@
    <!-- message section -->
 <div class="container-fluid">
   <h1 style="text-align: center; color: #1a237e;">MEET OUR TEAM</h1>
-  <div class="row" style="margin-top: 25px;">
-    <div class="col-lg-6 col-md-12 col-sm-12" style="text-align: center;">
+  <div class="row d-flex justify-content-center" style="margin-top: 25px;">
+    
+
+
+    <div class="col-lg-4 col-md-4 col-sm-12" style="text-align: center;">
      <div class="introduction">
             
             <div class="chief-img">
               <img src="frontpage/photos/1.jpg" alt="Not Available!" />
             </div>
-            <h2>DEEPAK KARKI</h2>
-            <h5>PRINCIPAL</h5>
+            <h2>Shyam Krishna Lamicchane</h2>
+            <h5>CAMPUS CHIEF</h5>
 
             <p>
               
@@ -51,24 +54,82 @@
           </div>
   
 </div>
- <div class="col-lg-6 col-md-12 col-sm-12" style="text-align: center;">
-     <div class="introduction">
-            
-            <div class="chief-img">
-              <img src="frontpage/photos/assistant principal1.jpg" alt="Not Available!" />
-            </div>
-            <h2>SHOVA CHETTRI</h2>
-            <h5>ASSISTANT PRINCIPAL</h5>
 
-            <p>
-              
-            </p>
-            
-            
-          </div>
-</div>
-</div>
 
+</div>
+    <div class="Container">
+        <h2>Management Committee</h2>
+        
+            <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Post</th>
+       <th scope="col">Name</th>
+      <th scope="col">Post</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Shyam Shrestha</th>
+      <td>Asst. Campus Chief</td>
+      <th scope="row">Radha krishna Bhandari</th>
+      <td>Member</td>
+
+      
+    </tr>
+    <tr>
+      <th scope="row">Bhim Bdr. Khadka</th>
+      <td>Chairperson</td>
+      <th scope="row">Prakash Neupane</th>
+      <td>Member</td>
+
+      
+    </tr>
+    <tr>
+      <th scope="row">Damodar Khadka</th>
+      <td>Vice Chairperson</td>
+      <th scope="row">Sanu k. Shrestha</th>
+      <td>Member</td>
+
+     
+    </tr>
+    <tr>
+      <th scope="row">Prakash Neupane</th>
+      <td>Member</td>
+      <th scope="row">Uttam K. Khadka</th>
+      <td>Member</td>
+
+      
+    </tr>
+    <tr>
+      <th scope="row">Sharmila K.C</th>
+      <td>Member</td>
+      <th scope="row">Shyam K. Lamichhane</th>
+      <td>Member</td>
+
+      
+    </tr>
+    <tr>
+      <th scope="row">Deepak Karki</th>
+      <td>Member</td>
+      <th scope="row">Prakash Neupane</th>
+      <td>Member</td>
+
+     
+    </tr>
+     <tr>
+      <th scope="row">Shyam Khadka</th>
+      <td>Member</td>
+      <th scope="row">Aakash Dhital</th>
+      <td>Member</td>
+
+     
+    </tr>
+  </tbody>
+</table>
+
+    </div>
      
       </div>
     </div>

@@ -2,7 +2,7 @@
 session_start();
 include('include/connection.php');
 
-include('include/check_login.php');
+include('include/middleware.php');
 
 $id=$_GET['id'];
 $sql="select * from admissions where id='$id' limit 1";

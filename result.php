@@ -1,7 +1,8 @@
 <?php
 session_start();
 include "include/connection.php";
-if(!isset($_SESSION['login_user']))
+$result=true;
+if(!isset($_SESSION['login_as_student']))
 {
    header('location:index.php');
 }
@@ -15,7 +16,7 @@ $student=mysqli_fetch_assoc(mysqli_query($db,$sql));
 <html>
 
 <head>
-    <title>BTS</title>
+    <title>Result</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -71,14 +72,16 @@ $student=mysqli_fetch_assoc(mysqli_query($db,$sql));
                     
                     $show_drop_down=true;
                         
-
+                       $sql="SELECT * FROM results WHERE uniquecode='$code' ";
+                    
+                     
 
                       $sql1="select distinct faculty from results where uniquecode='$code' LIMIT 1";
                       $sql2="select distinct year from results where uniquecode='$code' LIMIT 1";
                          ?>
 
-                 <h6>FACULTY: <?php echo mysqli_fetch_assoc(mysqli_query($db,$sql1))['faculty']; ?></h6>
-                   <input type="hidden" name="faculty" value="<?php  echo mysqli_fetch_assoc(mysqli_query($db,$sql1))['faculty']; ?>" id="faculty">
+                 <h6>FACULTY: <?php if(mysqli_fetch_assoc(mysqli_query($db,$sql))>0) { echo mysqli_fetch_assoc(mysqli_query($db,$sql1))['faculty']; }?></h6>
+                   <input type="hidden" name="faculty" value="<?php if(mysqli_fetch_assoc(mysqli_query($db,$sql))>0)  echo mysqli_fetch_assoc(mysqli_query($db,$sql1))['faculty']; ?>" id="faculty">
                     
           
             </div>
@@ -87,7 +90,7 @@ $student=mysqli_fetch_assoc(mysqli_query($db,$sql));
                     
                 </h6>
             
-                <h6>YEAR: <?php echo mysqli_fetch_assoc(mysqli_query($db,$sql2))['year'] ; ?></h6>
+                <h6>YEAR: <?php if(mysqli_fetch_assoc(mysqli_query($db,$sql))>0) echo mysqli_fetch_assoc(mysqli_query($db,$sql2))['year'] ; ?></h6>
             </div>
         </div>
 

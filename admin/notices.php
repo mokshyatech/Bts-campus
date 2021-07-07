@@ -42,11 +42,6 @@ else
 </head>
 <body>
 </body>
-<?php 
-
-include('include/check_login.php');
-
-?>
 
 
 <!-- top banner -->
@@ -77,7 +72,7 @@ include('include/check_login.php');
           </div>
           <div class="col-11"><?php if(isset($insert)){echo "Post";} else {echo "Edit";}?> Notice</div>
           </div>
-          <form method="post" action="insert.php">
+          <form method="post" action="insert.php" enctype="multipart/form-data">
             <?php 
             if(isset($edit))
             {
@@ -85,10 +80,24 @@ include('include/check_login.php');
 
             <input type="hidden" name="id" value="<?php echo $notice['id']; ?>">
            <?php } ?>
+
+               <div class="row">
+            <div class="col">
+              <label for="vehicle1">TITLE</label><br>
+              <input type="text" name="title" style=" border-radius: 5px; background-color: #DEDBD5; border : 1px #DEDBD5; height: 40px; width: 250px;" value="<?php if(isset($edit)){echo htmlspecialchars($notice['title']); } ?>"></div>
+              </div>  
              
-          <div class="row">
-             <textarea name="notice">    <?php if(isset($edit)){echo htmlspecialchars($notice['notice']); } ?></textarea>
+          <div class="row  mt-2">
+             <label for="vehicle1" class="ml-3">NOTICE</label><br>
+             <textarea name="notice" class="ml-2">    <?php if(isset($edit)){echo htmlspecialchars($notice['notice']); } ?></textarea>
           </div>
+          <?php if(isset($insert)){ ?>
+           <div class="row">
+             
+             <input type="file" name="image" class="mt-3 ml-3 mb-3">
+           </div>
+
+        <?php } ?>
           <div class="row">
            
    

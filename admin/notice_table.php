@@ -57,7 +57,7 @@ return  $string;
 <html>
 
 <head>
-    <title>News and event</title>
+    <title>Notice</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -78,11 +78,7 @@ return  $string;
     </style>
 
 <body>
-    <?php 
 
-include('include/check_login.php');
-
-?>
     <!-- top banner -->
     <?php 
         include('include/topbar.php');
@@ -122,6 +118,7 @@ include('include/check_login.php');
                                     <tr>
                                         <TH>SN</TH>
                                         <th>NOTICE</th>
+                                        <th>Image</th>
                                         <th>DATE</th>
                                         <th>ACTION</th>
                                     </tr>
@@ -135,7 +132,12 @@ include('include/check_login.php');
                                  ?>
                                 <tr>
                                    <td><?php echo htmlentities($x); ?></td>
-                                    <td><?php echo  short_notice($notice['notice']);?> </td>
+                                    <td><?php echo  short_notice($notice['title']);?> </td>
+                                      <td>
+                                    <?php if($notice['image']!=null && $notice['image']!="") {?>
+                                        <img height="80" width="80" src="notice_file/<?php echo htmlentities($notice['image']); ?>">
+                                    <?php } ?>
+                                    </td>
                                    
                                     <td><?php echo htmlentities($notice['created_at']); ?></td>
                                    

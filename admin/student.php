@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-
+<?php session_start();
+ ?>
 <head>
     <title>Student Registration</title>
     <meta charset="utf-8">
@@ -22,7 +23,7 @@
     <?php  
 // define variables to empty values 
 include "include/connection.php"; 
-session_start();
+include "include/middleware.php"; 
 
 if(isset($_GET['type']))
 {
@@ -153,6 +154,7 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
                             <span class="error"><small>
                                     <?php if(isset($_SESSION['passwordErr'])) echo $_SESSION['passwordErr']; unset($_SESSION['passwordErr']); ?> </small></span>
                         </div>
+
                         <div class="form-group col-md-6">
                             <label for="inputEmail">UNIQUE CODE</label>
                             <input type="text" name="uniquecode" required class="form-control" id="inputEmail" placeholder=" Unique code" autocomplete="off" value="<?php 
@@ -169,6 +171,18 @@ if(isset($_SESSION['lname'])){ echo $_SESSION['lname']; unset($_SESSION['lname']
                             <span class="error"><small>
                                     <?php if(isset($_SESSION['uniquecodeErr'])) echo $_SESSION['uniquecodeErr']; unset($_SESSION['uniquecodeErr']); ?> </small></span>
                         </div>
+                    <?php if(!isset($edit)){ ?>
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail">CONFIRM UNIQUE CODE</label>
+                            <input type="text" name="cuniquecode" required class="form-control" id="inputEmail" placeholder="Confirm Unique code" autocomplete="off" value="<?php 
+            if(isset($_SESSION['cuniquecode'])){ echo $_SESSION['cuniquecode']; unset($_SESSION['cuniquecode']);}
+             
+
+             ?>">
+                            <span class="error"><small>
+                                    <?php if(isset($_SESSION['cuniquecodeErr'])) echo $_SESSION['cuniquecodeErr']; unset($_SESSION['cuniquecodeErr']); ?> </small></span>
+                        </div>
+                    <?php } ?>
                         <div class="form-group col-md-6">
                             <label for="inputEmail">FACULTY</label>
                              <select class="form-control" name="faculty">

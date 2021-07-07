@@ -23,6 +23,7 @@
 // define variables to empty values 
 session_start();
 include('include/connection.php');
+include('include/middleware.php');
 if(isset($_GET['type']))
 {
   $id=$_GET['id'];
@@ -90,6 +91,16 @@ if(isset($_GET['type']))
     >  
      <span class="error"><small><?php if(isset($_SESSION['emailErr'])){ echo $_SESSION['emailErr']; unset($_SESSION['emailErr']); }  ?></small></span> 
     </div>
+    <?php if(!isset($edit)){ ?>
+         <div class="form-group col-md-12">
+      <label for="inputEmail">CONFIRM EMAIL</label> 
+    <input type="email" required name="cemail" class="form-control"  placeholder="Confirm Email ID" autocomplete="off"
+   value="<?php if(isset($_SESSION['cemail'])){echo $_SESSION['cemail']; unset($_SESSION['cemail']); }?>">
+
+     <span class="error"><small><?php if(isset($_SESSION['cemailErr'])){ echo $_SESSION['cemailErr']; unset($_SESSION['cemailErr']); }  ?></small></span> 
+    </div>
+
+    <?php } ?>
     <div class="form-group col-md-12">
       <label for="inputEmail">CONTACT NO</label>
     <input type="text" name="contact" required class="form-control" id="inputFathername" placeholder=" Your's contact" autocomplete="off"

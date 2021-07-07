@@ -1,10 +1,13 @@
 <?php
 session_start();
-$_SESSION['username']=="";
-session_unset();
-//session_destroy();
-$_SESSION['errmsg']="You have successfully logout";
+
+  if(isset($_SESSION['admin_login']))
+  { 	   
+            unset($_SESSION['username']);
+			unset($_SESSION['admin_login']);
+			unset($_SESSION['admin_login_time']);
+		    header("location:index.php");
+		      }
+           
+
 ?>
-<script language="javascript">
-document.location="index.php";
-</script>

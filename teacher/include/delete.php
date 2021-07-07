@@ -19,7 +19,7 @@ include('../../include/connection.php');
        unlink('../photo/'.$result['image']);
      }
      mysqli_query($db,"delete from resources where id='$id'" );
-     $_SESSION['success']="DEleted successfully ";
+     $_SESSION['success']="Deleted successfully ";
      header('location:../mypost.php');
   }
 

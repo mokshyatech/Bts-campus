@@ -1,10 +1,4 @@
-
-CLS-1485,pom,80,40,68,BBS,first,2
-CLS-1485,English,80,40,78,BBS,first,2
-CLS-1485,nepali,80,40,65,BBS,first,2
-CLS-1485,Health,100,40,20,BBS,first,2
-CLS-1485,maj.english,80,40,50,BBS,first,2
-CLS-1485,maj.nepali,80,40,70,BBS,first,2
-CLS-1485,psychology,80,40,30,BBS,first,2
-CLS-1485,sociology,80,40,20,BBS,first,2
-CLS-1485,politics,60,30,30,BBS,first,2
+cls-150,pom,100,32,55,BBS,First,1
+cls-150,NOM,100,32,80,BBS,First,1
+cls-150,GOM,100,32,60,BBS,First,1
+cls-150,SOM,100,32,70,BBS,First,1

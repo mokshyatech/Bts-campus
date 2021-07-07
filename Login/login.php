@@ -1,30 +1,16 @@
 <?php
-include '../include/connection.php';
+
    session_start();
+   if(isset($_SESSION['login_as_teacher']))
+   {
+     header('location:../teacher/index.php');
+   }
+   if(isset($_SESSION['login_as_student']))
+   {
+      header('location:../index.php');
+   }
 
-   if(isset($_SESSION['teacher']))
-{
-    if(isset($_GET['user']))
-    {
-      if($_GET['user']=='teacher')
-      {
-          header('location:../teacher/index.php');
-      }
-   
-    }
-
-}
-if(isset($_SESSION['login_user']))
-{
-  if(isset($_GET['user']))
-    {
-      if($_GET['user']=='student')
-      {
-          header('location:../index.php');
-      }
-     
-    }
-}
+  
 
 if(isset($_GET['user']))
 {
@@ -43,71 +29,11 @@ else
   $student='set';
 }
 
-
-$passwordErr = $uniquecodeErr=$emailErr="";  
-$password = $uniquecode =$email= "";  
-  
-//Input fields validation  
-if ($_SERVER["REQUEST_METHOD"] == "POST") {  
-      
-
-
-     if (empty($_POST["password"])) {  
-        $passwordErr = "Enter the Password";  
-    } else {
-        $password = input_data($_POST["password"]);  
-       $uppercase = preg_match('@[A-Z]@', $password);
-       $lowercase = preg_match('@[a-z]@', $password);
-       $number    = preg_match('@[0-9]@', $password);
-       
-
-if(!$uppercase || !$lowercase || !$number ||  strlen($password) < 8)   
-            
-         {
-                $passwordErr = "Invalid Password";  
-            }      
-    }  
-
-if(isset($_POST['uniquecode']))
- {
- if (empty($_POST["uniquecode"])) {  
-        $uniquecodeErr = " What is your Unique Login Code?";  
-    } else {  
-            $uniquecode = input_data($_POST["uniquecode"]);  
-            // check if URL address syntax is valid  
-            if (!preg_match("/^(CLS)|[0-9]|(-)|[0-9]*$/",$uniquecode)) {
-                $uniquecodeErr = "Only alphabets and white space are allowed";  
-            }      
-    }
-  }
-  if(isset($_POST['email']))
-  {
-     if (empty($_POST["email"])) {  
-        $emailErr = " What is your email";  
-    } else {  
-            $email = input_data($_POST["email"]);  
-            // check if URL address syntax is valid  
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-               
-                $emailErr = "Enter valid email";  
-            }      
-    } 
-  }
-
-
-
-  }
-function input_data($data) {  
-  $data = trim($data);  
-  $data = stripslashes($data);  
-  $data = htmlspecialchars($data);  
-  return $data;  
-}  
 ?> 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BTS</title>
+  <title><?php if(isset($student)){echo "Student";} else {echo "Teacher";} ?> Login</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
@@ -131,19 +57,19 @@ function input_data($data) {
     <div class="row form body">
       <div class="col-lg-7 col-md-12 col-sm-12 bodycol">
         
-        <form action="../Login/login.php?user=<?php if(isset($_GET['user'])) echo $_GET['user']; ?>"  method="post" >
+        <form action="check.php"  method="post" >
   <div class="form-row">
     
   <div class="form-group col-md-12">
     <?php if(isset($student)){ ?>
        <label for="inputRoll">UNIQUE ROLL NUMBER</label>
-   <input type="text" name="uniquecode" class="form-control" id="inputEmail" placeholder=" Unique code" autocomplete="off" value="<?php if(isset($_POST['uniquecode']))echo $_POST['uniquecode'] ?>">  
-    <span class="error"><?php echo $uniquecodeErr; ?> </span> 
+   <input type="text" required name="uniquecode" class="form-control" id="inputEmail" placeholder=" Unique code" autocomplete="off" value="<?php if(isset($_SESSION['uniquecode'])){echo $_SESSION['uniquecode']; unset($_SESSION['uniquecode']); } ?>">  
+   
     <?php } ?>
     <?php if(isset($teacher)){ ?>
         <label for="inputRoll">EMAIL ID</label>
-   <input type="email" name="email" class="form-control" id="inputEmail" placeholder=" Email Id" autocomplete="off" value="<?php if(isset($_POST['email']))echo $_POST['email'] ?>">  
-    <span class="error"><?php echo $emailErr; ?> </span>  
+   <input type="email" required name="email" class="form-control" id="inputEmail" placeholder=" Email Id" autocomplete="off" value="<?php if(isset($_SESSION['email'])){echo $_SESSION['email']; unset($_SESSION['email']); } ?>">  
+  
     <?php } ?>   
 
      
@@ -151,8 +77,8 @@ function input_data($data) {
   </div>
   <div class="form-group col-md-12">
     <label for="inputPassword">PASSWORD</label>
-    <input type="password" name="password" class="form-control" id="inputEmail" placeholder=" Password" autocomplete="off">  
-    <span class="error"><?php echo $passwordErr; ?> </span>  
+    <input type="password" required name="password" class="form-control" id="inputEmail" placeholder=" Password" autocomplete="off" value="<?php if(isset($_SESSION['password'])){echo $_SESSION['password']; unset($_SESSION['password']); } ?>">  
+    <span class="error"><small style="color: red;font-style:italic;"><?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?></small></span>  
     
   </div>
   
@@ -190,108 +116,8 @@ function input_data($data) {
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="../frontpage/images/logo1.jpg" />
+  <?php include"../include/expireMessage.php"; ?>
 </body>
 </html>
 
 
-
-<?php  
-    if(isset($_POST['student'])) {  
-    
-       $count=0;
-
-        
-    if($passwordErr == "" && $uniquecodeErr == "" ) {
-
-      $result = mysqli_query($db, "SELECT * FROM student WHERE  uniquecode = '$uniquecode' and password = '$password'");
-      $row= mysqli_fetch_assoc($result);
-      $count=mysqli_num_rows($result);
-
-      if($count==0)
-      {
-        ?>
-           <div class="msg" style="background-color: #a7cfef; margin-top: 400px; height: 100px; width: 550px; position: fixed; text-align: center;">
-      <?php
-      echo"The uniquecode and password doesn't match!!!";
-      ?>
-    
-      </div>    
-             
-        <?php
-      }
-      else
-      {
-     
-        $_SESSION['login_user'] = $row['firstname'];
-        $_SESSION['code']=$row['uniquecode'];
-        $_SESSION['payment']=$row['payment'];
-        
-        
-       
-        header('Location: ../index.php');
-        
-      }
-    }else{
-?>
-           
-      <div class="msg" style="background-color: #a7cfef; margin-top: 400px; height: 100px; width: 550px; position: fixed; text-align: center;">
-      <?php
-      echo"Incorrect data Please fill correct data!!!";
-      ?>
-    
-      </div>   
-            
-        <?php
-  
-}
-}
- if(isset($_POST['teacher'])) {  
-    
-       $count=0;
-
-        
-    if($passwordErr == "" && $emailErr == "" ) {
-
-      $result = mysqli_query($db, "SELECT * FROM teacher WHERE  email = '$email' and password = '$password'");
-      $row= mysqli_fetch_assoc($result);
-      $count=mysqli_num_rows($result);
-
-      if($count==0)
-      {
-        ?>
-              
-          <div class="msg" style="background-color: #a7cfef; margin-top: 400px; height: 100px; width: 550px; position: fixed; text-align: center;">
-      <?php
-      echo"The email and password doesn't match";
-      ?>
-    
-      </div>
-              
-        <?php
-      }
-      else
-      {
-        
-        $_SESSION['teacher'] = $row['firstname'];
-        $_SESSION['teacher_id'] = $row['id'];
-
-        header('Location: ../teacher/index.php');
-        
-      }
-    }else{
-?>
-           
-      <div class="msg" style="background-color: #a7cfef; margin-top: 400px; height: 100px; width: 550px; position: fixed; text-align: center;">
-      <?php
-      echo"Incorrect data Please fill correct data!!!";
-      ?>
-    
-      </div>   
-            
-        <?php
-  
-}
-}
-?>
-  
-  

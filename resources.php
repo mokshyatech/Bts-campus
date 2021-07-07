@@ -1,6 +1,10 @@
 <?php
  include("include/connection.php");
  session_start();
+ if(!isset($_SESSION['login_as_student']))
+{
+   header('location:index.php');
+}
  $resource='set';
  $page=1;
  if(isset($_GET['subject']))
@@ -15,7 +19,7 @@
  <!DOCTYPE html>
 <html>
 <head>
-  <title>BTS</title>
+  <title>Resources</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

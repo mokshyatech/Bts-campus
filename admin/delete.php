@@ -10,6 +10,22 @@ include('include/check_login.php');
 
        if($type=='notice')
       {
+
+      $sql="select *from notice where id='$id' LIMIT 1";
+                      $query=mysqli_query($db,$sql);
+                       $result=mysqli_fetch_assoc($query);
+                       if(!empty($result)){ 
+
+                        if($result['image']!="" && $result!=null){
+
+                          if(file_exists('notice_file/'.$result['image'])){
+                             
+                              unlink('notice_file/'.$result['image']);
+                            
+                           }
+                        }
+                      }
+
            $sql=" DELETE FROM notice  WHERE id=$id ";
        
 
@@ -32,6 +48,21 @@ include('include/check_login.php');
 
        else if($type=='news_and_event')
        {
+        $sql="select *from news_and_event where id='$id' LIMIT 1";
+                      $query=mysqli_query($db,$sql);
+                       $result=mysqli_fetch_assoc($query);
+                       if(!empty($result)){ 
+
+                        if($result['image']!="" && $result!=null){
+
+                          if(file_exists('news_and_announcement_file/'.$result['image'])){
+                             
+                              unlink('news_and_announcement_file/'.$result['image']);
+                            
+                           }
+                        }
+                      }
+
           $sql=" DELETE FROM news_and_event  WHERE id=$id ";
        
 
@@ -39,7 +70,7 @@ include('include/check_login.php');
       {
         $_SESSION['success']='Event and post has been successfully deleted';
           
-        header('location:news and events_table.php');
+        header('location:news-and-events-table.php');
      
       }
       else
@@ -212,6 +243,34 @@ else if($type=='teacher_deletes')
           }
 
        }
+
+
+
+/* ------------------------------------------------------------------------------------------------------+
+                          user       message
+-------------------------------------------------------------------------------------------------------*/
+
+   else if($type=='userMessage')
+   {
+
+     
+
+         $sql=" DELETE FROM user_message  WHERE id='$id' ";
+      if(mysqli_query($db,$sql))
+             {
+               $_SESSION['success']="User message has been deleted successfully!!";        
+                header('location:message.php');
+       
+             }
+       else
+          {
+              $_SESSION['error']='!Opps somthing wrong in deleting message';
+              header('location:message.php');
+          }
+
+   }
+
+
 
 
 ?>

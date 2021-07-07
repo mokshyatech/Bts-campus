@@ -68,7 +68,7 @@ function input_data($data) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BTS</title>
+  <title>Contact Us</title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="frontpage/css/bootstrap.min.css" />
@@ -145,8 +145,8 @@ function input_data($data) {
       <div class="col" style="text-align: center; color: white;" >
         <div class="text-section">
         <h3>BUDHANILKANTHA TECHNICAL CAMPUS</h3>
-        <P>01-4372300<br>
-          bnktechschool@gmail.com<br>
+        <P>9851000586<br>
+          campus@bnkschool.edu.np<br>
           Budhanilkantha-3, Kathmandu, Nepal
         </P>
         </div>

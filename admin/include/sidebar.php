@@ -2,7 +2,7 @@
       <div class="container sidebar">
         <div class="row">
           <ul  id="accsidebar">
-               <li class="btn <?php if(isset($news_and_event)){echo "active";} ?>"><a href="news and events_table.php" class="active"><i class="fa fa-newspaper-o" ></i>NEWS AND EVENTS</a></li>
+               <li class="btn <?php if(isset($news_and_event)){echo "active";} ?>"><a href="news-and-events-table.php" class="active"><i class="fa fa-newspaper-o" ></i>NEWS AND EVENTS</a></li>
 
             <li class="btn <?php if(isset($notice)){echo "active";} ?>"><a href="notice_table.php"><i class="fa fa-bars" ></i>NOTICES</a></li>
            <li class="btn <?php if(isset($event)){echo "active";} ?>"><a href="event_table.php"><i class="fa fa-calendar"  ></i> CALENDER EVENTS</a></li>
@@ -16,6 +16,8 @@
              <li class="btn <?php if(isset($teacher)){echo "active";} ?>"><a href="teacher_table.php"><i class="fas fa-chalkboard-teacher"></i>Teacher</a></li>
 
               <li class="btn <?php if(isset($students)){echo "active";} ?>"><a href="student_table.php"><i class="fa fa-user"  ></i>Student</a></li>
+
+              <li class="btn <?php if(isset($message)){echo "active";} ?>"><a href="message.php"><i class="fa fa-user"  ></i>User Message</a></li>
 
          
           </ul>

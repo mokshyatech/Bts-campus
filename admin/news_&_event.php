@@ -41,12 +41,6 @@ else
 </head>
 <body>
 </body>
-<?php 
-
-include('include/check_login.php');
-
-?>
-
 
 <!-- top banner -->
     
@@ -76,7 +70,7 @@ include('include/check_login.php');
           </div>
           <div class="col-11"><?php if(isset($insert)){echo "Post";} else {echo "Edit";}  ?> News And Events</div>
           </div>
-          <form method="post" action="insert.php">
+          <form method="post" action="insert.php" enctype="multipart/form-data">
          <?php if(isset($edit)) { ?>
            <input type="hidden" name="id" value="<?php echo $news_and_event['id']; ?>">
 
@@ -91,8 +85,12 @@ include('include/check_login.php');
               </div>
               <label for="vehicle1">DATE</label><br>
               <input type="date" name="date" style=" border-radius: 5px; background-color: #DEDBD5; border : 1px #DEDBD5; height: 40px; width: 250px;"value="<?php if(isset($edit)){ echo htmlentities($news_and_event['date']); } ?>" >
-             <textarea name="NewsAndEvent" placeholder="description">  <?php if(isset($edit)){ echo htmlentities($news_and_event['post']); } ?></textarea>
-         
+             <textarea name="NewsAndEvent" placeholder="description">  <?php if(isset($edit)){ echo htmlentities($news_and_event['description']); } ?></textarea>
+                  <?php if( isset($insert)){ ?>
+           <input type="file" name="image" class="mt-4 mb-2 ml-2">  
+           <br>
+            <small class="ml-2" style="color:red;font-style: italic;"><?php   if(isset($_SESSION['error_image'])){echo $_SESSION['error_image']; unset($_SESSION['error_image']);} ?></small>
+          <?php } ?>
           
              
           <div class="row">

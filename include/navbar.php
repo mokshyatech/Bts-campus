@@ -19,50 +19,51 @@
           <ul class="navbar-nav mx-auto">
            
             <li class="nav-item center-menu">
-              <a class="nav-link <?php if(isset($index)) echo 'active'; ?> " href="index.php">Campus </a>
+              <a class="nav-link <?php if(isset($index)) echo 'active'; ?> " href="index.php">HOME </a>
             </li>
            
             <li class="nav-item center-menu">
-              <a class="nav-link <?php if(isset($gallery)){ echo 'active'; } ?> " href="gallery.php">Gallery</a>
+              <a class="nav-link <?php if(isset($gallery)){ echo 'active'; } ?> " href="gallery.php">GALLERY</a>
             </li>
             <li class="nav-item center-menu">
-              <a class="nav-link <?php if(isset($event)){echo'active';  } ?>" href="event.php">Events</a>
+              <a class="nav-link <?php if(isset($event)){echo'active';  } ?>" href="event.php">EVENTS</a>
             </li>
-            <?php if(isset($_SESSION['login_user'])){ ?>
+            <?php if(isset($_SESSION['login_as_student'])){ ?>
             <li class="nav-item center-menu">
-              <a class="nav-link <?php if(isset($resource)){echo 'active'; } ?>" href="resources.php">Resources</a>
+              <a class="nav-link <?php if(isset($resource)){echo 'active'; } ?>" href="resources.php">RESOURCES</a>
             </li>
           <?php } ?>
-            <li class="nav-item center-menu">
-              <a class="nav-link <?php if(isset($ourteam)){echo'active'; } ?>" href="ourteam.php">Our Team</a>
-            </li>
-            <?php if(isset($_SESSION['login_user'])) {  if($_SESSION['payment']=='yes') {?>
+           
+            <?php if(isset($_SESSION['login_as_student'])) {  if($_SESSION['payment']=='yes') {?>
              <li class="nav-item center-menu">
-              <a class="nav-link<?php if(isset($result)){echo'active'; } ?>" href="result.php">Results</a>
+              <a class="nav-link <?php if(isset($result)){echo'active'; } ?> " href="result.php">RESULTS</a>
             </li>
           <?php }} ?>
+               <li class="nav-item center-menu">
+              <a class="nav-link <?php if(isset($ourteam)){echo'active'; } ?>" href="ourteam.php">OUR TEAM</a>
+            </li>          
                   <?php
-        if(!isset($_SESSION['login_user'])){
+        if(!isset($_SESSION['login_as_student'])){
          ?>
-               <li class="nav-item center-menu <?php if(isset($gallery)){ echo 'active'; } ?> ">
-              <a class="nav-link" href="admission.php">Admission Form</a>
+               <li class="nav-item center-menu <?php if(isset($admission)){ echo 'active'; } ?> ">
+              <a class="nav-link" href="admission.php">ADMISSION FORM</a>
             </li>
        <?php } ?>
             <li class="nav-item center-menu">
-              <a class="nav-link <?php if(isset($contactus)){echo 'active'; } ?>" href="contactus.php">Contact Us</a>
+              <a class="nav-link <?php if(isset($contactus)){echo 'active'; } ?>" href="contactus.php">CONTACT US</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-5" >
               
                <?php
-        if(isset($_SESSION['login_user'])){
+        if(isset($_SESSION['login_as_student'])){
          ?>
               <li class="nav-item">
-                <a class="nav-link right-link" href="school/student/detail/profile.php"><?php echo "$_SESSION[login_user]";?></a>
+                <a class="nav-link right-link <?php if(isset($profile)){echo("active");} ?>" href="profile.php"><?php echo "$_SESSION[login_user]";?></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link right-link" href="login/student_logout.php">Logout</a>
+                <a class="nav-link right-link" href="login/student_logout.php">LOGOUT</a>
               </li>
               <?php }else{
            ?>
@@ -73,10 +74,10 @@
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
-                aria-expanded="false" >Login</a>
+                aria-expanded="false" >LOGIN</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="login/login.php?user=student">Student</a>
-                <a class="dropdown-item" href="login/login.php?user=teacher">Teacher</a>
+                <a class="dropdown-item" href="login/login.php?user=student">STUDENT</a>
+                <a class="dropdown-item" href="login/login.php?user=teacher">TEACHER</a>
                 
               </div>
               </li>

@@ -1,5 +1,6 @@
 <?php
   include("include/connection.php");
+  include "include/extra.php";
 session_start();
 ?><!DOCTYPE html>
 <html lang="en">
@@ -60,10 +61,10 @@ $start_from = ($page-1) * $limit;
 
           <div class="circle" style="transform: translateX(-8px);">
             
-            <div class="day ml-3"><span style="font-size:20px;margin-right: 10px; font-weight: bold; "><?php echo $x."."; ?></span></div>
+            <div class="day ml-3"><span style="font-size:20px;margin-right: 10px; font-weight: bold; "><?php echo $x."."; ?></span><?php echo date('j F, Y', strtotime($row['created_at']));    ?></div>
           </div>
         </div>
-        <div class="col-lg-10 col-md-2 col-sm-12 pt-3"><?php echo $row['notice']; ?></div>
+        <div class="col-lg-10 col-md-2 col-sm-12 pt-3"> <a href="detailViewOfNewsAnnouncementAndNotice.php?type=notice&&id=<?php echo $row['id']; ?>"><?php echo ($row['title']); ?></a></div>
       </div>
       <?php $x++; } ?>
     </div>

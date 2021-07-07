@@ -79,11 +79,7 @@ $x=(($page-1)*$limit)+1;
     </style>
 
 <body>
-    <?php 
 
-include('include/check_login.php');
-
-?>
     <!-- top banner -->
     <?php 
         include('include/topbar.php');

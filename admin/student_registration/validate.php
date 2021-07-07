@@ -2,8 +2,7 @@
   
  
 
-
-        $facultyErr= $fnameErr=$lnameErr=$addressErr=$passwordErr=$contactErr=$uniquecodeErr=$fathernameErr=false;
+        $facultyErr= $fnameErr=$lnameErr=$addressErr=$passwordErr=$contactErr=$uniquecodeErr=$fathernameErr=$cuniquecodeErr=false;
     
         
             // check if name only contains letters and wh
@@ -13,6 +12,7 @@
          $password=input_data($_POST['password']);
          $contact=input_data($_POST['contact']);
          $uniquecode=input_data($_POST['uniquecode']);
+         $cuniquecode=input_data($_POST['cuniquecode']);
          $fathername=input_data($_POST['fathername']);
 
              if(name($_POST['fname'])==true)
@@ -23,7 +23,7 @@
               
    
       
-   
+  
              if(name($_POST['lname'])==true)
              {
  
@@ -79,6 +79,13 @@
             {
               $_SESSION['uniquecodeErr'] = "uniquecode must be alphabet,number";
                 $uniquecodeErr=true;  
+            }
+
+            if($uniquecode!=$cuniquecode)
+            {
+              $cuniquecodeErr=true;
+              $_SESSION['cuniquecodeErr']="uniquecode didnot match";
+
             } 
     }    
     if(!isset($_POST['faculty']))
@@ -106,7 +113,7 @@
 
       else
       {  
-          if($fnameErr==true || $lnameErr==true || $addressErr==true || $emailErr==true || $passwordErr==true || $contactErr==true ||$fathernameErr==true || $facultyErr==true ||$uniquecodeErr==true)  
+          if($fnameErr==true || $lnameErr==true || $addressErr==true || $emailErr==true || $passwordErr==true || $contactErr==true ||$fathernameErr==true || $facultyErr==true ||$uniquecodeErr==true ||$cuniquecodeErr==true )  
        {
          header("location:student.php");
          exit();

@@ -41,11 +41,7 @@ else
 </head>
 <body>
 </body>
-<?php 
 
-include('include/check_login.php');
-
-?>
 
 
 <!-- top banner -->

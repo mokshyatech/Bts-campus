@@ -51,11 +51,7 @@ $teacher='set';
     </style>
 
 <body>
-    <?php 
-
-include('include/check_login.php');
-
-?>
+   
     <!-- top banner -->
     <?php 
         include('include/topbar.php');

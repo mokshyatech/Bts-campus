@@ -38,7 +38,7 @@ $x=(($page-1)*$limit)+1;
 <html>
 
 <head>
-    <title>News and event</title>
+    <title>Admission Form Table</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -59,11 +59,7 @@ $x=(($page-1)*$limit)+1;
     </style>
 
 <body>
-    <?php 
-
-include('include/check_login.php');
-
-?>
+   
     <!-- top banner -->
     <?php 
         include('include/topbar.php');

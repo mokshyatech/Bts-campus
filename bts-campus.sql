@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2021 at 09:14 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.25
+-- Generation Time: Jul 07, 2021 at 12:09 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bts-campus`
+-- Database: `bnkswgip_campus`
 --
 
 -- --------------------------------------------------------
@@ -113,6 +113,13 @@ CREATE TABLE `calender` (
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `calender`
+--
+
+INSERT INTO `calender` (`id`, `event`, `date`, `created_at`, `updated_at`) VALUES
+(1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum', '2021-07-30', '2021-07-07', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -121,7 +128,8 @@ CREATE TABLE `calender` (
 
 CREATE TABLE `news_and_event` (
   `id` int(11) NOT NULL,
-  `post` mediumtext NOT NULL,
+  `post` longtext NOT NULL,
+  `image` varchar(255) NOT NULL,
   `description` varchar(1025) NOT NULL,
   `date` date NOT NULL,
   `created_at` date DEFAULT NULL,
@@ -136,7 +144,9 @@ CREATE TABLE `news_and_event` (
 
 CREATE TABLE `notice` (
   `id` int(11) NOT NULL,
-  `notice` mediumtext NOT NULL,
+  `notice` longtext NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `title` text NOT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -246,7 +256,7 @@ CREATE TABLE `teacher` (
 CREATE TABLE `user_message` (
   `id` int(100) NOT NULL,
   `name` varchar(25) NOT NULL,
-  `phone` int(10) NOT NULL,
+  `phone` varchar(20) NOT NULL,
   `email` varchar(25) NOT NULL,
   `message` varchar(1025) NOT NULL,
   `created_at` date DEFAULT NULL
@@ -342,19 +352,19 @@ ALTER TABLE `admissions`
 -- AUTO_INCREMENT for table `calender`
 --
 ALTER TABLE `calender`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `news_and_event`
 --
 ALTER TABLE `news_and_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `photos`

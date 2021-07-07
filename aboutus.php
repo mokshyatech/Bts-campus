@@ -28,8 +28,8 @@ session_start();
 <!-- home image -->
     <div class="row p-0">
       <div class="col-lg-12">
-        <div>
-          <img src="frontpage/photos/physicslab.jpg"  class="img-fluid" alt="Not Available!" />
+        <div style="height:600px; overflow:hidden;">
+          <img src="frontpage/photos/campus7.jpg" width="100%"  class="img-fluid" alt="Not Available!" />
              <div class="title"><h4>ABOUT US</h4></div>
         </div>
       </div>
@@ -39,17 +39,18 @@ session_start();
 
     <!-- message section -->
     <div class="container-fluid">
-      <div class="row message p-1">
-        <div class="col-lg-6 col-sm-12 col-md-6 ">
+      <div class="row message p-5">
+                <div class="col-lg-6 col-sm-12 col-md-6 p-4">
           <div class="row p-2">
             
              <div class="introduction">
             <h4>INTRODUCTION</h4>
             <p>
-              Budhanilkantha  is committed to academic excellence. The school is dedicated to maintain the academic environment with the help of outstanding faculty engaged in the task of creative sensibility, or sense of responsibility and moral integrity.<br>
-
-              We believe that children today are responsible for citizens of tomorrow. However, the nourishment of these buds cannot blossom unless and until they get excellent academic environment which will enable them become acquainted with the nation and their society and family. Budhanilkantha  is committed to create homely but disciplined environment so that children may become aware of their own future.<br>
-              Budhanilkantha has a qualified team of instructors, who are continuously supervised and guided by a group of academicians, social workers as well as people involved in different disciplines of society. We have innovative practice in teaching and learning which can help students prove themselves outstanding in every corner of the world.
+              The technical wing in Budhanilkantha Secondary School is a promising TVET Program run by an enthusiastic group of academicians since 2073 B.S. with the cherished goal of producing quality technical manpower in the country. We are committed to instill knowledge, skills, responsibility, discipline and commitment, the five pillars of success.<br>
+            </p>
+            <h4>MISSION/VISION</h4>
+            <p>
+              	To educate all students to the highest levels of academic achievement, to enable them to reach and expand their potential, and to prepare them to become productive, responsible, ethical, creative and compassionate members of society.<br>
             </p>
           </div>
 
@@ -58,63 +59,60 @@ session_start();
             
             <div class="introduction">
             <h4>OBJECTIVE</h4>
-            <p>
-              1. To develop the future leaders offering the School,+2 and engineering course.<br>
-              2. To provide highly qualified, experienced and focused faculty and dedicated mentor to inculcate innovation and creativity.<br>
-              3. To create a lively and friendly environment among all the stakeholders of the institution to develop the sense of creativity and ownership.<br>
-            </p>
+            <ul>
+              <li>Produce high level graduates in the different fields to strengthen various sectors of the economy.</li>
+              <li>Train disadvantaged and unemployed groups of people in the specific skills through short- term modularized training programs.</li>
+              <li>Promote entrepreneurship and self-employed opportunities.</li>
+              <li>Increase income generating activities for sustainability.</li>
+<br>
+            </ul>
+          
+            <h4>REASONS TO CHOOSE BUDHANILKANTHA SECONDARY SCHOOL</h4>
+            <ul>
+                <li>	Sound Location</li>
+                <li>	Renowned History</li>
+                <li>	A safe and welcoming School</li>
+                <li>	Top class faculty</li>
+                <li>	Resourceful</li>
+                <li>	Supporting your Thoughts</li>
+                <li>	Career Guidance </li>
+                <li>	Scholarships to deserving Students</li>
+
+<br>
+            </ul>
           </div>
 
           </div>
-          <div class="row p-2">
-            
-            <div class="introduction">
-            <h4>MISSION</h4>
-            <p>
-              1. Produce professionally competent, technically sound, proactive and ethical leaders who can manage the global workforce having diversified work groups with high adaptations to various cultures in all.<br>
-              2. Set proper ways of educational vibe to establish oneself world class institution through continuing education, faculty and staff development and corporate research and consultancy.<br>
-              3. Develop long term relations with other national and international educational institutions, corporate, research organizations, government and non-governmental organizations to foster broad range of self motivated learning environment.<br>
-            </p>
-          </div>
-
-          </div>
+         
         </div>
-        <div class="col-lg-6 col-sm-12 col-md-6 pl-20 ">
+        <div class="col-lg-6 col-sm-12 col-md-6  p-4">
           <div class="row p-2">
-            
              <div class="introduction">
             <h4>MESSAGE FROM THE CHIEF</h4>
             <div class="chief-img">
               <img src="frontpage/photos/1.jpg" alt="Not Available!" />
             </div>
             <p>
-               Welcome to Budanilkanta Technical School, Kathmandu, Nepal, a school deeply committed to the mission of inspiring each student a passion for learning, the confidence and competence to pursue their dreams and the commitment to serve as a compassionate global citizen who is a steward of the environment<br>
-            </p>
-          </div>
+              In a country where education is held in very high esteem, we have dedicated ourselves to impart education and develop the student to be a responsible individual.<br/>
+We are committed to providing quality Education and Training in different aspects to prepare students for life and work equipping them to contribute to the technological, economic and social development. We pursue excellence in providing training to develop a sense of professional responsibility, social and cultural awareness and set students on the path to leadership. On behalf of the Management as well as other stake holders, I welcome each of you to this great institution. I am confident that when you walk out of the portals, you will be fully equipped to change the world for better
 
-          </div>
-          <div class="row p-2">
+            </p>
+            <div class="row p-2">
             
             <div class="introduction">
-            <h4>PURPOSE</h4>
-            <p>
-              The main purpose of our school is to provide for the fullest possible developmentof each learner for living morally, creatively, and productively.
-              The one continuing purpose of education, since ancient times,
-              has been to bring people to as full a realization as possible of
-              what it is to be a human being. Other statements of educational
-              purpose have also been widely accepted: to develop the intellect, to serve social needs, to contribute to the economy, to
-              create an effective work force, to prepare students for a job or
-              career, to promote a particular social or political system.<br> These
-              purposes offered are undesirably limited in scope, and in some
-              instances they conflict with the broad purpose I have indicated;
-              they imply a distorted human existence. The broader humanistic
-              purpose includes all of them, and goes beyond them, for it seeks
-              to encompass all the dimensions of human experience
-            </p>
+            <h4>PROGRAMS OFFERED</h4>
+            <ul>
+              <li>	Diploma in Civil Engineering (3 years)</li>
+              <li>	Diploma in Computer Engineering (3 years)</li>
+
+            </ul>
           </div>
 
           </div>
-        </div>
+          </div>
+
+          </div>
+
 
       </div>
     </div>

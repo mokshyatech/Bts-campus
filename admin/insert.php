@@ -18,23 +18,45 @@
    {
       $post= $_POST['title'];
       $date = $_POST['date'];
-   	  $NewsAndEvent=$_POST['NewsAndEvent'];
+   	  $NewsAndEvent=mysqli_real_escape_string($db,$_POST['NewsAndEvent']);
       $created_at=date('Y-m-d');
-       
-   	  $sql="insert into news_and_event (post,description,date,created_at) values('$post','$NewsAndEvent','$date','$created_at') ";
+
+
+      $image=$_FILES['image'];
+
+
+      if(!is_dir("news_and_announcement_file"))
+      {
+         mkdir("news_and_announcement_file");
+      }     
+     $image=$_FILES['image']['name'];
+     $temp=$_FILES['image']['tmp_name']; 
+     $dir="news_and_announcement_file/".$image;
+     $fileExtension=pathinfo($image,PATHINFO_EXTENSION);
+     $allowedType=array('png','jpg','jpeg');
+     if($image!=null){
+     if (!in_array($fileExtension,$allowedType)){
+            echo "invalid file extension";
+            $_SESSION['error_image']="invalide file extension";
+            header("location:news-&-event.php?type=insert") ;
+            exit();
+   }
+    }
+     move_uploaded_file($temp, $dir);   
+   	  $sql="insert into news_and_event (post,description,date,created_at,image) values('$post','$NewsAndEvent','$date','$created_at','$image') ";
    	   
 
    	  if(mysqli_query($db,$sql))
    	  {
    	  	$_SESSION['success']='Event and post has been successfully posted';
    	  	 	
-   	  	header('location:news and events_table.php');
+   	  	header('location:news-and-events-table.php');
    	 
    	  }
    	  else
    	   {
    	  	$_SESSION['error']='!Opps somthing wrong in posting event and news';
-   	    	  	header('location:news_&_event.php?type=insert');
+   	    	  	header('location:news-and-events-table.php');
    	 
 
    	  }
@@ -48,7 +70,7 @@
        $id=$_POST['id'];
       $post= $_POST['title'];
       $date = $_POST['date'];
-      $NewsAndEvent=$_POST['NewsAndEvent'];
+       $NewsAndEvent=mysqli_real_escape_string($db,$_POST['NewsAndEvent']);
       $updated_at=date("Y-m-d");
      $sql="update news_and_event set post='$post' ,description='$NewsAndEvent' ,date='$date', updated_at='$updated_at' where id='$id' ";
        
@@ -57,13 +79,13 @@
       {
         $_SESSION['success']='Event and post has been successfully updated';
           
-        header('location:news and events_table.php');
+        header('location:news-and-events-table.php');
      
       }
       else
        {
         $_SESSION['success']='!Opps somthing wrong in posting event and news';
-              header('location:news and events_table.php');
+              header('location:news-and-events-table.php');
      
 
       }
@@ -76,19 +98,29 @@
       ----------------------------------------------------------------------------------------------------------------------*/
          if(isset($_POST['notice_insert']))
    {
-
      
-     $date=date("Y-m-d");
-
-      $notice=$_POST['notice'];
-
-        
-
-
-
-      $sql="insert into notice (notice,created_at) values('$notice','$date') ";
-       
-
+     
+    $date=date("Y-m-d");
+    $notice=mysqli_real_escape_string($db,$_POST['notice']);
+    if(!is_dir("notice_file")){
+         mkdir("notice_file");
+      }
+   $title= $_POST['title'];
+   $image=$_FILES['image']['name'];
+   $temp=$_FILES['image']['tmp_name'];  
+   $dir="notice_file/".$image;
+   $fileExtension=pathinfo($image,PATHINFO_EXTENSION);
+   $allowedType=array('png','jpg','jpeg');
+   if($image!=null){
+     if (!in_array($fileExtension,$allowedType)){
+            echo "invalid file extension";
+            $_SESSION['error_image']="invalide file extension";
+            header("location:notices.php?type=insert") ;
+            exit();
+         }
+    }
+     move_uploaded_file($temp, $dir);
+    $sql="insert into notice (title,image,notice,created_at) values('$title','$image','$notice','$date') ";
       if(mysqli_query($db,$sql))
       {
         $_SESSION['success']='Notice has been successfully posted';
@@ -112,12 +144,12 @@
     if(isset($_POST['notice_update']))
    {
      $id=$_POST['id'];
-      $notice=$_POST['notice'];
+      $notice=mysqli_real_escape_string($db,$_POST['notice']);
        
        $updated_at=date("Y-m-d");
 
-
-      $sql="UPDATE notice  SET notice='$notice',updated_at='$updated_at' where id='$id' ";
+       $title= $_POST['title'];
+      $sql="UPDATE notice  SET notice='$notice',updated_at='$updated_at',title='$title' where id='$id' ";
        
 
       if(mysqli_query($db,$sql))
